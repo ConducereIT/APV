@@ -19,7 +19,7 @@ const App = () => {
           <GlobalStyle />
           <RouterProvider router={router} />
           <h1>ceva</h1>
-          <button onClick={() => themeToggler()}>ceva</button>
+          <button onClick={() => themeToggler()}>Light/Dark</button>
         </ThemeProvider>
       </ThemeContext>
   );

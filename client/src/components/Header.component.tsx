@@ -1,9 +1,16 @@
-import HeaderDiv from "../styles/header";
+import ThemeContext from "../contexts/ThemeContext";
+import { HeaderDiv, ElementDiv } from "../styles/header";
 
 export const Header = () => {
   return (
-    <HeaderDiv>
-        <h1 className="text-black">ceva</h1>
-      </HeaderDiv>
+    <>
+      <ThemeContext>
+        <HeaderDiv>
+          <ElementDiv>
+            <h1>ceva</h1>
+          </ElementDiv>
+        </HeaderDiv>
+      </ThemeContext>
+    </>
   );
 };
