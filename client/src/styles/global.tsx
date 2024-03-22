@@ -39,14 +39,20 @@ const globalStyles = createGlobalStyle`
   }
 
   .header{
-    h1{
-      color: yellow;
+    .elementHeader{
+    
+    }
+
+    .liHeader{
+      color: ${({theme}: GlobalThemeProps) => theme.text};
+    }
+
+    .liHeader:hover{
+      color: ${({theme}: GlobalThemeProps) => theme.textHover};
     }
   }
 
-  .elementHeader{
-    
-  }
+
 
 `;
 
