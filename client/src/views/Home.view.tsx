@@ -1,3 +1,4 @@
+import Dropdown from "../components/DropDown.component";
 import { Header } from "../components/Header.component";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
       <div className="h-96 w-auto bg-black text-center mx-auto max-w-[80rem] mt-96">
         <h1 className="text-yellow-400">Alearga Pentru Viata</h1>
       </div>
+      <Dropdown />
     </>
   );
 };

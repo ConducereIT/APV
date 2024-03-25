@@ -9,11 +9,13 @@ const ElementDiv = styled.div.attrs(props => ({
   }))``;
 
 const UlHead = styled.ul.attrs( () => ({
-  className: `flex list-none p-0 center my-auto`
+  className: `flex list-none p-0 center my-auto h-full`
 }))``;
 
 const LiHead = styled.li.attrs ( props => ({
-  className: `liHeader ml-10 text-xl ${props.theme && `text-${props.theme.text} hover:text-${props.theme.textHover}`}`
+  className: `liHeader ml-10 text-xl my-auto ${props.theme && `text-${props.theme.text} hover:text-${props.theme.textHover}`}`
 }))``;
+
+
 
 export {HeaderDiv, ElementDiv, UlHead, LiHead};

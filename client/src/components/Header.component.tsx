@@ -1,5 +1,4 @@
-import ThemeContext from "../contexts/ThemeContext"; // Importați ThemeContextProps din fișierul contextului
-import { HeaderDiv, ElementDiv, UlHead, LiHead } from "../styles/header";
+import Dropdown from "./DropDown.component";
 
 interface HeaderItems {
   text: string;
@@ -49,24 +48,35 @@ const headerTextContent: HeaderItems[] = [
   {
     text: "Contacte",
     url: "https://apv.lsebucuresti.org/contact.php",
-  }
+  },
 ];
 
-
-export const Header = () => {    
+export const Header = () => {
   return (
-    <>
-      <ThemeContext>
-        <HeaderDiv>
-          <ElementDiv>
-            <UlHead>
-              {headerTextContent.map((items, index) => (
-                <LiHead key={index}>{items.text}</LiHead>
-              ))}
-            </UlHead>
-          </ElementDiv>
-        </HeaderDiv>
-      </ThemeContext>
-    </>
+    <div className="header h-[5.625rem] w-full fixed top-0 border border-green-500">
+      <div className="elementHeader border border-black h-[80%] my-auto  w-[80rem] mx-auto">
+        <ul className="flex list-none p-0 center my-auto h-full">
+          {headerTextContent.map((items, index) => (
+              <Dropdown items={items} key={index} />
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
+
+// export const Header = () => {
+//   return (
+//     <div className="header h-[5.625rem] w-full fixed top-0 border border-green-500">
+//       <div className="elementHeader border border-black h-[80%] my-auto  w-[80rem] mx-auto">
+//         <ul className="flex list-none p-0 center my-auto h-full">
+//           {headerTextContent.map((items, index) => (
+//               <li className="liHeader ml-7 text-md my-auto text-[#656372] hover:text-[#00B9AE]" key={index}>
+//               {items.text}
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };

@@ -47,9 +47,7 @@ const globalStyles = createGlobalStyle`
       color: ${({theme}: GlobalThemeProps) => theme.text};
     }
 
-    .liHeader:hover{
-      color: ${({theme}: GlobalThemeProps) => theme.textHover};
-    }
+
   }
 
 
@@ -61,3 +59,7 @@ const globalStyles = createGlobalStyle`
   const GlobalStyle = withTheme(globalStyles)
 
 export default GlobalStyle;
+
+// .liHeader:hover{
+//   color: ${({theme}: GlobalThemeProps) => theme.textHover};
+// }
