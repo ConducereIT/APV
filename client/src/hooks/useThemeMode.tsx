@@ -15,7 +15,7 @@ export const useThemeMode = () => {
     localTheme && setTheme(localTheme);
   }, []);
 
-  return { theme, themeToggler };
+  return { theme, themeToggler }; 
 };
 
 export default useThemeMode;

@@ -1,7 +1,5 @@
 import "./App.css";
 
-import React from "react";
-
 import { RouterProvider } from "react-router-dom";
 
 import { allRoutes as router } from "./routes/AllRoutes";
@@ -16,16 +14,14 @@ const App = () => {
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
-    <React.Fragment>
-      <ThemeContext>
+    <ThemeContext>
         <ThemeProvider theme={themeMode}>
           <GlobalStyle />
           <RouterProvider router={router} />
           <h1>ceva</h1>
-          <button onClick={() => themeToggler()}>ceva</button>
+          <button onClick={() => themeToggler()}>Light/Dark</button>
         </ThemeProvider>
       </ThemeContext>
-    </React.Fragment>
   );
 };
 

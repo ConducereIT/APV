@@ -2,9 +2,6 @@ import { createGlobalStyle, withTheme } from "styled-components";
 
 import { ThemeProps } from "./themes";
 
-// import tw from "tailwind-styled-components"
-
-
 type GlobalThemeProps = {
     theme: ThemeProps;
   };
@@ -12,11 +9,19 @@ type GlobalThemeProps = {
 
 const globalStyles = createGlobalStyle`
   :root {
-    --dark-background: #1A1B27;
-    --dark-text: #F5F5F7;
+    --dark-background: #292A3A;
+    --dark-text: #A8A5BF;
+    --dark-text-hover: #08E4D5;
 
     --light-background: #f2f2f2;
-    --light-text: #2E0509;
+    --light-text: #656372;
+    --light-text-hover: #00B9AE;
+
+    --lightTheme-purple: #2F1A53;
+    --lightTheme-turquoise: #00B9AE;
+
+    --darkTheme-purple: #4C268D;
+    --darkTheme-turquoise: #08E4D5;
   }
 
 
@@ -29,6 +34,23 @@ const globalStyles = createGlobalStyle`
   h1 {
     color: ${({ theme }: GlobalThemeProps) => theme.text};
   }
+  h1:hover{
+    color: ${({ theme }: GlobalThemeProps) => theme.textHover};
+  }
+
+  .header{
+    .elementHeader{
+    
+    }
+
+    .liHeader{
+      color: ${({theme}: GlobalThemeProps) => theme.text};
+    }
+
+
+  }
+
+
 
 `;
 
