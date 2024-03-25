@@ -56,8 +56,8 @@ export const Header = () => {
     <div className="header h-[5.625rem] w-full fixed top-0 border border-green-500">
       <div className="elementHeader border border-black h-[80%] my-auto  w-[80rem] mx-auto">
         <ul className="flex list-none p-0 center my-auto h-full">
-          {headerTextContent.map((items, index) => (
-              <Dropdown items={items} key={index} />
+          {headerTextContent.map((item, index) => (
+              <Dropdown {...item} key={index} />
           ))}
         </ul>
       </div>
