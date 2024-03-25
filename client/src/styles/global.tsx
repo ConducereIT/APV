@@ -54,12 +54,6 @@ const globalStyles = createGlobalStyle`
 
 `;
 
-//"Barlow Condensed", sans-serif
-
   const GlobalStyle = withTheme(globalStyles)
 
 export default GlobalStyle;
-
-// .liHeader:hover{
-//   color: ${({theme}: GlobalThemeProps) => theme.textHover};
-// }

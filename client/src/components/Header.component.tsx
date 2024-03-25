@@ -1,5 +1,5 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import LOGO from "../assets/logo.png"
+import LOGO from "../assets/logo.png";
 
 import Dropdown from "./DropDown.component";
 
@@ -58,19 +58,37 @@ export const Header = () => {
   return (
     <div className="header h-[5.625rem] w-full fixed top-0 ">
       <div className="elementHeader h-[80%] my-auto  w-[80rem] mx-auto relative">
-          <ul className="flex  p-0 center my-auto h-full">
+        <ul className="flex  p-0 center my-auto h-full">
           {headerTextContent.map((item, index) => (
-              <Dropdown {...item} key={index} />
+            <Dropdown {...item} key={index} />
           ))}
         </ul>
 
-        <img className="h-10 w-15 absolute top-1 my-3 scale-125 right-[50%]" src={LOGO} alt="Logo" />
+        <img
+          className="h-10 w-15 absolute top-1 my-3 scale-125 right-[50%]"
+          src={LOGO}
+          alt="Logo"
+        />
 
         <div className=" absolute top-0 right-0 h-full w-[50%] flex items-center justify-center space-x-8">
-            <a className="scale-110" href="https://www.facebook.com/AleargaPentruViata"><FaFacebook className="" /></a>
-            <a className="scale-110" href="https://www.instagram.com/aleargapentruviata.lse/"><FaInstagram /></a>
-            <button className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[60%] text-white text-xl  w-[25%]">Doneaza</button>
-            <button className="bg-[#1b756f] hover:bg-[#3f9892] translate-x-10 h-[60%] rounded-md text-white text-xl  w-[25%]">Inscriere</button>
+          <a
+            className="scale-110"
+            href="https://www.facebook.com/AleargaPentruViata"
+          >
+            <FaFacebook className="" />
+          </a>
+          <a
+            className="scale-110"
+            href="https://www.instagram.com/aleargapentruviata.lse/"
+          >
+            <FaInstagram />
+          </a>
+          <button className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[60%] text-white text-xl  w-[25%]">
+            Doneaza
+          </button>
+          <button className="bg-[#1b756f] hover:bg-[#3f9892] translate-x-10 h-[60%] rounded-md text-white text-xl  w-[25%]">
+            Inscriere
+          </button>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
       <button
         onClick={() => (window.location.href = `${url}`)}
         className="liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform"
-        style={{ marginBottom: '-4px' }} // pentru a compensa spațiul adăugat de umbra butonului
+  
       >
         {text}
       </button>
@@ -22,7 +22,6 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
         <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
             <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
           <div className=" ">
-            {/* Utilizați subText aici pentru a afișa opțiunile */}
             {subText &&
               Object.values(subText).map((option, index) => (
                 <a
