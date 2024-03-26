@@ -12,14 +12,14 @@ interface HeaderItems {
 const headerTextContent: HeaderItems[] = [
   {
     text: "Despre",
-    url: "apv.lsebucuresti/about-us",
+    url: "/about",
     subText: {
       1: {
         text: "Ce este Alearga Pentru Viata?",
-        url: "apv3,msa.lsebucuresti/about-us/#ce_este_apv",
+        url: "/about",
       },
-      2: { text: "Echipa", url: "apv.lsebucuresti/about-us/#echipa" },
-      3: { text: "Istoric", url: "apv.lsebucuresti/about-us/#istoric" },
+      2: { text: "Echipa", url: "/about" },
+      3: { text: "Istoric", url: "/about" },
       4: {
         text: "Galerie Foto",
         url: "https://www.facebook.com/media/set/?set=a.603987195089837&type=3",
@@ -42,15 +42,15 @@ const headerTextContent: HeaderItems[] = [
   },
   {
     text: "Cauza",
-    url: "apv.lsebucuresti.org/cauza.php",
+    url: "/cauza",
   },
   {
     text: "Intrebari Frecvente",
-    url: "https://apv.lsebucuresti.org/infoutile.php",
+    url: "/faq",
   },
   {
     text: "Contacte",
-    url: "https://apv.lsebucuresti.org/contact.php",
+    url: "/contact",
   },
 ];
 
