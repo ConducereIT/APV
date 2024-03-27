@@ -14,7 +14,7 @@ const globalStyles = createGlobalStyle`
     --dark-text-hover: #08E4D5;
 
     --light-background: #f2f2f2;
-    --light-text: #656372;
+    --light-text: #A8A5BF;
     --light-text-hover: #00B9AE;
 
     --lightTheme-purple: #2F1A53;
@@ -35,6 +35,17 @@ const globalStyles = createGlobalStyle`
     color: ${({ theme }: GlobalThemeProps) => theme.text};
   }
   h1:hover{
+    color: ${({ theme }: GlobalThemeProps) => theme.textHover};
+  }
+
+  p {
+    color: ${({ theme }: GlobalThemeProps) => theme.text};
+  }
+
+  span {
+    color: ${({ theme }: GlobalThemeProps) => theme.text};
+  }
+  p:hover{
     color: ${({ theme }: GlobalThemeProps) => theme.textHover};
   }
 

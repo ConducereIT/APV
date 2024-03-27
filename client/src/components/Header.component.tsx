@@ -56,7 +56,7 @@ const headerTextContent: HeaderItems[] = [
 
 export const Header = () => {
   return (
-    <div className="header h-[5.625rem] w-full fixed top-0 ">
+    <div className="header h-[5.625rem] w-full fixed top-0 z-50">
       <div className="elementHeader h-[80%] my-auto  w-[80rem] mx-auto relative">
         <ul className="flex  p-0 center my-auto h-full">
           {headerTextContent.map((item, index) => (

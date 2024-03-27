@@ -9,6 +9,7 @@ export interface CurseValide {
         oraStart: string;
         distanta: string;
         donatieMinima: string;
+        descriere: string; 
         urlHarta?: string;
     }
 }
@@ -18,18 +19,20 @@ const curseArr: CurseValide[] = [
         numeCurse: "allforone",
         interfata:{
             cursa: "All For One",
-            oraStart: "11:30",
-            distanta: "400M",
+            oraStart: "11 : 30",
+            distanta: "400 M",
             donatieMinima: "OPTIONAL",
+            descriere: "Cursa All For One este o tură populară, necompetitivă, perfectă pentru cei care vor să facă mișcare în natură pe o distanță accesibilă. Aceasta se adresează tuturor persoanelor, de orice vârstă sau gen, chiar și persoanelor cu dizabilități.",
         }
     },
     {
         numeCurse: "kids",
         interfata:{
             cursa: "Copii < 10 ani",
-            oraStart: "11:10",
-            distanta: "400M",
+            oraStart: "11 : 10",
+            distanta: "400 M",
             donatieMinima: "20 RON",
+            descriere: "",
         }
     },
     {
@@ -39,6 +42,7 @@ const curseArr: CurseValide[] = [
             oraStart: "10 : 00",
             distanta: "1.8 KM (2 x 900 M)",
             donatieMinima: "20 RON",
+            descriere: "",
         }
     },
     {
@@ -48,6 +52,7 @@ const curseArr: CurseValide[] = [
             oraStart: "10 : 20",
             distanta: "1.8 KM (2 x 900 M)",
             donatieMinima: "20 RON",
+            descriere: "",
         }
     },
     {
@@ -57,6 +62,7 @@ const curseArr: CurseValide[] = [
             oraStart: "12 : 00",
             distanta: "4 KM (2 X 2 KM)",
             donatieMinima: "20 RON",
+            descriere: "",
         }
     },
     {
@@ -66,6 +72,7 @@ const curseArr: CurseValide[] = [
             oraStart: "13 : 00",
             distanta: "6 KM (3 X 2 KM)",
             donatieMinima: "40 RON",
+            descriere: "",
         }
     },
     {
@@ -75,6 +82,7 @@ const curseArr: CurseValide[] = [
             oraStart: "15 : 00",
             distanta: " 4 KM (2 x 2 KM)",
             donatieMinima: "40 RON",
+            descriere: "",
         }
     },
     {
@@ -84,6 +92,7 @@ const curseArr: CurseValide[] = [
             oraStart: "14 : 10",
             distanta: " 2 KM ",
             donatieMinima: "40 RON",
+            descriere: "",
         }
     },
 ];
@@ -108,7 +117,7 @@ const Curse = () => {
     return (
         <div>
             <Header />
-            <div className="bg-black  mt-36">
+            <div className="bg-slate-50 rounded-xl  mt-48 max-w-[80rem] mx-auto max-h-[160vh]">
                 <CurseComponent {...cursa} />
             </div>
         </div>
