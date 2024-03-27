@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Header } from "../components/Header.component";
+import CurseComponent from "../components/Curse.component";
 
-interface CurseValide {
+export interface CurseValide {
     numeCurse: string;
     interfata?: {
         cursa: string;
@@ -98,14 +99,18 @@ const Curse = () => {
     const {numeCursa} = useParams();
 
     const cursa: CurseValide | undefined = curseArr.find(cursa => cursa.numeCurse === numeCursa);
+
+    if (!cursa) {
+        return <div>Cursa nu a fost găsită!</div>;
+    }
+
     
     return (
         <div>
             <Header />
-            <h1>{cursa?.numeCurse}</h1>
-            <h1>{cursa?.interfata?.cursa}</h1>
-            <h1>{cursa?.interfata?.distanta}</h1>
-            <h1>{cursa?.interfata?.donatieMinima}</h1>
+            <div className="bg-black  mt-36">
+                <CurseComponent {...cursa} />
+            </div>
         </div>
     );
 }
