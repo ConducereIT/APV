@@ -5,7 +5,7 @@ import Cause from "../views/Cause.view";
 import Faq from "../views/Faq.view";
 import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
-import { actionCurse } from "./Action";
+import { loaderCurse } from "./Loader";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -30,11 +30,12 @@ export const allRoutes = createBrowserRouter([
   },
   {
     path: '/curse',
-    action: actionCurse,
+    loader: loaderCurse,
     children: [
       {
-        path: ":numeCursa",
+        path: ":numeCursa?",
         element: <Curse />,
+
       }
     ]
   },
