@@ -62,7 +62,7 @@ const headerTextContent: HeaderItems[] = [
 ];
 
 export const Header = () => {
-  const [ceva, setCeva] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect( () => {
     window.addEventListener('scroll', changeOpacity);
@@ -70,15 +70,15 @@ export const Header = () => {
 
   const changeOpacity = () => {
     if (window.scrollY > 60){
-      setCeva(true);
+      setIsScrolling(true);
     }
     else {
-      setCeva(false);
+      setIsScrolling(false);
     }
   }
 
   return (
-    <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${ceva ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
+    <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${isScrolling ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
       <div className={`elementHeader h-[80%] my-auto  w-[80rem] mx-auto relativ`}>
         <ul className="flex  p-0 center my-auto h-full">
           {headerTextContent.map((item:HeaderItems) => (

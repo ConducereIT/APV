@@ -98,11 +98,14 @@ const curseArr: CurseValide[] = [
     },
 ];
 
-export function getCurse(): string[]{ 
+export function getCurseName(): string[]{ 
     const numeCurs: string[] = curseArr.map(cursa => cursa.numeCurse);
 
-
     return numeCurs;
+}
+
+export function getCurse(): CurseValide[]{
+    return curseArr;
 }
 
 interface RouteParams {

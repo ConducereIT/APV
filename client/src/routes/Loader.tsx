@@ -1,12 +1,16 @@
 
 import { ActionFunction, redirect } from "react-router";
-import { getCurse } from "../views/Curse.view";
+import { getCurseName } from "../views/Curse.view";
 
-export const  loaderCurse: ActionFunction  = async ({params}) => {
+interface IRouteParams{
+    numeCursa: string;
+}
+
+export const loaderCurse: ActionFunction<IRouteParams> = async ({ params }) => {   
+    
     const {numeCursa} = params;
 
-
-    const numeCurse: string[] = getCurse();
+    const numeCurse: string[] = getCurseName();
 
     let isValid = false;
 

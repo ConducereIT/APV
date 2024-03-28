@@ -6,6 +6,11 @@ interface DropdownProps {
   subText?: Record<number, { text: string; url: string }>;
 }
 
+interface ISubText{
+  text: string;
+  url: string;
+}
+
 const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
   const { text, url, subText } = props;
 
@@ -23,7 +28,7 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
             <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
           <div className=" ">
             {subText &&
-              Object.values(subText).map((option) => (
+              Object.values(subText).map((option: ISubText) => (
                 <a
                   key={option.text}
                   href={option.url}
