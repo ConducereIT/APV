@@ -9,21 +9,18 @@ import { lightTheme, darkTheme } from "./styles/themes";
 import useThemeMode from "./hooks/useThemeMode";
 import { ThemeProvider } from "styled-components";
 
+
 const App = () => {
-  const { theme, themeToggler } = useThemeMode();
-  const themeMode = theme === "light" ? lightTheme : darkTheme;
+  const { theme } = useThemeMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
     <ThemeContext>
-      <ThemeProvider theme={themeMode}>
-        <GlobalStyle />
-
-        <button className="mt-20" onClick={() => themeToggler()}>
-          Light/Dark
-        </button>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </ThemeContext>
+        <ThemeProvider theme={themeMode}>
+          <GlobalStyle />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </ThemeContext>
   );
 };
 

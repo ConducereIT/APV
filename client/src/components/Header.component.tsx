@@ -2,8 +2,10 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import LOGO from "../assets/logo.png";
 
 import Dropdown from "./DropDown.component";
+import { useEffect, useState } from "react";
 
 interface HeaderItems {
+  id: number;
   text: string;
   url?: string;
   subText?: Record<number, { text: string; url: string }>;
@@ -11,6 +13,7 @@ interface HeaderItems {
 
 const headerTextContent: HeaderItems[] = [
   {
+    id: 1,
     text: "Despre",
     url: "/about",
     subText: {
@@ -27,40 +30,59 @@ const headerTextContent: HeaderItems[] = [
     },
   },
   {
+    id: 2,
     text: "Curse",
     url: "",
     subText: {
-      1: { text: "Cursa All for One", url: "" },
-      2: { text: "Cursa Copii", url: "" },
-      3: { text: "Feminin 10-16 ani", url: "" },
-      4: { text: "Masculin 10-16 ani", url: "" },
-      5: { text: "Feminim 17-35 de ani", url: "" },
-      6: { text: "Masculin 17-35 de ani", url: "" },
-      7: { text: "Feminin 35 + de ani", url: "" },
-      8: { text: "Masculin 35 + de ani", url: "" },
+      1: { text: "Cursa All for One", url: "/curse/allforone" },
+      2: { text: "Cursa Copii", url: "/curse/kids" },
+      3: { text: "Feminin 10-16 ani", url: "/curse/1016feminin" },
+      4: { text: "Masculin 10-16 ani", url: "/curse/1016masculin" },
+      5: { text: "Feminim 17-35 de ani", url: "/curse/1735feminin" },
+      6: { text: "Masculin 17-35 de ani", url: "/curse/1735masculin" },
+      7: { text: "Feminin 35 + de ani", url: "/curse/35feminin" },
+      8: { text: "Masculin 35 + de ani", url: "/curse/35masculin" },
     },
   },
   {
+    id: 3,
     text: "Cauza",
     url: "/cauza",
   },
   {
+    id: 4,
     text: "Intrebari Frecvente",
     url: "/faq",
   },
   {
+    id: 5,
     text: "Contacte",
     url: "/contact",
   },
 ];
 
 export const Header = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect( () => {
+    window.addEventListener('scroll', changeOpacity);
+  }, []);
+
+  const changeOpacity = () => {
+    if (window.scrollY > 60){
+      setIsScrolling(true);
+    }
+    else {
+      setIsScrolling(false);
+    }
+  }
+
   return (
-    <div className="header h-[5.625rem] w-full fixed top-0 ">
-      <div className="elementHeader h-[80%] my-auto  w-[80rem] mx-auto relative">
+    <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${isScrolling ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
+      <div className={`elementHeader h-[80%] my-auto  w-[80rem] mx-auto relativ`}>
         <ul className="flex  p-0 center my-auto h-full">
-          {headerTextContent.map((item, index) => (
-            <Dropdown {...item} key={index} />
+          {headerTextContent.map((item:HeaderItems) => (
+            <Dropdown {...item}  key={item.id} />
           ))}
         </ul>
 
