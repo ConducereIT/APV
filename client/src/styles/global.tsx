@@ -14,7 +14,7 @@ const globalStyles = createGlobalStyle`
     --dark-text-hover: #08E4D5;
 
     --light-background: #f2f2f2;
-    --light-text: #A8A5BF;
+    --light-text: #ADADBF;
     --light-text-hover: #00B9AE;
 
     --lightTheme-purple: #2F1A53;

@@ -69,7 +69,7 @@ export const Header = () => {
   }, []);
 
   const changeOpacity = () => {
-    if (window.scrollY > 100){
+    if (window.scrollY > 60){
       setCeva(true);
     }
     else {
