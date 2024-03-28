@@ -15,8 +15,8 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
         onClick={() => (window.location.href = `${url}`)}
         className="liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform"
   
-      >
-        {text}
+      > 
+       <h1> {text} </h1>
       </button>
       {subText ? (
         <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
