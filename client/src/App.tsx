@@ -4,24 +4,26 @@ import { RouterProvider } from "react-router-dom";
 
 import { allRoutes as router } from "./routes/AllRoutes";
 import ThemeContext from "./contexts/ThemeContext";
-import GlobalStyle from './styles/global';
+import GlobalStyle from "./styles/global";
 import { lightTheme, darkTheme } from "./styles/themes";
 import useThemeMode from "./hooks/useThemeMode";
 import { ThemeProvider } from "styled-components";
 
 const App = () => {
   const { theme, themeToggler } = useThemeMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   return (
     <ThemeContext>
-        <ThemeProvider theme={themeMode}>
-          <GlobalStyle />
-          <RouterProvider router={router} />
-          <h1>ceva</h1>
-          <button onClick={() => themeToggler()}>Light/Dark</button>
-        </ThemeProvider>
-      </ThemeContext>
+      <ThemeProvider theme={themeMode}>
+        <GlobalStyle />
+
+        <button className="mt-20" onClick={() => themeToggler()}>
+          Light/Dark
+        </button>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </ThemeContext>
   );
 };
 
