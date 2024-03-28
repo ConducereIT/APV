@@ -126,8 +126,9 @@ const Curse = () => {
             <div className="md:block hidden bg-slate-50 rounded-xl  mt-48 max-w-[80rem] mx-auto max-h-[160vh]">
                 <CurseComponent {...cursa} />
             </div>
-            <div className="md:hidden block bg-slate-50 rounded-xl  mt-48 max-w-[80rem] mx-auto max-h-[260vh] mb-[50%]">
+            <div className="md:hidden block bg-slate-50 rounded-xl  mt-24 max-w-[80rem] mx-auto max-h-[260vh]">
                 <CurseComponent {...cursa} />
+                <br className="mt-[12rem]" />
             </div>
         </div>
     );
