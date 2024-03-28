@@ -82,7 +82,7 @@ export const Header = () => {
       <div className={`elementHeader h-[80%] my-auto  w-[80rem] mx-auto relativ`}>
         <ul className="flex  p-0 center my-auto h-full">
           {headerTextContent.map((item:HeaderItems) => (
-            <Dropdown {...item} key={item.id} />
+            <Dropdown {...item}  key={item.id} />
           ))}
         </ul>
 

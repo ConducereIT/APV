@@ -23,9 +23,9 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
             <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
           <div className=" ">
             {subText &&
-              Object.values(subText).map((option, index) => (
+              Object.values(subText).map((option) => (
                 <a
-                  key={index}
+                  key={option.text}
                   href={option.url}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
