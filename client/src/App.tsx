@@ -10,7 +10,7 @@ import useThemeMode from "./hooks/useThemeMode";
 import { ThemeProvider } from "styled-components";
 
 const App = () => {
-  const { theme, themeToggler } = useThemeMode();
+  const { theme } = useThemeMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
