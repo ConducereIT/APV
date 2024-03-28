@@ -2,6 +2,7 @@ import { FaFacebook, FaInstagram } from "react-icons/fa";
 import LOGO from "../assets/logo.png";
 
 import Dropdown from "./DropDown.component";
+import { useEffect, useState } from "react";
 
 interface HeaderItems {
   id: number;
@@ -61,9 +62,24 @@ const headerTextContent: HeaderItems[] = [
 ];
 
 export const Header = () => {
+  const [ceva, setCeva] = useState(false);
+
+  useEffect( () => {
+    window.addEventListener('scroll', changeOpacity);
+  }, []);
+
+  const changeOpacity = () => {
+    if (window.scrollY > 100){
+      setCeva(true);
+    }
+    else {
+      setCeva(false);
+    }
+  }
+
   return (
-    <div className="header h-[5.625rem] w-full fixed top-0 z-50">
-      <div className="elementHeader h-[80%] my-auto  w-[80rem] mx-auto relative">
+    <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${ceva ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
+      <div className={`elementHeader h-[80%] my-auto  w-[80rem] mx-auto relativ`}>
         <ul className="flex  p-0 center my-auto h-full">
           {headerTextContent.map((item:HeaderItems) => (
             <Dropdown {...item} key={item.id} />
