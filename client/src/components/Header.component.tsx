@@ -4,6 +4,7 @@ import LOGO from "../assets/logo.png";
 import Dropdown from "./DropDown.component";
 
 interface HeaderItems {
+  id: number;
   text: string;
   url?: string;
   subText?: Record<number, { text: string; url: string }>;
@@ -11,6 +12,7 @@ interface HeaderItems {
 
 const headerTextContent: HeaderItems[] = [
   {
+    id: 1,
     text: "Despre",
     url: "/about",
     subText: {
@@ -27,6 +29,7 @@ const headerTextContent: HeaderItems[] = [
     },
   },
   {
+    id: 2,
     text: "Curse",
     url: "",
     subText: {
@@ -41,14 +44,17 @@ const headerTextContent: HeaderItems[] = [
     },
   },
   {
+    id: 3,
     text: "Cauza",
     url: "/cauza",
   },
   {
+    id: 4,
     text: "Intrebari Frecvente",
     url: "/faq",
   },
   {
+    id: 5,
     text: "Contacte",
     url: "/contact",
   },
@@ -59,8 +65,8 @@ export const Header = () => {
     <div className="header h-[5.625rem] w-full fixed top-0 z-50">
       <div className="elementHeader h-[80%] my-auto  w-[80rem] mx-auto relative">
         <ul className="flex  p-0 center my-auto h-full">
-          {headerTextContent.map((item, index) => (
-            <Dropdown {...item} key={index} />
+          {headerTextContent.map((item:HeaderItems) => (
+            <Dropdown {...item} key={item.id} />
           ))}
         </ul>
 

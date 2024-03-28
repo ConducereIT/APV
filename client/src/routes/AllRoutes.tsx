@@ -35,7 +35,6 @@ export const allRoutes = createBrowserRouter([
       {
         path: ":numeCursa?",
         element: <Curse />,
-
       }
     ]
   },

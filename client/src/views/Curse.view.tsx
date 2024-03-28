@@ -105,12 +105,17 @@ export function getCurse(): string[]{
     return numeCurs;
 }
 
+interface RouteParams {
+    numeCursa: string;
+    [key: string]: string | undefined;
+  }
+
 const Curse = () => {
-    const {numeCursa} = useParams();
+    const {numeCursa}  = useParams<RouteParams>();
 
     const cursa: CurseValide | undefined = curseArr.find(cursa => cursa.numeCurse === numeCursa);
 
-    if (!cursa) {
+    if (cursa === undefined) {
         return <div>Cursa nu a fost găsită!</div>;
     }
 
