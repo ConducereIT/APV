@@ -9,8 +9,9 @@ import { lightTheme, darkTheme } from "./styles/themes";
 import useThemeMode from "./hooks/useThemeMode";
 import { ThemeProvider } from "styled-components";
 
+
 const App = () => {
-  const { theme, themeToggler } = useThemeMode();
+  const { theme } = useThemeMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
@@ -18,8 +19,6 @@ const App = () => {
         <ThemeProvider theme={themeMode}>
           <GlobalStyle />
           <RouterProvider router={router} />
-          <h1>ceva</h1>
-          <button onClick={() => themeToggler()}>Light/Dark</button>
         </ThemeProvider>
       </ThemeContext>
   );
