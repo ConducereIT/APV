@@ -12,7 +12,7 @@ import { ThemeProvider } from "styled-components";
 
 const App = () => {
   const { theme } = useThemeMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const themeMode = lightTheme;
 
   return (
     <ThemeContext>

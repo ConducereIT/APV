@@ -6,8 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-blue': '#1D1A3F',
+        'custom-gray': '#656372',
+      },
       fontFamily: {
         'source-code-pro': ['Source Code Pro', 'sans-serif'],
+        'barlow': ['Barlow', 'sans-serif'],
+        'barlow-condensed': ['"Barlow Condensed"', 'sans-serif'],
       },
       fontWeight: {
         'source-code-pro': {
