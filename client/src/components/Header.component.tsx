@@ -82,7 +82,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${isScrolling && menuBurger ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''} md:block hidden`}>
+      <div className={`header h-[5.625rem] w-full fixed top-0 z-50 ${isScrolling  ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''} md:block hidden`}>
         <div className={`elementHeader h-[80%] my-auto  w-[80rem] mx-auto relativ`}>
           <ul className="flex  p-0 center my-auto h-full">
             {headerTextContent.map((item:HeaderItems) => (
@@ -118,7 +118,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0  z-30  ${isScrolling ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
+      <div className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0  z-30  ${isScrolling && !menuBurger ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
         <img
               className="h-12 w-12 absolute -top-1 my-3 scale-75 left-[4%]"
               src={LOGO}
