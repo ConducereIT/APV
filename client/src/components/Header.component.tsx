@@ -91,9 +91,10 @@ export const Header = () => {
           </ul>
 
           <img
-            className="h-10 w-15 absolute top-1 my-3 scale-125 right-[50%]"
+            className="h-10 w-15 absolute top-1 my-3 scale-125 right-[50%] cursor-pointer"
             src={LOGO}
             alt="Logo"
+            onClick={() => window.location.href= "/"}
           />
 
           <div className=" absolute top-0 right-0 h-full w-[50%] flex items-center justify-center space-x-8">
@@ -120,9 +121,10 @@ export const Header = () => {
       </div>
       <div className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0  z-30  ${isScrolling && !menuBurger ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
         <img
-              className="h-12 w-12 absolute -top-1 my-3 scale-75 left-[4%]"
+              className="h-12 w-12 absolute -top-1 my-3 scale-75 left-[4%] cursor-pointer"
               src={LOGO}
               alt="Logo"
+              onClick={() => window.location.href= "/"}
             />
         <div className="absolute h-10 w-10 top-[1.6rem] flex justify-center space-x-8 right-[25%]">
           <a
