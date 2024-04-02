@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface DropdownProps {
   text: string;
@@ -13,20 +13,25 @@ interface ISubText{
 
 const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
   const { text, url, subText } = props;
+  const {isHover, setIsHover} = useState<boolean>(true);
+
+  const onMouseEnterHover = () => setIsHover(true);
+  const onMouseLeaveHover = () => setIsHover(false); 
 
   return (
     <div className="relative inline-block group  my-auto">
       <button
         onClick={() => (window.location.href = `${url}`)}
-        className="liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform"
-  
+        className={`liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE] ${isHover ? "text-[#00B9AE]" : ""} transform transition-transform`}
       > 
-       <h1> {text} </h1>
+       <h1 className={`${!isHover ? "text-[#656372]" : "text-[#00B9AE] " }`}> {text} </h1>
       </button>
       {subText ? (
         <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
             <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
-          <div className=" ">
+          <div 
+
+          >
             {subText &&
               Object.values(subText).map((option: ISubText) => (
                 <a

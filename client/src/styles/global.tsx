@@ -10,11 +10,11 @@ type GlobalThemeProps = {
 const globalStyles = createGlobalStyle`
   :root {
     --dark-background: #292A3A;
-    --dark-text: #A8A5BF;
+    --dark-text: #656372;
     --dark-text-hover: #08E4D5;
 
     --light-background: #f2f2f2;
-    --light-text: #ADADBF;
+    --light-text: #656372;
     --light-text-hover: #00B9AE;
 
     --lightTheme-purple: #2F1A53;
