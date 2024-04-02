@@ -4,7 +4,7 @@ import { RouterProvider } from "react-router-dom";
 
 import { allRoutes as router } from "./routes/AllRoutes";
 import ThemeContext from "./contexts/ThemeContext";
-import GlobalStyle from './styles/global';
+import GlobalStyle from "./styles/global";
 import { lightTheme, darkTheme } from "./styles/themes";
 import useThemeMode from "./hooks/useThemeMode";
 import { ThemeProvider } from "styled-components";
