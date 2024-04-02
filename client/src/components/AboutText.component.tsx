@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function AboutText() {
   return (
     <div className='mt-12 flex justify-between mx-10'>

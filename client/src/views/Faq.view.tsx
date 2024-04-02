@@ -5,7 +5,9 @@ export default function Faq() {
   return (
     <>
       <Header />
-      <Faqs />
+      <div className="mt-6 lg:mt-40 bg-slate-100">
+        <Faqs/>
+      </div>
     </>
   );
 }

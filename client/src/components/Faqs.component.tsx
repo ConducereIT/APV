@@ -15,16 +15,16 @@ export default function Faqs() {
               tabIndex={index}
               key={index}
             >
-              <div className="flex cursor-pointer items-center bg-stone-100 justify-between p-4 duration-500 hover:bg-[#aff1f3]">
+              <div className="flex cursor-pointer items-center bg-stone-100 justify-between border-dotted border-opacity-20 border-[1.2px] border-black p-4 duration-500 hover:bg-[#aff1f3]">
                 <span className=" text-xl text-gray-600 group-hover:translate-x-2 duration-500 ">
                   {question.question}
                 </span>
                 <IoIosArrowDown
                   size={20}
-                  className="transition-all duration-500 group-focus:-rotate-180"
+                  className="transition-all duration-500 group-focus:-rotate-180 max-w-10 min-w-10"
                 />
               </div>
-              <div className="text-gray-500 invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:p-4 group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-1000">
+              <div className="text-gray-500 invisible h-auto max-h-0 items-center opacity-0 transition-all group-focus:visible group-focus:p-4 group-focus:max-h-screen group-focus:opacity-100 group-focus:duration-700">
                 {question.answer}
               </div>
             </div>

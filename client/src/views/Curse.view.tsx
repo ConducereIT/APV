@@ -126,10 +126,10 @@ const Curse = () => {
     return (
         <div>
             <Header />
-            <div className="md:block hidden bg-slate-50 rounded-xl  mt-48 max-w-[80rem] mx-auto max-h-[160vh]">
+            <div className="md:block hidden bg-slate-100 rounded-xl  mt-48 max-w-[80rem] mx-auto max-h-[160vh]">
                 <CurseComponent {...cursa} />
             </div>
-            <div className="md:hidden block bg-slate-50 rounded-xl mt-28 max-w-[80rem] mx-auto max-h-[260vh]">
+            <div className="md:hidden block bg-slate-100 rounded-xl mt-28 max-w-[80rem] mx-auto max-h-[260vh]">
                 <CurseComponent {...cursa} />
                 <br className="mt-[12rem]" />
             </div>
