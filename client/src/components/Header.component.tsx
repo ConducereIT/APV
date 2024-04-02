@@ -118,7 +118,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className={`md:hidden bg-green-600 block min-h-16 w-full fixed top-0  z-30  ${isScrolling ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
+      <div className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0  z-30  ${isScrolling ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
         <img
               className="h-12 w-12 absolute -top-1 my-3 scale-75 left-[4%]"
               src={LOGO}
@@ -142,7 +142,7 @@ export const Header = () => {
             <CiMenuBurger onClick={ () => setMenuBurger(true)} className={`h-full w-full ${menuBurger? "hidden" : "block"}`} />
             <MdCancelPresentation onClick={ () => setMenuBurger(false)} className={`h-full w-full ${menuBurger? "block" : "hidden"}`} />
         </div>
-        <div className={`${menuBurger? "block" : "hidden"} bg-black w-full h-96 mt-16 border-red-600 border-2`}>
+        <div className={`${menuBurger? "block" : "hidden"}  w-full min:h-96 mt-16 `}>
             <ul className=" grid p-0 center my-auto h-full">
               {headerTextContent.map((item:HeaderItems) => (
                 <Dropdown {...item}  key={item.id} />

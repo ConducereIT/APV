@@ -52,23 +52,48 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
           <></>
         )}
       </div>
-      <div className="block lg:hidden mt-3  relative ">
-        <div>
+      <div className="block lg:hidden mt-3">
+        <div className="relative min:h-20 ">
           <button
             onClick={() => openCourse()}
-            className="bg-black h-full text-center max:h-5 ">
-            <button
-                      onClick={() => (window.location.href = `${url}`)}
-                      className={`liHeader text-center z-40 h-full center mx-4 text-md font-normal my-auto flex relative text-[#656372] hover:text-[#00B9AE]  transform transition-transform`}
-                    > 
-                    <h1 className={` text-xl ${!isHover ? "text-[#656372]" : "text-[#00B9AE] " } relative top-1/2  transform -translate-y-1/2`}> {text} </h1>
-            </button>
-            <div className="absolute right-5 top-1/4  transform max:-translate-y-1/4 ">
-              <h1 className={`text-white h-10 w-10 scale-150 ${isOpen? "hidden" : "block"} cursor-pointer`}>+</h1>
-              <h1 className={`text-white h-10 w-10 scale-150 ${isOpen? "block" : "hidden"}`}>-</h1>
+            className=" h-full text-center max:h-10 flex relative"
+          >
+          <button
+              onClick={() => (window.location.href = `${url}`)}
+              className={`liHeader z-40 h-full center mx-4 text-md font-normal my-auto flex relative text-[#656372] hover:text-[#00B9AE] transform transition-transform`}
+          >
+              <h1 className={`text-xl ${!isHover ? "text-[#656372]" : "text-[#00B9AE] "} relative top-1/2 transform -translate-y-1/2`}>{text}</h1>
+          </button>
+          {subText ?           
+            <div className="relative  left-56 top-5 transform -translate-x-1/2 -translate-y-1/2">
+              <h1 className={`text-black h-10 w-10 scale-150 ${isOpen ? "hidden" : "block"} cursor-pointer`}>+</h1>
+              <h1 className={`text-black h-10 w-10 scale-150 ${isOpen ? "block" : "hidden"}`}>-</h1>
             </div>
-        </button>
-        </div>
+          : 
+            <>
+            </>
+          }
+      </button>
+        {
+          subText && isOpen ?  
+            <div className="  min:h-10 ml-5">
+              {subText &&
+              Object.values(subText).map((option: ISubText) => (
+                <a
+                  key={option.text}
+                  href={option.url}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  <h1 className="text-[#656372] hover:text-[#00B9AE] ">{option.text}</h1>
+                </a>
+                ))
+                }
+              </div>
+              :
+              <>
+              </>
+          }
+          </div>
       </div>
     </>
   );
