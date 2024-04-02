@@ -13,39 +13,64 @@ interface ISubText{
 
 const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
   const { text, url, subText } = props;
-  const [isHover, setIsHover] = useState(false); // Correct usage of useState
+  const [isHover, setIsHover] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openCourse = () => {
+    setIsOpen(!isOpen);
+  }
 
   return (
-    <div className="relative inline-block group  my-auto">
-      <button
-        onClick={() => (window.location.href = `${url}`)}
-        className={`liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform`}
-      > 
-       <h1 className={`${!isHover ? "text-[#656372]" : "text-[#00B9AE] " }`}> {text} </h1>
-      </button>
-      {subText ? (
-        <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
-            <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
-          <div 
-          onMouseEnter={() => setIsHover(true)}
-          onMouseLeave={() => setIsHover(false)}
-          >
-            {subText &&
-              Object.values(subText).map((option: ISubText) => (
-                <a
-                  key={option.text}
-                  href={option.url}
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                >
-                  <h1 className="text-[#656372] hover:text-[#00B9AE] ">{option.text}</h1>
-                </a>
-              ))}
+    <>
+      <div className="relative  group  my-auto hidden lg:block">
+        <button
+          onClick={() => (window.location.href = `${url}`)}
+          className={`liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform`}
+        > 
+        <h1 className={`${!isHover ? "text-[#656372]" : "text-[#00B9AE] " }`}> {text} </h1>
+        </button>
+        {subText ? (
+          <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
+              <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
+            <div 
+            onMouseEnter={() => setIsHover(true)}
+            onMouseLeave={() => setIsHover(false)}
+            >
+              {subText &&
+                Object.values(subText).map((option: ISubText) => (
+                  <a
+                    key={option.text}
+                    href={option.url}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    <h1 className="text-[#656372] hover:text-[#00B9AE] ">{option.text}</h1>
+                  </a>
+                ))}
+            </div>
           </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="block lg:hidden mt-3  relative ">
+        <div>
+          <button
+            onClick={() => openCourse()}
+            className="bg-black h-full text-center max:h-5 ">
+            <button
+                      onClick={() => (window.location.href = `${url}`)}
+                      className={`liHeader text-center z-40 h-full center mx-4 text-md font-normal my-auto flex relative text-[#656372] hover:text-[#00B9AE]  transform transition-transform`}
+                    > 
+                    <h1 className={` text-xl ${!isHover ? "text-[#656372]" : "text-[#00B9AE] " } relative top-1/2  transform -translate-y-1/2`}> {text} </h1>
+            </button>
+            <div className="absolute right-5 top-1/4  transform max:-translate-y-1/4 ">
+              <h1 className={`text-white h-10 w-10 scale-150 ${isOpen? "hidden" : "block"} cursor-pointer`}>+</h1>
+              <h1 className={`text-white h-10 w-10 scale-150 ${isOpen? "block" : "hidden"}`}>-</h1>
+            </div>
+        </button>
         </div>
-      ) : (
-        <></>
-      )}
-    </div>
+      </div>
+    </>
   );
 };
 
