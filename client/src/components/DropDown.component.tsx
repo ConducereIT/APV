@@ -13,16 +13,13 @@ interface ISubText{
 
 const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
   const { text, url, subText } = props;
-  const {isHover, setIsHover} = useState<boolean>(true);
-
-  const onMouseEnterHover = () => setIsHover(true);
-  const onMouseLeaveHover = () => setIsHover(false); 
+  const [isHover, setIsHover] = useState(false); // Correct usage of useState
 
   return (
     <div className="relative inline-block group  my-auto">
       <button
         onClick={() => (window.location.href = `${url}`)}
-        className={`liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE] ${isHover ? "text-[#00B9AE]" : ""} transform transition-transform`}
+        className={`liHeader text-center h-16 center mx-4 text-md font-normal my-auto text-[#656372] hover:text-[#00B9AE]  transform transition-transform`}
       > 
        <h1 className={`${!isHover ? "text-[#656372]" : "text-[#00B9AE] " }`}> {text} </h1>
       </button>
@@ -30,7 +27,8 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
         <div className="hidden ml group-hover:block  w-42 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 fixed">
             <div className="h-1  rounded-full w-full bg-[#08E4D5]"></div>
           <div 
-
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
           >
             {subText &&
               Object.values(subText).map((option: ISubText) => (
@@ -39,7 +37,7 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
                   href={option.url}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  {option.text}
+                  <h1 className="text-[#656372] hover:text-[#00B9AE] ">{option.text}</h1>
                 </a>
               ))}
           </div>
