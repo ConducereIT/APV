@@ -19,6 +19,7 @@ export default {
         'source-code-pro': {
           italic: 'italic',
         },
+        
       },
     },
   },

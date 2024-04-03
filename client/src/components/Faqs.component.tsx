@@ -5,7 +5,7 @@ export default function Faqs() {
   return (
     <>
       <div className="flex justify-center">
-        <h1 className="my-10 text-4xl font-bold">Întrebări Frecvente</h1>
+        <h1 className="mb-10 mt-24 text-4xl font-bold">Întrebări Frecvente</h1>
       </div>
       <div className="flex justify-center ">
         <div className="lg:w-1/2 md:w-2/3 mx-5 md:mx-0 shadow-2xl ">
