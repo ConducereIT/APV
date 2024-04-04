@@ -1,7 +1,7 @@
 import React from 'react';
 import LocationPin from '../assets/pin.webp';
 import AboutImage from '../assets/aboutimg.webp';
-
+        
 export default function AboutText() {
   return (
     <div className="max-w-auto mx-10 mt-28 md:mt-6 md:mx-60 md:flex text-custom-blue">
@@ -37,8 +37,6 @@ export default function AboutText() {
       </div>
 
     </div>
-    
-
     
   );
 }
