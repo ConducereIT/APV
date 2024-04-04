@@ -11,9 +11,8 @@ import { ThemeProvider } from "styled-components";
 
 
 const App = () => {
-
   const themeMode = lightTheme;
-
+  
   return (
     <ThemeContext>
         <ThemeProvider theme={themeMode}>
