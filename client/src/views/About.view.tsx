@@ -1,4 +1,5 @@
 import AboutText from "../components/AboutText.component";
+import Team from "../components/Team.component";
 import { Header } from "../components/Header.component";
 
 export default function About() {
@@ -6,6 +7,7 @@ export default function About() {
     <>
       <Header />
       <AboutText />
+      <Team />
     </>
   );
 }

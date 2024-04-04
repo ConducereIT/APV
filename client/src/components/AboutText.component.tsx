@@ -4,7 +4,7 @@ import AboutImage from '../assets/aboutimg.webp';
 
 export default function AboutText() {
   return (
-    <div className="max-w-auto mx-10 mt-32 md:mx-60 md:flex text-custom-blue">
+    <div className="max-w-auto mx-10 mt-28 md:mt-6 md:mx-60 md:flex text-custom-blue">
       <div className=''>
         <h2 className="md:text-5xl font-barlow-condensed leading-normal font-bold md:mt-40">
           CE ESTE ALEARGĂ PENTRU VIAȚĂ?

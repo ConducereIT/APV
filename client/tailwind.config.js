@@ -9,6 +9,7 @@ export default {
       colors: {
         'custom-blue': '#1D1A3F',
         'custom-gray': '#656372',
+        'custom-green': '#006470',
       },
       fontFamily: {
         'source-code-pro': ['Source Code Pro', 'sans-serif'],
