@@ -1,5 +1,5 @@
 import React from "react";
-import Cauza from "../assets/testimonial6.jpg";
+import Cauza from "../assets/testimonial6.webp";
 export default function Cauze() {
   return (
     <>
