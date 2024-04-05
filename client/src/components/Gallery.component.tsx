@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { FaArrowLeft, FaArrowRight, FaTimes, FaPlusSquare } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaTimes} from "react-icons/fa";
+import { CiSquarePlus } from "react-icons/ci";
 import gallery_image1 from "../assets/gallery1.jpg";
 import gallery_image2 from "../assets/gallery2.jpg";
 import gallery_image3 from "../assets/gallery3.jpg";
@@ -73,7 +74,7 @@ function Gallery() {
   return (
     <div>
       <h2 className="text-center text-4xl font-bold">Galerie foto</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mx-4 sm:mx-8 md:mx-20 my-20">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mx-4 sm:mx-8 md:mx-20 my-20">
         {poze.map(({ image }, index) => (
           <div key={index} className="flex flex-wrap justify-center">
             <div className="flex justify-center relative">
@@ -83,10 +84,10 @@ function Gallery() {
                 src={image}
                 alt="gallery-photo"
               />
-              <div className="absolute inset-0 flex justify-center cursor-pointer items-center bg-cyan-500 opacity-0 transition duration-500 transform hover:opacity-50 hover:scale-90"
+              <div className="absolute inset-0 flex justify-center cursor-pointer items-center bg-cyan-500 opacity-0 transition duration-500 transform hover:opacity-75 hover:scale-90"
                 onClick={() => openFullscreen(index)}
               >
-                <FaPlusSquare className="text-white text-lg size-20" />
+                <CiSquarePlus className="text-white text-lg size-20" />
               </div>
             </div>
           </div>
