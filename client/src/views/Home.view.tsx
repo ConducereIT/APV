@@ -1,12 +1,18 @@
 import { Header } from "../components/Header.component";
-
+import VideoBanner from "../assets/Video_APV.mp4";
+import Banner from "../components/Banner.component";
+import LseBanner from "../assets/banner.jpg";
 const Home = () => {
   return (
     <>
       <Header />
-      <div className="h-96 w-auto bg-black text-center mx-auto max-w-[80rem] mt-96">
-        <h1 className="text-yellow-400">Alearga Pentru Viata</h1>
-      </div>
+      <Banner
+        firstTitle={"Aleargă pentru viață"}
+        secondTitle={"APV"}
+        video={VideoBanner}
+        LseBanner={LseBanner}
+        maiputernici={false}
+      />
     </>
   );
 };
