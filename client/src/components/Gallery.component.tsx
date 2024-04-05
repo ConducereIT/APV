@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaArrowLeft, FaArrowRight, FaTimes} from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 import { CiSquarePlus } from "react-icons/ci";
 import gallery_image1 from "../assets/gallery1.jpg";
 import gallery_image2 from "../assets/gallery2.jpg";
@@ -8,42 +8,42 @@ import gallery_image4 from "../assets/gallery4.jpg";
 import gallery_image5 from "../assets/gallery5.jpg";
 import gallery_image6 from "../assets/gallery6.jpg";
 
-
-interface ImageInfo{
+interface ImageInfo {
   image: string;
   alt: string;
 }
 
 function Gallery() {
+  const poze: ImageInfo[] = [
+    {
+      image: gallery_image1,
+      alt: "first photo",
+    },
+    {
+      image: gallery_image2,
+      alt: "second photo",
+    },
+    {
+      image: gallery_image3,
+      alt: "third photo",
+    },
+    {
+      image: gallery_image4,
+      alt: "forth photo",
+    },
+    {
+      image: gallery_image5,
+      alt: "fifth photo",
+    },
+    {
+      image: gallery_image6,
+      alt: "sixth photo",
+    },
+  ];
 
-  const poze : ImageInfo[]=[
-    {
-      image : gallery_image1,
-      alt : "first photo"
-    },
-    {
-      image : gallery_image2,
-      alt : "second photo"
-    },
-    {
-      image : gallery_image3,
-      alt : "third photo"
-    },
-    {
-      image : gallery_image4,
-      alt : "forth photo"
-    },
-    {
-      image : gallery_image5,
-      alt : "fifth photo"
-    },
-    {
-      image : gallery_image6,
-      alt : "sixth photo"
-    },
-  ]
-
-  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(
+    null
+  );
 
   const openFullscreen = (index: number) => {
     setCurrentImageIndex(index);
@@ -57,10 +57,22 @@ function Gallery() {
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.key === "Escape" && currentImageIndex !== null) {
         closeFullscreen();
-      } else if (event.key === "ArrowLeft" && currentImageIndex !== null && currentImageIndex > 0) {
-        setCurrentImageIndex((prevIndex) => (prevIndex !== null ? prevIndex - 1 : 0));
-      } else if (event.key === "ArrowRight" && currentImageIndex !== null && currentImageIndex < poze.length - 1) {
-        setCurrentImageIndex((prevIndex) => (prevIndex !== null ? prevIndex + 1 : 0));
+      } else if (
+        event.key === "ArrowLeft" &&
+        currentImageIndex !== null &&
+        currentImageIndex > 0
+      ) {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex !== null ? prevIndex - 1 : 0
+        );
+      } else if (
+        event.key === "ArrowRight" &&
+        currentImageIndex !== null &&
+        currentImageIndex < poze.length - 1
+      ) {
+        setCurrentImageIndex((prevIndex) =>
+          prevIndex !== null ? prevIndex + 1 : 0
+        );
       }
     };
 
@@ -84,7 +96,8 @@ function Gallery() {
                 src={image}
                 alt="gallery-photo"
               />
-              <div className="absolute inset-0 flex justify-center cursor-pointer items-center bg-cyan-500 opacity-0 transition duration-500 transform hover:opacity-75 hover:scale-90"
+              <div
+                className="absolute inset-0 flex justify-center cursor-pointer items-center bg-cyan-500 opacity-0 transition duration-500 transform hover:opacity-75 hover:scale-90"
                 onClick={() => openFullscreen(index)}
               >
                 <CiSquarePlus className="text-white text-lg size-20" />
@@ -101,22 +114,44 @@ function Gallery() {
             className="absolute inset-0 w-full h-full object-contain mt-20 mb-20"
           />
           <div className="absolute top-0 right-0 p-4 cursor-pointer">
-            <FaTimes onClick={closeFullscreen} className="text-black text-2xl" />
+            <FaTimes
+              onClick={closeFullscreen}
+              className="text-black text-2xl"
+            />
           </div>
           {currentImageIndex > 0 && (
             <div className="absolute top-1/2 left-0 transform -translate-y-1/2 p-4 cursor-pointer my-20">
-              <FaArrowLeft onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex !== null ? prevIndex - 1 : 0))} className="text-black text-2xl cursor-pointer" />
+              <FaArrowLeft
+                onClick={() =>
+                  setCurrentImageIndex((prevIndex) =>
+                    prevIndex !== null ? prevIndex - 1 : 0
+                  )
+                }
+                className="text-black text-2xl cursor-pointer"
+              />
             </div>
           )}
           {currentImageIndex < poze.length - 1 && (
             <div className="absolute top-1/2 right-0 transform -translate-y-1/2 p-4 cursor-pointer my-20">
-              <FaArrowRight onClick={() => setCurrentImageIndex((prevIndex) => (prevIndex !== null ? prevIndex + 1 : 0))} className="text-black text-2xl cursor-pointer" />
+              <FaArrowRight
+                onClick={() =>
+                  setCurrentImageIndex((prevIndex) =>
+                    prevIndex !== null ? prevIndex + 1 : 0
+                  )
+                }
+                className="text-black text-2xl cursor-pointer"
+              />
             </div>
           )}
         </div>
       )}
       <div className="text-center mt-4">
-        <a href="https://www.facebook.com/AleargaPentruViata" target="_blank" rel="noopener noreferrer" className="bg-cyan-700 hover:bg-cyan-500 text-white font-bold py-4 px-12 rounded-xl inline-block mb-20">
+        <a
+          href="https://www.facebook.com/AleargaPentruViata"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-cyan-700 hover:bg-cyan-500 text-white font-bold py-4 px-12 rounded-xl inline-block mb-20"
+        >
           GALERIE FOTO
         </a>
       </div>
