@@ -38,7 +38,5 @@ export default function AboutText() {
 
     </div>
     
-
-    
   );
 }
