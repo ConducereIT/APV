@@ -10,7 +10,7 @@ const Home = () => {
         <h1 className="text-yellow-400">Aleargă Pentru Viață</h1>
       </div>
       <Countdown />
-      <AboutHome/>
+      <AboutHome />
     </>
   );
 };
