@@ -1,6 +1,10 @@
 import { Header } from "../components/Header.component";
 import { Countdown } from "../components/CountDown.component";
 import AboutHome from "../components/AboutHome.component";
+import VideoBanner from "../assets/Video_APV.mp4";
+import Banner from "../components/Banner.component";
+import LseBanner from "../assets/banner.jpg";
+import Gallery from "../components/Gallery.component";
 
 const Home = () => {
   return (
@@ -11,6 +15,17 @@ const Home = () => {
       </div>
       <Countdown />
       <AboutHome />
+<<<<<<< HEAD
+=======
+      <Banner
+        firstTitle={"Aleargă pentru viață"}
+        secondTitle={"APV"}
+        video={VideoBanner}
+        LseBanner={LseBanner}
+        maiputernici={false}
+      />
+      <Gallery />
+>>>>>>> 85a8abb2b536e440a4761ee81c4001d29838707b
     </>
   );
 };
