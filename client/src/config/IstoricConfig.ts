@@ -1,7 +1,7 @@
-import subject1 from "../assets/subject1.jpeg";
-import subject2 from "../assets/subject2.jpeg";
-import subject3 from "../assets/subject3.jpeg";
-import subject4 from "../assets/subject4.jpeg";
+import subject1 from "../assets/subject1.webp";
+import subject2 from "../assets/subject2.webp";
+import subject3 from "../assets/subject3.webp";
+import subject4 from "../assets/subject4.webp";
 
 const carouselItems = [
   {

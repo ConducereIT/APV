@@ -14,17 +14,20 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [timer, setTimer] = useState<number>(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimer((prevTimer) => prevTimer + 1000); 
-    }, 1000); 
+      if (!isHovered) {
+        setTimer((prevTimer) => prevTimer + 1000);
+      }
+    }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHovered]);
 
   useEffect(() => {
-    if (timer >= 4500 && timer <= 5000) {
+    if (timer >= 6500 && timer <= 7000) {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
     }
     if (timer >= 7000) {
@@ -34,16 +37,20 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    setTimer(0); 
+    setTimer(0);
   };
 
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
-    setTimer(0); 
+    setTimer(0);
   };
 
   return (
-    <div className="flex flex-col sm:h-1/6 items-center justify-center">
+    <div
+      className="flex flex-col sm:h-1/6 items-center justify-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <h2 className="font-bold text-5xl align-middle text-pretty text-center mb-4">ISTORIC</h2>
       <div className="relative w-full max-w-screen-lg h-96 overflow-hidden">
         {items.map((item: CarouselItem, index: number) => (
