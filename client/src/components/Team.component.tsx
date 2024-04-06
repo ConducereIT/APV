@@ -7,7 +7,7 @@ export default function Team() {
         <div>
          
           <h2 className="md:text-5xl font-barlow-condensed leading-normal font-bold md:mt-40">
-            Echipă
+            Echipa
           </h2>
 
           <p className="text-sm md:text-base font-barlow font-bold leading-normal text-custom-green mt-8 md:mt-12">

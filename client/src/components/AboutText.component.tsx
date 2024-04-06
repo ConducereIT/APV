@@ -1,11 +1,11 @@
 import React from 'react';
 import LocationPin from '../assets/pin.webp';
 import AboutImage from '../assets/aboutimg.webp';
-        
+
 export default function AboutText() {
   return (
     <div className="max-w-auto mx-10 mt-28 md:mt-6 md:mx-60 md:flex text-custom-blue">
-      <div className=''>
+      <div>
         <h2 className="md:text-5xl font-barlow-condensed leading-normal font-bold md:mt-40">
           CE ESTE ALEARGĂ PENTRU VIAȚĂ?
         </h2>
@@ -37,6 +37,8 @@ export default function AboutText() {
       </div>
 
     </div>
+    
+
     
   );
 }

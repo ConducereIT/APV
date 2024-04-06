@@ -23,7 +23,7 @@ const headerTextContent: HeaderItems[] = [
         text: "Ce este Aleargă Pentru Viață?",
         url: "/about",
       },
-      2: { text: "Echipă", url: "/about#team" },
+      2: { text: "Echipa", url: "/about#team" },
       3: { text: "Istoric", url: "/about" },
       4: {
         text: "Galerie Foto",
@@ -53,12 +53,12 @@ const headerTextContent: HeaderItems[] = [
   },
   {
     id: 4,
-    text: "Intrebari Frecvente",
+    text: "Întrebări frecvente",
     url: "/faq",
   },
   {
     id: 5,
-    text: "Contacte",
+    text: "Contact",
     url: "/contact",
   },
 ];
@@ -110,18 +110,18 @@ export const Header = () => {
             >
               <FaInstagram />
             </a>
-            <button className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[60%] text-white text-xl  w-[25%]">
-              Doneaza
+            <button className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[40%] text-white text-base text-bold  w-[20%]">
+              DONEAZĂ
             </button>
-            <button className="bg-[#1b756f] hover:bg-[#3f9892] translate-x-10 h-[60%] rounded-md text-white text-xl  w-[25%]">
-              Inscriere
+            <button className="bg-[#1b756f] hover:bg-[#3f9892] translate-x-10 h-[40%] rounded-md text-white text-base text-bold w-[20%]">
+              ÎNSCRIERE
             </button>
           </div>
         </div>
       </div>
       <div className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0  z-30  ${isScrolling && !menuBurger ? 'bg-slate-50 rounded-b-2xl shadow-lg' : ''}`}>
         <img
-              className="h-12 w-12 absolute -top-1 my-3 scale-75 left-[4%] cursor-pointer"
+              className="h-18 w-18 absolute -top-1 my-3 scale-75 left-[4%] cursor-pointer"
               src={LOGO}
               alt="Logo"
               onClick={() => window.location.href= "/"}
