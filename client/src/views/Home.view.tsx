@@ -5,18 +5,12 @@ import VideoBanner from "../assets/Video_APV.mp4";
 import Banner from "../components/Banner.component";
 import LseBanner from "../assets/banner.jpg";
 import Gallery from "../components/Gallery.component";
-
+import Sponsors from "../components/Sponsors.component";
+import { organizatori } from "../config/SponsorsConfig";
 const Home = () => {
   return (
     <>
       <Header />
-      <div className="h-96 w-auto bg-black text-center mx-auto max-w-[80rem] mt-96">
-        <h1 className="text-yellow-400">Aleargă Pentru Viață</h1>
-      </div>
-      <Countdown />
-      <AboutHome />
-<<<<<<< HEAD
-=======
       <Banner
         firstTitle={"Aleargă pentru viață"}
         secondTitle={"APV"}
@@ -24,8 +18,9 @@ const Home = () => {
         LseBanner={LseBanner}
         maiputernici={false}
       />
+      <AboutHome />
       <Gallery />
->>>>>>> 85a8abb2b536e440a4761ee81c4001d29838707b
+      <Sponsors sponsors={organizatori} grid={3} title="organizatori" />
     </>
   );
 };
