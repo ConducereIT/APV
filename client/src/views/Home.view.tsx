@@ -1,4 +1,5 @@
 import { Header } from "../components/Header.component";
+import { Countdown } from "../components/Countdown.component";
 import AboutHome from "../components/AboutHome.component";
 import VideoBanner from "../assets/Video_APV.mp4";
 import Banner from "../components/Banner.component";
@@ -17,6 +18,7 @@ const Home = () => {
         LseBanner={LseBanner}
         maiputernici={false}
       />
+      <Countdown />
       <AboutHome />
 
       <Gallery />
