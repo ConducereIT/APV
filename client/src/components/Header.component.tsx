@@ -38,12 +38,12 @@ const headerTextContent: HeaderItems[] = [
     subText: {
       1: { text: "Cursa All for One", url: "/curse/allforone" },
       2: { text: "Cursa Copii", url: "/curse/kids" },
-      3: { text: "Feminin 10-16 ani", url: "/curse/1016feminin" },
-      4: { text: "Masculin 10-16 ani", url: "/curse/1016masculin" },
-      5: { text: "Feminim 17-35 de ani", url: "/curse/1735feminin" },
-      6: { text: "Masculin 17-35 de ani", url: "/curse/1735masculin" },
-      7: { text: "Feminin 35 + de ani", url: "/curse/35feminin" },
-      8: { text: "Masculin 35 + de ani", url: "/curse/35masculin" },
+      3: { text: "Feminin 13-17 ani", url: "/curse/1016feminin" },
+      4: { text: "Masculin 13-17 ani", url: "/curse/1016masculin" },
+      5: { text: "Feminim 18-35 ani", url: "/curse/1735feminin" },
+      6: { text: "Masculin 18-35 ani", url: "/curse/1735masculin" },
+      7: { text: "Feminin 35 + ani", url: "/curse/35feminin" },
+      8: { text: "Masculin 35 + ani", url: "/curse/35masculin" },
     },
   },
   {
