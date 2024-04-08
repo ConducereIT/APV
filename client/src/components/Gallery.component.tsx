@@ -85,14 +85,14 @@ function Gallery() {
 
   return (
     <div>
-      <h2 className="text-center text-4xl font-bold">Galerie foto</h2>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mx-4 sm:mx-8 md:mx-20 my-20">
+      <h2 className="text-center md:text-4xl font-barlow font-bold">Galerie foto</h2>
+      <div className="grid grid-cols-1 gap-2 mx-10 sm:grid-cols-2 md:grid-cols-3 sm:mx-8 md:mx-20 my-2.5">
         {poze.map(({ image }, index) => (
           <div key={index} className="flex flex-wrap justify-center">
             <div className="flex justify-center relative">
               <img
                 onClick={() => openFullscreen(index)}
-                className="h-auto max-w-full rounded-lg object-cover object-center cursor-pointer"
+                className="h-full max-w-full rounded-lg object-cover object-center cursor-pointer"
                 src={image}
                 alt="gallery-photo"
               />
