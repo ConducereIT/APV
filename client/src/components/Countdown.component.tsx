@@ -25,8 +25,12 @@ export const Countdown = () => {
       handleCompletion();
     } else {
       let days = Math.floor(distanceToDate / (1000 * 60 * 60 * 24));
-      let hours = Math.floor((distanceToDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      let minutes = Math.floor((distanceToDate % (1000 * 60 * 60)) / (1000 * 60));
+      let hours = Math.floor(
+        (distanceToDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      let minutes = Math.floor(
+        (distanceToDate % (1000 * 60 * 60)) / (1000 * 60)
+      );
       let seconds = Math.floor((distanceToDate % (1000 * 60)) / 1000);
 
       hours = hours < 10 ? `0${hours}` : hours;
@@ -44,12 +48,13 @@ export const Countdown = () => {
 
   return (
     <>
-      {state.days === 0 && state.hours === 0 && state.minutes === 0 && state.seconds === 0 ? (
-        <div className="completion-message">
-          The event has started!
-        </div>
+      {state.days === 0 &&
+      state.hours === 0 &&
+      state.minutes === 0 &&
+      state.seconds === 0 ? (
+        <div className="completion-message">The event has started!</div>
       ) : (
-        <div className="flex justify-center items-center absolute mt-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:scale-[100%] scale-[70%] mb-24 z-12 space-x-16 md:space-x-32 bg-custom-blue rounded-xl w-[30rem] h-28 md:w-[40rem] md:h-32">
+        <div className="flex justify-center items-center absolute md:-mt-32 -mt-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:scale-[100%] scale-[70%] mb-24 z-12 space-x-16 md:space-x-32 bg-custom-blue rounded-xl w-[30rem] h-28 md:w-[40rem] md:h-32">
           <div className="time-section">
             <div className="time text-6xl md:text-4xl font font-barlow-condensed font-bold">
               {state.days}
