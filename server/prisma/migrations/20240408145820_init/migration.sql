@@ -2,6 +2,7 @@
 CREATE TABLE "UserAccount" (
     "id" SERIAL NOT NULL,
     "userId" TEXT NOT NULL,
+    "userType" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "marimeTricou" TEXT,
 
@@ -12,10 +13,10 @@ CREATE TABLE "UserAccount" (
 CREATE TABLE "Cursa" (
     "id" SERIAL NOT NULL,
     "idCursa" TEXT NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "numarTricou" TEXT NOT NULL,
-    "categorie" TEXT NOT NULL,
-    "timpAlergat" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+    "numarTricou" TEXT,
+    "categorie" TEXT,
+    "timpAlergat" TIMESTAMP(3),
 
     CONSTRAINT "Cursa_pkey" PRIMARY KEY ("id")
 );
@@ -27,4 +28,4 @@ CREATE UNIQUE INDEX "UserAccount_userId_key" ON "UserAccount"("userId");
 CREATE UNIQUE INDEX "UserAccount_phone_key" ON "UserAccount"("phone");
 
 -- AddForeignKey
-ALTER TABLE "Cursa" ADD CONSTRAINT "Cursa_userId_fkey" FOREIGN KEY ("userId") REFERENCES "UserAccount"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Cursa" ADD CONSTRAINT "Cursa_userId_fkey" FOREIGN KEY ("userId") REFERENCES "UserAccount"("userId") ON DELETE RESTRICT ON UPDATE CASCADE;

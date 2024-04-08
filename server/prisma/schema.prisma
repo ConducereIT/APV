@@ -16,6 +16,7 @@ datasource db {
 model UserAccount {
   id          Int      @id @default(autoincrement())
   userId      String   @unique
+  userType String 
   phone       String   @unique
   marimeTricou String?
   curse Cursa []

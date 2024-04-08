@@ -4,7 +4,7 @@ import {
   GnzContext,
 } from "@genezio/types";
 
-import {PrismaClient} from "@prisma/client";
+import { PrismaClient} from "@prisma/client";
 
 type HTTPResponse = {
   status: number;
@@ -42,7 +42,8 @@ export class BackendService {
         data: {
           userId: context.user!.userId,
           phone: phone,
-          marimeTricou: marimeTricou
+          userType: "USER",
+          marimeTricou: marimeTricou,
         },
       });
 
@@ -54,6 +55,43 @@ export class BackendService {
     return {
       status: 200,
       message: "User added successfully"
+    }
+  }
+
+  @GenezioAuth()
+  async updateUser(context: GnzContext,
+    newPhone: string,
+    newMarimeTricou: string
+    ): Promise<HTTPResponse | HTTPError>{
+    try{
+      const userInfo = await this.prisma.userAccount.findUnique({
+        where: {userId: context.user!.userId},
+      })
+
+      if (!userInfo){
+        throw createHTTPError(401, "UNAUTHORIZED")
+      }
+
+      await this.prisma.userAccount.update({
+        where: {
+          userId: context.user!.userId,
+        },
+        data: {
+          phone: newPhone,
+          marimeTricou: newMarimeTricou
+        }
+      });
+
+      return {
+        status: 200,
+        message: "Status",
+      }
+    }catch (error) {
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+      } else {
+          return createHTTPError(500, "Internal Server Error");
+       }
     }
   }
 
@@ -83,11 +121,43 @@ export class BackendService {
         message: "Successfully registered"
       }
     } catch (error) {
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
-        return error as HTTPError;
-    } else {
-        return createHTTPError(500, "Internal Server Error");
-    }
+        if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+          return error as HTTPError;
+        } else {
+            return createHTTPError(500, "Internal Server Error");
+        }
     }
   }
+
+  @GenezioAuth()
+  async deleteUserCursa(context: GnzContext, categorie: string): Promise<HTTPResponse | HTTPError>{
+    try{
+      const userInfo = await this.prisma.cursa.findMany({
+        where: {userId: context.user!.userId}
+      })
+
+      if (!userInfo){
+        throw createHTTPError(404, "User not exist");
+      }
+
+      await this.prisma.cursa.deleteMany({
+        where: 
+          {userId: context.user!.userId,
+          categorie: categorie,
+        }
+      })      
+
+      return {
+        status: 500,
+        message: "",
+      }
+    }catch (error) {
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+      } else {
+        return createHTTPError(500, "internal Server Error");
+      }
+    }
+  }
+
 }
