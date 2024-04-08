@@ -45,9 +45,7 @@ export class BackendService {
           userType: "USER",
           marimeTricou: marimeTricou,
         },
-      });
-
-      
+      });   
     } catch (error) {
       return createHTTPError(400, 'Bad Request');
     }
@@ -93,6 +91,32 @@ export class BackendService {
           return createHTTPError(500, "Internal Server Error");
        }
     }
+  }
+
+  @GenezioAuth()
+  async getUserData(context: GnzContext): Promise<HTTPResponse | HTTPError>{
+  
+    try {
+      const userInfo = await this.prisma.userAccount.findUnique({
+        where: {userId: context.user!.userId}
+      })
+
+      if (!userInfo){
+        throw createHTTPError(401, "UNAUTHORIZED")
+      }
+
+      return {
+        status: 202,
+        message: "Accepted"
+      }
+    } catch (error) {
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+      } else {
+          return createHTTPError(500, "Internal Server Error");
+       }
+    }
+
   }
 
   @GenezioAuth()

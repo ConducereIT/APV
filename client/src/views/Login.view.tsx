@@ -41,11 +41,13 @@ const Login : React.FC = () => {
             
             console.log('Login Success');
 
-            const userInfo = await BackendService.checkIfUserCreateIsComplete();
+            const checkStatus = await BackendService.checkIfUserCreateIsComplete();
 
-            if (userInfo.status != 202)
+            if (checkStatus.status == 202){
+              navigate("/")
+            }
 
-            navigate("/");
+            navigate("/account");
             setGoogleLoginLoading(false);
         } catch (error) {
             console.log("Error");
