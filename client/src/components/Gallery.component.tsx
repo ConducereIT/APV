@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 import { CiSquarePlus } from "react-icons/ci";
-import gallery_image1 from "../assets/gallery1.jpg";
-import gallery_image2 from "../assets/gallery2.jpg";
-import gallery_image3 from "../assets/gallery3.jpg";
-import gallery_image4 from "../assets/gallery4.jpg";
-import gallery_image5 from "../assets/gallery5.jpg";
-import gallery_image6 from "../assets/gallery6.jpg";
+import gallery_image1 from "../assets/galerie/gallery1.webp";
+import gallery_image2 from "../assets/galerie/gallery2.webp";
+import gallery_image3 from "../assets/galerie/gallery3.webp";
+import gallery_image4 from "../assets/galerie/gallery4.webp";
+import gallery_image5 from "../assets/galerie/gallery5.webp";
+import gallery_image6 from "../assets/galerie/gallery6.webp";
 
 interface ImageInfo {
   image: string;
