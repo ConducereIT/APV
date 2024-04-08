@@ -1,40 +1,93 @@
-import { GenezioDeploy, GenezioMethod } from "@genezio/types";
-import fetch from "node-fetch";
+import {
+  GenezioAuth,
+  GenezioDeploy,
+  GnzContext,
+} from "@genezio/types";
 
-type SuccessResponse = {
-  status: "success";
-  country: string;
-  lat: number;
-  lon: number;
-  city: string;
+import {PrismaClient} from "@prisma/client";
+
+type HTTPResponse = {
+  status: number;
+  message: string;
+}
+
+type HTTPError = {
+  status: number;
+  message: string;
 };
 
-type ErrorResponse = {
-  status: "fail";
-};
+function createHTTPError(status: number, message: string): HTTPError {
+  return {
+      status,
+      message
+  };
+} 
 
 @GenezioDeploy()
 export class BackendService {
-  constructor() {}
+  prisma: PrismaClient
 
-  @GenezioMethod()
-  async hello(name: string): Promise<string> {
-    const ipLocation: SuccessResponse | ErrorResponse = await fetch(
-      "http://ip-api.com/json/"
-    )
-      .then((res) => res.json() as Promise<SuccessResponse>)
-      .catch(() => ({ status: "fail" }));
+  constructor() {
+    this.prisma = new PrismaClient();
+  }
 
-    if (ipLocation.status === "fail") {
-      return `Hello ${name}! Failed to get the server location :(`;
+  @GenezioAuth()
+  async addUser(
+    context: GnzContext,  
+    phone: string,
+    marimeTricou: string  
+  ): Promise<HTTPResponse | HTTPError>{
+    try {
+      await this.prisma.userAccount.create({
+        data: {
+          userId: context.user!.userId,
+          phone: phone,
+          marimeTricou: marimeTricou
+        },
+      });
+
+      
+    } catch (error) {
+      return createHTTPError(400, 'Bad Request');
     }
 
-    const formattedTime = new Date().toLocaleString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
+    return {
+      status: 200,
+      message: "User added successfully"
+    }
+  }
 
-    return `Hello ${name}! This response was served from ${ipLocation.city}, ${ipLocation.country} (${ipLocation.lat}, ${ipLocation.lon}) at ${formattedTime}`;
+  @GenezioAuth()
+  async adaugaCursa(context: GnzContext): Promise<HTTPResponse | HTTPError>{
+    try {
+      const infoUser = await this.prisma.userAccount.findUnique({
+        where: {userId: context.user!.userId},
+      })
+
+      if (!infoUser){
+        throw createHTTPError(401, "UNAUTHORIZED");
+      }
+
+      await this.prisma.cursa.create({
+        data: {
+          idCursa: "APV2024",
+          userId: infoUser.userId,
+          numarTricou: "",
+          categorie: "",
+          timpAlergat: "",
+        }
+      })
+
+      return {
+        status: 200,
+        message: "Successfully registered"
+      }
+    } catch (error) {
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+    } else {
+        return createHTTPError(500, "Internal Server Error");
+    }
+    }
   }
 }
