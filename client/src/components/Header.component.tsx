@@ -20,10 +20,10 @@ const headerTextContent: HeaderItems[] = [
     url: "/about",
     subText: {
       1: {
-        text: "Ce este Alearga Pentru Viata?",
+        text: "Ce este Aleargă Pentru Viață?",
         url: "/about",
       },
-      2: { text: "Echipa", url: "/about" },
+      2: { text: "Echipă", url: "/about#team" },
       3: { text: "Istoric", url: "/about" },
       4: {
         text: "Galerie Foto",
