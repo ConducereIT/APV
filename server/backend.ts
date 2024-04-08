@@ -110,9 +110,9 @@ export class BackendService {
         data: {
           idCursa: "APV2024",
           userId: infoUser.userId,
-          numarTricou: "",
-          categorie: "",
-          timpAlergat: "",
+          numarTricou: undefined,
+          categorie: undefined,
+          timpAlergat: undefined,
         }
       })
 
@@ -152,6 +152,34 @@ export class BackendService {
         message: "",
       }
     }catch (error) {
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+      } else {
+        return createHTTPError(500, "internal Server Error");
+      }
+    }
+  }
+
+  @GenezioAuth()
+  async checkIfUserCreateIsComplete(context: GnzContext): Promise<HTTPResponse | HTTPError>{
+    try {
+      const userInfo = await this.prisma.userAccount.findUnique({
+        where: {userId: context.user!.userId}
+      })
+
+      if (!userInfo){
+        throw createHTTPError(404, "User not exist");
+      }
+
+      if (userInfo?.phone === undefined || userInfo?.marimeTricou === undefined){
+        throw createHTTPError(406, "Not Acceptable");
+      }
+
+      return {
+        status: 202,
+        message: "Accepted"
+      }
+    } catch (error) {
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
