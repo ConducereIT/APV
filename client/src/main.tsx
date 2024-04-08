@@ -12,7 +12,7 @@ AuthService.getInstance().setTokenAndRegion(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId='1062295332779-684ijgeeas6721n2ekoe71nkcpcqcu7s.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId='30633693522-jd2bijo2t8drg37f1l9jngmmupdj3015.apps.googleusercontent.com'>
       <App />
     </GoogleOAuthProvider>
   </React.StrictMode>
