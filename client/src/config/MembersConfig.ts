@@ -1,6 +1,6 @@
 
 import Cesar from "../assets/team3.jpg";
-
+import Georgi from "../assets/Georgi.webp";
 export const members = [
     {
         image: Cesar ,
@@ -10,7 +10,7 @@ export const members = [
         phone: "0770591517"
     },
      {
-        image: Cesar ,
+        image: Georgi ,
         nume: "Georgiana Valentina Păun cel Mic",
         position: "Vicecoordonator",
         email: "georgivali223@gmail.com",
