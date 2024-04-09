@@ -7,6 +7,7 @@ import LseBanner from "../assets/banner.jpg";
 import Gallery from "../components/Gallery.component";
 import Sponsors from "../components/Sponsors.component";
 import { organizatori } from "../config/SponsorsConfig";
+import CauzaHome from "../components/CauzaHome.component";
 const Home = () => {
   return (
     <>
@@ -20,7 +21,7 @@ const Home = () => {
       />
       <Countdown />
       <AboutHome />
-
+      <CauzaHome />
       <Gallery />
       <Sponsors sponsors={organizatori} grid={3} title="organizatori" />
     </>

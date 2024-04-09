@@ -78,10 +78,12 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
               </div>
               <div className="w-full h-screen md:w-2/3 p-4 text-black flex flex-col justify-between rounded-lg ml-4">
                 <div className="mb-10">
-                  <span className="text-xl w-1/6 md:w-full font-bold">
+                  <span className="text-2xl w-1/6 md:w-full font-bold">
                     {item.name}
                   </span>
-                  <p className="overflow-visible h-1/6 md:full">{item.text}</p>
+                  <p className="overflow-visible h-1/6 md:full text-xl pt-4">
+                    {item.text}
+                  </p>
                 </div>
               </div>
             </div>

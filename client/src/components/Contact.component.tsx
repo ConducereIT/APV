@@ -23,7 +23,7 @@ export default function ContactTeam({ members, grid }: ContactTeamProps) {
         {members.map((member, index) => (
           <div
             key={index}
-            className="m-2 p-10 max-w-sm rounded-xl border-4 border-teal-800 bg-teal-100 hover:bg-blue-200/90 overflow-hidden duration-300 hover:shadow-xl hover:shadow-black/40"
+            className="m-2 p-10 max-w-sm rounded-xl border-4 border-teal-800 hover:bg-blue-200/50  bg-transparent overflow-hidden duration-300 hover:shadow-xl hover:shadow-black/40"
           >
             <img
               className="w-full h-auto rounded-full border-4 border-teal-800"
