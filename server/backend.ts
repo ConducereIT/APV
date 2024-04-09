@@ -16,6 +16,15 @@ type HTTPError = {
   message: string;
 };
 
+type UserDataType = {
+  status: number;
+  message: string;
+  name?: string;
+  email?: string;
+  phone: string;
+  marimeTricou: string;
+}
+
 function createHTTPError(status: number, message: string): HTTPError {
   return {
       status,
@@ -34,16 +43,14 @@ export class BackendService {
   @GenezioAuth()
   async addUser(
     context: GnzContext,  
-    phone: string,
-    marimeTricou: string  
   ): Promise<HTTPResponse | HTTPError>{
     try {
       await this.prisma.userAccount.create({
         data: {
           userId: context.user!.userId,
-          phone: phone,
+          phone: "Nu e definit!",
           userType: "USER",
-          marimeTricou: marimeTricou,
+          marimeTricou: "Nu e definit!",
         },
       });   
     } catch (error) {

@@ -19,7 +19,7 @@ const Login : React.FC = () => {
             );
     
             if (isMounted && response) {
-              navigate("/");
+              // navigate("/");
             }
           } catch (error) {
             console.log("Not logged in", error);
@@ -41,13 +41,14 @@ const Login : React.FC = () => {
             
             console.log('Login Success');
 
-            const checkStatus = await BackendService.checkIfUserCreateIsComplete();
+            const checkStatus = await BackendService.addUser();
 
-            if (checkStatus.status == 202){
-              navigate("/")
-            }
+            console.log(checkStatus);
 
-            navigate("/account");
+            // if (checkStatus.status == 200){
+            //   navigate("/account")
+            // }
+
             setGoogleLoginLoading(false);
         } catch (error) {
             console.log("Error");

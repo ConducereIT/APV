@@ -17,7 +17,7 @@ const Account: React.FC  = () => {
 
     const navigate = useNavigate();
 
-    const handleChange = (event: any) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [event.target.name] : event.target.value});
       }
 
@@ -31,7 +31,7 @@ const Account: React.FC  = () => {
             );
     
             if (!(isMounted && response)) {
-                navigate("/");
+                // navigate("/");
             }
           } catch (error) {
             console.log("Not logged in", error);
