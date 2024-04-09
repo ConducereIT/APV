@@ -85,7 +85,9 @@ function Gallery() {
 
   return (
     <div>
-      <h2 className="text-center md:text-4xl font-barlow font-bold">Galerie foto</h2>
+      <h2 className="text-center text-lg md:text-4xl font-barlow font-bold md:mb-8">
+        Galerie foto
+      </h2>
       <div className="grid grid-cols-1 gap-2 mx-10 sm:grid-cols-2 md:grid-cols-3 sm:mx-8 md:mx-20 my-2.5">
         {poze.map(({ image }, index) => (
           <div key={index} className="flex flex-wrap justify-center">

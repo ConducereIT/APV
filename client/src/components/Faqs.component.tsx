@@ -15,7 +15,7 @@ export default function Faqs() {
               tabIndex={index}
               key={index}
             >
-              <div className="flex cursor-pointer items-center bg-stone-100 justify-between border-dotted border-opacity-20 border-[1.2px] border-black p-4 duration-500 hover:bg-[#aff1f3]">
+              <div className="flex cursor-pointer items-center justify-between border-dotted border-opacity-20 border-[1.2px] border-black p-4 duration-500 hover:bg-[#aff1f3]">
                 <span className=" text-xl text-gray-600 group-hover:translate-x-2 duration-500 ">
                   {question.question}
                 </span>

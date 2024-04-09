@@ -107,13 +107,13 @@ export const Header = () => {
               className="scale-110"
               href="https://www.facebook.com/AleargaPentruViata"
             >
-              <FaFacebook className="" />
+              <FaFacebook size={20} />
             </a>
             <a
               className="scale-110"
               href="https://www.instagram.com/aleargapentruviata.lse/"
             >
-              <FaInstagram />
+              <FaInstagram size={20} />
             </a>
             <button className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[40%] text-white text-base text-bold  w-[20%]">
               DONEAZĂ
@@ -125,7 +125,7 @@ export const Header = () => {
         </div>
       </div>
       <div
-        className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0 shadow-xl  z-30  ${
+        className={`md:hidden bg-white shadow-lg block min-h-16 w-full fixed top-0   z-30  ${
           isScrolling && !menuBurger
             ? "bg-slate-50 rounded-b-2xl shadow-lg"
             : ""
@@ -142,7 +142,7 @@ export const Header = () => {
             className="scale-110"
             href="https://www.facebook.com/AleargaPentruViata"
           >
-            <FaFacebook className="" />
+            <FaFacebook />
           </a>
           <a
             className="scale-110"
