@@ -8,6 +8,7 @@ import Gallery from "../components/Gallery.component";
 import Sponsors from "../components/Sponsors.component";
 import { organizatori } from "../config/SponsorsConfig";
 import CauzaHome from "../components/CauzaHome.component";
+import Program from "../components/Program.component";
 const Home = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const Home = () => {
       <Countdown />
       <AboutHome />
       <CauzaHome />
+      <Program />
       <Gallery />
       <Sponsors sponsors={organizatori} grid={3} title="organizatori" />
     </>
