@@ -38,8 +38,8 @@ export default function CauzaHome() {
         }}
       >
         <div className=" h-full md:h-full max-w-screen-lg flex items-center justify-center flex-col md:flex-row">
-          <div className="w-5/6 md:w-1/3 p-2 overflow-hidden h-screen md:h-full aspect-w-1 aspect-h-1 rounded-lg">
-            <div className="aspect-w-1 aspect-h-1 rounded-lg flex justify-center">
+          <div className="w-5/6 md:w-1/3 p-2 overflow-hidden h-screen md:h-full  rounded-lg">
+            <div className=" rounded-lg flex justify-center">
               <img
                 src={Ionut}
                 alt="Ionut"
