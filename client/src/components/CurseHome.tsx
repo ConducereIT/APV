@@ -77,9 +77,9 @@ export default function CurseHome() {
     <div className='w-full px-[var(--bs-gutter-x,.75rem)]   bg-customBackground  '>
         {/* <img src={flyingImg4} className='float-right top-0 right-0 h-full md:w-1/2 lg:w-1/3 xl:w-1/4 z-0' alt='Imagine de fundal' ></img>  */}
     <div className='flex justify-center '>    
-    <div className="container  md:pt-36  lg:px-32 mx-auto  justify-center" >
-        <h1 className="lg:text-52 text-36 font-bold text-center mb-8 text-black">CURSE</h1>
-        <div className="md:flex md:items-center  justify-center">
+    <div className="container  md:pt-32  lg:px-32 mx-auto  " >
+        <h1 className="lg:text-52 text-36 font-bold text-center mb-8 sm:mb-16 text-black">CURSE</h1>
+        <div className="md:flex md:items-center  ">
             
                 <div className="md:w-1/4 mb-4 md:mb-0 md:mr-4 overflow-x-auto">
                     <div className="flex sm:flex-row md:flex-col">

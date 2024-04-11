@@ -12,13 +12,13 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Banner
+      {/* <Banner
         firstTitle={"Aleargă pentru viață"}
         secondTitle={"APV"}
         video={VideoBanner}
         LseBanner={LseBanner}
         maiputernici={false}
-      />
+      /> */}
       <Countdown />
       <AboutHome />
       <CurseHome />
