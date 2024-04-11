@@ -120,7 +120,6 @@ export const Header = () => {
             </button>
             <button className="bg-[#1b756f] hover:bg-[#3f9892] translate-x-10 h-[40%] rounded-md text-white text-base text-bold w-[20%]">
               ÎNSCRIERE
-              
             </button>
           </div>
         </div>
