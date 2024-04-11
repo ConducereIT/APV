@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")  
+}
+
+model UserAccount {
+  id          Int      @id @default(autoincrement())
+  userId      String   @unique
+  userType String 
+  phone       String   @unique
+  marimeTricou String?
+  curse Cursa []
+}
+
+model Cursa {
+  id            Int      @id @default(autoincrement())
+  idCursa       String
+  userAccount   UserAccount @relation(fields: [userId], references: [userId])
+  userId        String
+  numarTricou   String?
+  categorie     String?
+  timpAlergat   DateTime?
+}
+
+
+// exemple de user si curse:
+
+// userAccount table:
+// | id | userId |  phone  | marimeTricou |   curse    |
+// |----|--------|---------|--------------|------------|
+// | 1  | Mihnea | 073513  | M            | [1, 2]     |
+// | 2  | Stefan | 073513  | XL           | [3]        |
+// | 3  | David  | 073513  | S            | []         |
+
+
+
+// Cursa table:
+// | id | userId |  phone  | marimeTricou |
+// |----|--------|---------|--------------|
+// | 1  | Mihnea | 073513  | M            |
+// | 2  | Stefan | 073513  | XL           |
+// | 3  | David  | 073513  | S            |
+
+// Relația dintre tabele este următoarea:
+//     Mihnea are două curse: una cu id-ul 1 și alta cu id-ul 2.
+//     Stefan are o cursă cu id-ul 3.
+//     David nu are nicio cursă.
