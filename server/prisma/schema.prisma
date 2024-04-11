@@ -10,28 +10,28 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")  
+  url      = env("DATABASE_URL")
 }
 
 model UserAccount {
-  id          Int      @id @default(autoincrement())
-  userId      String   @unique
-  userType String 
-  phone       String   @unique
+  id           Int     @id @default(autoincrement())
+  userId       String  @unique
+  userType     String
+  phone        String  @unique
   marimeTricou String?
-  curse Cursa []
+  curse        Cursa[]
 }
 
 model Cursa {
-  id            Int      @id @default(autoincrement())
-  idCursa       String
-  userAccount   UserAccount @relation(fields: [userId], references: [userId])
-  userId        String
-  numarTricou   String?
-  categorie     String?
-  timpAlergat   DateTime?
+  id          Int         @id @default(autoincrement())
+  idCursa     String
+  userAccount UserAccount @relation(fields: [userId], references: [userId])
+  userId      String
+  numarTricou String?
+  categorie   String?
+  timpAlergat DateTime?
+  name        String?
 }
-
 
 // exemple de user si curse:
 
@@ -41,8 +41,6 @@ model Cursa {
 // | 1  | Mihnea | 073513  | M            | [1, 2]     |
 // | 2  | Stefan | 073513  | XL           | [3]        |
 // | 3  | David  | 073513  | S            | []         |
-
-
 
 // Cursa table:
 // | id | userId |  phone  | marimeTricou |

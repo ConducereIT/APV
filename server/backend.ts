@@ -4,7 +4,8 @@ import {
   GnzContext,
 } from "@genezio/types";
 
-import { PrismaClient} from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
+import {randomUUID} from "node:crypto";
 
 type HTTPResponse = {
   status: number;
@@ -16,21 +17,21 @@ type HTTPError = {
   message: string;
 };
 
-type UserDataType = {
-  status: number;
-  message: string;
-  name?: string;
-  email?: string;
-  phone: string;
-  marimeTricou: string;
-}
+// type UserDataType = {
+//   status: number;
+//   message: string;
+//   name?: string;
+//   email?: string;
+//   phone: string;
+//   marimeTricou: string;
+// }
 
 function createHTTPError(status: number, message: string): HTTPError {
   return {
-      status,
-      message
+    status,
+    message
   };
-} 
+}
 
 @GenezioDeploy()
 export class BackendService {
@@ -42,8 +43,8 @@ export class BackendService {
 
   @GenezioAuth()
   async addUser(
-    context: GnzContext,  
-  ): Promise<HTTPResponse | HTTPError>{
+    context: GnzContext,
+  ): Promise<HTTPResponse | HTTPError> {
     try {
       await this.prisma.userAccount.create({
         data: {
@@ -52,7 +53,7 @@ export class BackendService {
           userType: "USER",
           marimeTricou: "Nu e definit!",
         },
-      });   
+      });
     } catch (error) {
       return createHTTPError(400, 'Bad Request');
     }
@@ -65,15 +66,15 @@ export class BackendService {
 
   @GenezioAuth()
   async updateUser(context: GnzContext,
-    newPhone: string,
-    newMarimeTricou: string
-    ): Promise<HTTPResponse | HTTPError>{
-    try{
+                   newPhone: string,
+                   newMarimeTricou: string
+  ): Promise<HTTPResponse | HTTPError> {
+    try {
       const userInfo = await this.prisma.userAccount.findUnique({
         where: {userId: context.user!.userId},
       })
 
-      if (!userInfo){
+      if (!userInfo) {
         throw createHTTPError(401, "UNAUTHORIZED")
       }
 
@@ -91,24 +92,24 @@ export class BackendService {
         status: 200,
         message: "Status",
       }
-    }catch (error) {
+    } catch (error) {
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
-          return createHTTPError(500, "Internal Server Error");
-       }
+        return createHTTPError(500, "Internal Server Error");
+      }
     }
   }
 
   @GenezioAuth()
-  async getUserData(context: GnzContext): Promise<HTTPResponse | HTTPError>{
-  
+  async getUserData(context: GnzContext): Promise<HTTPResponse | HTTPError> {
+
     try {
       const userInfo = await this.prisma.userAccount.findUnique({
         where: {userId: context.user!.userId}
       })
 
-      if (!userInfo){
+      if (!userInfo) {
         throw createHTTPError(401, "UNAUTHORIZED")
       }
 
@@ -120,20 +121,41 @@ export class BackendService {
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
-          return createHTTPError(500, "Internal Server Error");
-       }
+        return createHTTPError(500, "Internal Server Error");
+      }
     }
 
   }
 
   @GenezioAuth()
-  async adaugaCursa(context: GnzContext): Promise<HTTPResponse | HTTPError>{
+  async addRaces(context: GnzContext, races: string[]) {
+    try {
+      console.log(races)
+      for (let i = 0; i < races.length; i++) {
+        await this.prisma.cursa.create({
+          data: {
+            idCursa: randomUUID(),
+            userId: context.user!.userId,
+            name:context.user!.name,
+            numarTricou: undefined,
+            categorie: races[i],
+            timpAlergat: undefined,
+          }
+        })
+      }
+    } catch (error) {
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async adaugaCursa(context: GnzContext): Promise<HTTPResponse | HTTPError> {
     try {
       const infoUser = await this.prisma.userAccount.findUnique({
         where: {userId: context.user!.userId},
       })
 
-      if (!infoUser){
+      if (!infoUser) {
         throw createHTTPError(401, "UNAUTHORIZED");
       }
 
@@ -152,37 +174,38 @@ export class BackendService {
         message: "Successfully registered"
       }
     } catch (error) {
-        if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
-          return error as HTTPError;
-        } else {
-            return createHTTPError(500, "Internal Server Error");
-        }
+      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+        return error as HTTPError;
+      } else {
+        return createHTTPError(500, "Internal Server Error");
+      }
     }
   }
 
   @GenezioAuth()
-  async deleteUserCursa(context: GnzContext, categorie: string): Promise<HTTPResponse | HTTPError>{
-    try{
+  async deleteUserCursa(context: GnzContext, categorie: string): Promise<HTTPResponse | HTTPError> {
+    try {
       const userInfo = await this.prisma.cursa.findMany({
         where: {userId: context.user!.userId}
       })
 
-      if (!userInfo){
+      if (!userInfo) {
         throw createHTTPError(404, "User not exist");
       }
 
       await this.prisma.cursa.deleteMany({
-        where: 
-          {userId: context.user!.userId,
-          categorie: categorie,
-        }
-      })      
+        where:
+          {
+            userId: context.user!.userId,
+            categorie: categorie,
+          }
+      })
 
       return {
         status: 500,
         message: "",
       }
-    }catch (error) {
+    } catch (error) {
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
@@ -192,17 +215,17 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async checkIfUserCreateIsComplete(context: GnzContext): Promise<HTTPResponse | HTTPError>{
+  async checkIfUserCreateIsComplete(context: GnzContext): Promise<HTTPResponse | HTTPError> {
     try {
       const userInfo = await this.prisma.userAccount.findUnique({
         where: {userId: context.user!.userId}
       })
 
-      if (!userInfo){
+      if (!userInfo) {
         throw createHTTPError(404, "User not exist");
       }
 
-      if (userInfo?.phone === undefined || userInfo?.marimeTricou === undefined){
+      if (userInfo?.phone === undefined || userInfo?.marimeTricou === undefined) {
         throw createHTTPError(406, "Not Acceptable");
       }
 
