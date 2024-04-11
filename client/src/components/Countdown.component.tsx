@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const Countdown = () => {
-  const countdownDate = new Date("06/06/2024 10:00:00 AM").getTime();
+  const countdownDate = new Date("05/12/2024 10:00:00 AM").getTime();
 
   const [state, setState] = useState({
     days: 0,
@@ -42,7 +42,6 @@ export const Countdown = () => {
   };
 
   const handleCompletion = () => {
-    // This is where you can handle the completion of the countdown
     console.log("Countdown finished!");
   };
 
