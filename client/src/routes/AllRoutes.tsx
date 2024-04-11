@@ -6,6 +6,7 @@ import Faq from "../views/Faq.view";
 import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
 import { loaderCurse } from "./Loader";
+import RegistrationForm from "../components/RegistrationState.component";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -38,4 +39,9 @@ export const allRoutes = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "/registration",
+    element: <RegistrationForm />,
+  },
+  
 ]);
