@@ -3,7 +3,7 @@ import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 import { AuthService } from '@genezio/auth';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header.component';
-import { BackendService } from '@genezio-sdk/dev-apv';
+import {BackendService} from "@genezio-sdk/dev-apv";
 
 const Login : React.FC = () => {
     const navigate = useNavigate();
@@ -38,20 +38,14 @@ const Login : React.FC = () => {
 
         try {
             await AuthService.getInstance().googleRegistration(credentialResponse.credential!);
+            await BackendService.addUser();
             
-            console.log('Login Success');
-
-            const checkStatus = await BackendService.addUser();
-
-            console.log(checkStatus);
-
-            // if (checkStatus.status == 200){
-            //   navigate("/account")
-            // }
-
+            if (localStorage.getItem("token")) {
+                navigate("/register-race");
+            }
             setGoogleLoginLoading(false);
         } catch (error) {
-            console.log("Error");
+            console.log("Error", error);
         }
     }
 

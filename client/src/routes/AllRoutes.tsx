@@ -7,8 +7,8 @@ import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
 import Login from "../views/Login.view";
 import { loaderCurse } from "./Loader";
-import RaceRegistration from "../components/RaceRegistration.component";
 import Account from "../views/Account.view";
+import RaceRegistrationView from "../views/RaceRegistration.view.tsx";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -32,8 +32,8 @@ export const allRoutes = createBrowserRouter([
     element: <Contact />,
   },
   {
-    path: "/înscriere-curse",
-    element: <RaceRegistration />,
+    path: "/register-race",
+    element: <RaceRegistrationView />,
   },
   {
     path: '/curse',
