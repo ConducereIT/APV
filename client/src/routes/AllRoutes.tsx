@@ -5,8 +5,13 @@ import Cause from "../views/Cause.view";
 import Faq from "../views/Faq.view";
 import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
+import Login from "../views/Login.view";
 import { loaderCurse } from "./Loader";
+<<<<<<< HEAD
 import RaceRegistration from "../components/RaceRegistration.component";
+=======
+import Account from "../views/Account.view";
+>>>>>>> e387d6ac4da6c2de157b01b6b5368f74bf2286f2
 
 export const allRoutes = createBrowserRouter([
   {
@@ -43,4 +48,12 @@ export const allRoutes = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "login",
+    element: <Login />
+  },
+  {
+    path: "account",
+    element: <Account />
+  }
 ]);
