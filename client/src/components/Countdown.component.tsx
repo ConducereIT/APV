@@ -1,9 +1,16 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-export const Countdown = () => {
+interface CountdownState {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+export const Countdown: React.FC = () => {
   const countdownDate = new Date("05/12/2024 10:00:00 AM").getTime();
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<CountdownState>({
     days: 0,
     hours: 0,
     minutes: 0,
@@ -20,11 +27,10 @@ export const Countdown = () => {
     const distanceToDate = countdownDate - currentTime;
 
     if (distanceToDate < 0) {
-      clearInterval(intervalId);
       setState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       handleCompletion();
     } else {
-      let days = Math.floor(distanceToDate / (1000 * 60 * 60 * 24));
+      const days = Math.floor(distanceToDate / (1000 * 60 * 60 * 24));
       let hours = Math.floor(
         (distanceToDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
@@ -33,9 +39,9 @@ export const Countdown = () => {
       );
       let seconds = Math.floor((distanceToDate % (1000 * 60)) / 1000);
 
-      hours = hours < 10 ? `0${hours}` : hours;
-      minutes = minutes < 10 ? `0${minutes}` : minutes;
-      seconds = seconds < 10 ? `0${seconds}` : seconds;
+      hours = hours < 10 ? hours : hours;
+      minutes = minutes < 10 ? minutes : minutes;
+      seconds = seconds < 10 ? seconds : seconds;
 
       setState({ days, hours, minutes, seconds });
     }

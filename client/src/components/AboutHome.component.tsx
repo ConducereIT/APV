@@ -1,4 +1,3 @@
-import React from "react";
 import LocationPin from "../assets/pin.webp";
 import AboutImgHome from "../assets/about.webp";
 

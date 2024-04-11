@@ -1,4 +1,4 @@
-import React from "react";
+
 import TeamImage from "../assets/team.webp";
 
 export default function Team() {
