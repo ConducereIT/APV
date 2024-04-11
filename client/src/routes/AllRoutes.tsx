@@ -6,6 +6,7 @@ import Faq from "../views/Faq.view";
 import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
 import { loaderCurse } from "./Loader";
+import RaceRegistration from "../components/RaceRegistration.component";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const allRoutes = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/înscriere-curse",
+    element: <RaceRegistration />,
   },
   {
     path: '/curse',
