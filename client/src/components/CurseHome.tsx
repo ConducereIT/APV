@@ -79,12 +79,12 @@ export default function CurseHome() {
     <div className='flex justify-center '>    
     <div className="container  md:pt-32  lg:px-32 mx-auto  " >
         <h1 className="lg:text-52 text-36 font-bold text-center mb-8 sm:mb-16 text-black">CURSE</h1>
-        <div className="md:flex md:items-center  ">
+        <div className="md:flex">
             
                 <div className="md:w-1/4 mb-4 md:mb-0 md:mr-4 overflow-x-auto">
                     <div className="flex sm:flex-row md:flex-col">
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8 ${selectedCategory === 'All for one' ? 'bg-blue-500' : ''}"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8 "
                         onClick={() => handleCategoryChange('All for one')}
                         >
                             <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">ALL FOR ONE</span>
@@ -92,7 +92,7 @@ export default function CurseHome() {
                             <span className="lg:text-16 md:text-14 text-white ">TOATE VÂRSTELE</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('Copii')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">COPII</span>
@@ -100,7 +100,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">&lt; 10 ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('Fete')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">FETE</span>
@@ -108,7 +108,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">10-16 ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('Băieți')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">BAIETI</span>
@@ -116,7 +116,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">10-16 ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('FEMININ1')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">FEMININ</span>
@@ -124,7 +124,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">17-35 ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('MASCULIN1')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">MASCULIN</span>
@@ -132,7 +132,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">17-35 ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('FEMININ2')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">FEMININ</span>
@@ -140,7 +140,7 @@ export default function CurseHome() {
                         <span className="lg:text-16 md:text-14 text-white whitespace-nowrap">35+ ANI</span>
                         </button>
                         <button
-                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-15"
+                        className="bg-[#006470] hover:bg-teal-500  rounded-md md:text-right sm:text-center lg:px-35 lg:py-33 md:px-20 md:py-20 px-20 py-8"
                         onClick={() => handleCategoryChange('MASCULIN2')}
                         >
                         <span className="font-bold lg:text-24 md:text-20 sm:text-20 text-white  whitespace-nowrap">MASCULIN</span>
@@ -171,14 +171,14 @@ export default function CurseHome() {
                     </div>
                 
             
-                    <div className="flex justify-center mt-4">
+                    <div className="flex justify-center  mt-4">
                         <iframe
                         title="Harta traseului"
-                        className="mt-8"
+                        className="mt-8 w-full h-[350px] md:h-[450px] lg:h-[650px] "
                         src={mapSrc}
                         allowFullScreen={true}
                         loading="lazy"
-                        style={{ width: '100%', height: 'calc(100vh - 610px)' }}
+                        //style={{ width: '100%', height: 'calc(100vh - 600px)' }}
                         ></iframe>
                     </div>
                 </div>
