@@ -55,9 +55,15 @@ const RaceRegistration: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod);
+      const response = await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod);
+      console.log(response);
+      if(response.status === 200) {
       alert('Înscrierea a fost realizată cu succes!');
       window.location.href = '/';
+      }
+      if(response.status === 400) {
+        alert(response.message);
+      }
     } catch (error) {
       alert('A apărut o eroare la înscriere. Vă rugăm să încercați din nou.');
     }
