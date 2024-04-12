@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@genezio-sdk/dev-apv": "^1.0.0-prod",
     "@genezio/auth": "^2.0.13",
     "@genezio/vite-plugin-genezio": "^1.0.4",
     "@react-oauth/google": "^0.12.1",
