@@ -35,7 +35,7 @@ const headerTextContent: HeaderItems[] = [
   {
     id: 2,
     text: "Curse",
-    url: "",
+    url: "/curse/allforone",
     subText: {
       1: {text: "Cursa All for One", url: "/curse/allforone"},
       2: {text: "Cursa Copii", url: "/curse/kids"},
@@ -100,7 +100,10 @@ export const Header = () => {
             {headerTextContent.map((item: HeaderItems) => (
               <Dropdown {...item} key={item.id}/>
             ))}
-          </ul>
+            {isLogin ? (
+              <Dropdown url="/profil" key={6} text="Profil"/>
+            ) : null}
+            </ul>
 
           <img
             className="h-10 w-15 absolute top-1 my-3 scale-[175%] right-[50%] cursor-pointer"
@@ -200,6 +203,12 @@ export const Header = () => {
             {headerTextContent.map((item: HeaderItems) => (
               <Dropdown {...item} key={item.id}/>
             ))}
+            {!isLogin ? null : <Dropdown url="/profil" key={7} text="Profil"/> }
+            <Dropdown url="https://revolut.me/cesare99b7" key={8} text="Donează"/>
+            {!isLogin ? (
+              <Dropdown url="/login" key={9} text="Login"/>
+            ) :
+              <Dropdown url="/logout" key={10} text="Logout"/>}
           </ul>
         </div>
       </div>

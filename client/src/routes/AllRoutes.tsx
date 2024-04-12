@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import Home from "../views/Home.view";
 import About from "../views/About.view";
 import Cause from "../views/Cause.view";
@@ -6,34 +6,35 @@ import Faq from "../views/Faq.view";
 import Contact from "../views/Contact.view";
 import Curse from "../views/Curse.view";
 import Login from "../views/Login.view";
-import { loaderCurse } from "./Loader";
+import {loaderCurse} from "./Loader";
 import Account from "../views/Account.view";
 import RaceRegistrationView from "../views/RaceRegistration.view.tsx";
+import Logout from "../views/Logout.view.tsx";
 
 export const allRoutes = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Home/>,
   },
   {
     path: "/about",
-    element: <About />,
+    element: <About/>,
   },
   {
     path: "/cauza",
-    element: <Cause />,
+    element: <Cause/>,
   },
   {
     path: "/faq",
-    element: <Faq />,
+    element: <Faq/>,
   },
   {
     path: "/contact",
-    element: <Contact />,
+    element: <Contact/>,
   },
   {
     path: "/register-race",
-    element: <RaceRegistrationView />,
+    element: <RaceRegistrationView/>,
   },
   {
     path: '/curse',
@@ -41,16 +42,20 @@ export const allRoutes = createBrowserRouter([
     children: [
       {
         path: ":numeCursa?",
-        element: <Curse />,
+        element: <Curse/>,
       }
     ]
   },
   {
     path: "login",
-    element: <Login />
+    element: <Login/>
   },
   {
-    path: "account",
-    element: <Account />
+    path: "profil",
+    element: <Account/>
+  },
+  {
+    path: "logout",
+    element: <Logout/>
   }
 ]);

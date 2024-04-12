@@ -128,20 +128,28 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async addRaces(context: GnzContext, races: string[]) {
+  async addRaces(context: GnzContext, races: string, phone:string,marime:string,revolut:string){
     try {
-      console.log(races)
-      for (let i = 0; i < races.length; i++) {
+      const checkHasRace = await this.prisma.cursa.findMany({
+        where: {userId: context.user!.userId}
+      })
+      if (checkHasRace.length === 0) {
         await this.prisma.cursa.create({
           data: {
             idCursa: randomUUID(),
             userId: context.user!.userId,
             name:context.user!.name,
             numarTricou: undefined,
-            categorie: races[i],
+            categorie: races,
             timpAlergat: undefined,
+            phone: phone,
+            marimeTricou: marime,
+            revolute_cash:revolut
           }
         })
+      }
+      else {
+        return createHTTPError(400, "Nu te poți înscrie de mai multe ori!");
       }
     } catch (error) {
       return createHTTPError(500, "Internal Server Error");
@@ -242,4 +250,22 @@ export class BackendService {
     }
   }
 
+
+  @GenezioAuth()
+  async getRaces(context: GnzContext){
+    try{
+      const userInfo = await this.prisma.cursa.findMany({
+        where: {userId: context.user!.userId}
+      })
+
+      if (!userInfo) {
+        throw createHTTPError(404, "User not exist");
+      }
+
+      return userInfo;
+    }
+    catch(error){
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
 }
