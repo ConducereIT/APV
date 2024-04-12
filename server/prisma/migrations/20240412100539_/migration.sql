@@ -18,6 +18,9 @@ CREATE TABLE "Cursa" (
     "categorie" TEXT,
     "timpAlergat" TIMESTAMP(3),
     "name" TEXT,
+    "phone" TEXT,
+    "marimeTricou" TEXT,
+    "revolute_cash" TEXT,
 
     CONSTRAINT "Cursa_pkey" PRIMARY KEY ("id")
 );
