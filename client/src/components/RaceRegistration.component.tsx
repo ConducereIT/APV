@@ -55,6 +55,7 @@ const RaceRegistration: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      await BackendService.addUser();
       const response = await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod);
       console.log(response);
       if(response.status === 200) {
