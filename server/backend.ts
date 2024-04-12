@@ -54,14 +54,13 @@ export class BackendService {
           marimeTricou: "Nu e definit!",
         },
       });
+      return {
+        status: 200,
+        message: "User added successfully"
+      }
     } catch (error) {
       console.log(error)
       return createHTTPError(400, 'Bad Request');
-    }
-
-    return {
-      status: 200,
-      message: "User added successfully"
     }
   }
 
