@@ -28,8 +28,5 @@ CREATE TABLE "Cursa" (
 -- CreateIndex
 CREATE UNIQUE INDEX "UserAccount_userId_key" ON "UserAccount"("userId");
 
--- CreateIndex
-CREATE UNIQUE INDEX "UserAccount_phone_key" ON "UserAccount"("phone");
-
 -- AddForeignKey
 ALTER TABLE "Cursa" ADD CONSTRAINT "Cursa_userId_fkey" FOREIGN KEY ("userId") REFERENCES "UserAccount"("userId") ON DELETE RESTRICT ON UPDATE CASCADE;
