@@ -18,6 +18,9 @@ jobs:
       - name: install pg
         working-directory: ./server
         run: npm install pg
+      - name: prisma 
+        working-directory: ./server
+        run : npx prisma generate
       - name: Deploy
         working-directory: ./
         run: genezio deploy
