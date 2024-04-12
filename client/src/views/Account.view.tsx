@@ -36,7 +36,6 @@ const Account: React.FC = () => {
           localStorage.getItem("token") as string,
         );
         setUserName(response.name!);
-        // @ts-expect-error This line may temporarily cause a type error due to external dependencies.
         setUserPicture(response.profilePictureUrl!);
       } catch (error) {
         console.log("Not logged in", error);
