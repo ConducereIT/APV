@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { BackendService } from "@genezio-sdk/apv-production";
+import React, {useEffect, useState} from 'react';
+import {BackendService} from "@genezio-sdk/apv-production";
 
 type RegistrationState = {
   tshirtSize: string;
   phoneNumber: string;
   race: string;
   revolut: string;
-  paymentMethod: PaymentMethod; // Adăugăm câmpul pentru metoda de plată
+  paymentMethod: PaymentMethod;
 };
 
-// Adăugăm un tip pentru metodele de plată disponibile
 type PaymentMethod = "cash" | "revolut";
 
 const races = {
@@ -42,12 +41,11 @@ const RaceRegistration: React.FC = () => {
 
     if (!isLogin && !localStorage.getItem("token")) {
       window.location.href = '/login';
-      console.log('Redirecting to login page');
     }
   }, [isLogin]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setRegistration({
       ...registration,
       [name]: value,
@@ -56,14 +54,18 @@ const RaceRegistration: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod); // Actualizăm pentru a include și metoda de plată
-
-    alert('Înscrierea a fost realizată cu succes!');
-    window.location.href = '/';
+    try {
+      await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod);
+      alert('Înscrierea a fost realizată cu succes!');
+      window.location.href = '/';
+    } catch (error) {
+      alert('A apărut o eroare la înscriere. Vă rugăm să încercați din nou.');
+    }
   };
 
   return (
-    <div className="max-w-[20rem] md:max-w-[30rem] mx-auto mt-[-2rem] bg-white rounded-lg shadow-md pl-12 pr-12 pt-2 pb-4">
+    <div
+      className="max-w-[20rem] md:max-w-[30rem] mx-auto mt-[-2rem] bg-white rounded-lg shadow-md pl-12 pr-12 pt-2 pb-4">
       <h2 className="text-lg md:text-2xl text-center mb-6">Înscriere</h2>
       <form onSubmit={handleSubmit} className="w-full">
         <label className="block mb-2 font-semibold text-gray-700" htmlFor="tshirtSize">Mărime tricou:</label>
@@ -122,7 +124,8 @@ const RaceRegistration: React.FC = () => {
           <option value="revolut">Revolut</option>
         </select>
 
-        <button className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md mt-6 hover:bg-green-700" type="submit">
+        <button className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md mt-6 hover:bg-green-700"
+                type="submit">
           Trimite
         </button>
       </form>

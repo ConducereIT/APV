@@ -55,6 +55,7 @@ export class BackendService {
         },
       });
     } catch (error) {
+      console.log(error)
       return createHTTPError(400, 'Bad Request');
     }
 
@@ -96,6 +97,7 @@ export class BackendService {
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
+        console.log(error)
         return createHTTPError(500, "Internal Server Error");
       }
     }
@@ -118,6 +120,7 @@ export class BackendService {
         message: "Accepted"
       }
     } catch (error) {
+      console.log(error)
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
@@ -128,9 +131,8 @@ export class BackendService {
   }
 
 
-
   @GenezioAuth()
-  async addRaces(context: GnzContext, races: string, phone:string,marime:string,revolut:string){
+  async addRaces(context: GnzContext, races: string, phone: string, marime: string, revolut: string) {
     try {
       const checkHasRace = await this.prisma.cursa.findMany({
         where: {userId: context.user!.userId}
@@ -140,20 +142,23 @@ export class BackendService {
           data: {
             idCursa: randomUUID(),
             userId: context.user!.userId,
-            name:context.user!.name,
-            numarTricou: undefined,
+            name: context.user!.name || "",
             categorie: races,
-            timpAlergat: undefined,
+            timpAlergat: null,
             phone: phone,
             marimeTricou: marime,
-            revolute_cash:revolut
+            revolute_cash: revolut
           }
         })
-      }
-      else {
+        return {
+          status: 200,
+          message: "Successfully registered"
+        }
+      } else {
         return createHTTPError(400, "Nu te poți înscrie de mai multe ori!");
       }
     } catch (error) {
+      console.log(error)
       return createHTTPError(500, "Internal Server Error");
     }
   }
@@ -184,6 +189,7 @@ export class BackendService {
         message: "Successfully registered"
       }
     } catch (error) {
+      console.log(error)
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
@@ -216,6 +222,7 @@ export class BackendService {
         message: "",
       }
     } catch (error) {
+      console.log(error)
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
@@ -244,6 +251,7 @@ export class BackendService {
         message: "Accepted"
       }
     } catch (error) {
+      console.log(error)
       if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
         return error as HTTPError;
       } else {
@@ -254,8 +262,8 @@ export class BackendService {
 
 
   @GenezioAuth()
-  async getRaces(context: GnzContext){
-    try{
+  async getRaces(context: GnzContext) {
+    try {
       const userInfo = await this.prisma.cursa.findMany({
         where: {userId: context.user!.userId}
       })
@@ -265,8 +273,8 @@ export class BackendService {
       }
 
       return userInfo;
-    }
-    catch(error){
+    } catch (error) {
+      console.log(error)
       return createHTTPError(500, "Internal Server Error");
     }
   }

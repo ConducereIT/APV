@@ -49,7 +49,6 @@ const Account: React.FC = () => {
     const takeRaces = async () => {
       try {
         const response = await BackendService.getRaces();
-        console.log(response);
         setRaces(response);
       } catch (error) {
         console.log(error);
