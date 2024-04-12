@@ -1,6 +1,6 @@
 # Learn more about Genezio YAML at https://genezio.com/docs/project-structure/genezio-configuration-file/
 # The name of the project.
-name: dev-apv
+name: apv-production
 # The region where the project is deployed.
 region: eu-central-1
 # The version of the Genezio YAML configuration to parse.
@@ -37,13 +37,12 @@ frontend:
   scripts:
     # List of scripts to run before deploying the frontend.
     deploy:
-      - npm install @genezio-sdk/dev-apv
+      - npm install @genezio-sdk/apv-production
       - npm install
-    local: npm i
     # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
     build: npm run build
     # List of scripts to run when starting the local development server.   	
     start:
       - npm install
       - npm run dev
-  subdomain: aqua-voluminous-boa
+  subdomain: aquamarine-splendid-silverfish
