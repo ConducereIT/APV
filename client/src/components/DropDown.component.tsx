@@ -76,7 +76,7 @@ const Dropdown: React.FC<DropdownProps> = (props): JSX.Element => {
               </h1>
             </button>
             {subText ? (
-              <div className="relative  left-56 top-5 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="relative left-56 top-5 transform -translate-x-[60%] -translate-y-[60%]">
                 <h1
                   className={`text-black h-10 w-10 scale-150 ${
                     isOpen ? "hidden" : "block"
