@@ -56,7 +56,6 @@ const RaceRegistration: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await BackendService.updateUser(registration.phoneNumber, registration.tshirtSize);
     await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod); // Actualizăm pentru a include și metoda de plată
 
     alert('Înscrierea a fost realizată cu succes!');
