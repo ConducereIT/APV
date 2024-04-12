@@ -29,9 +29,12 @@ export default function AboutHome() {
               Rectoratul UPB
             </span>
           </div>
-
-          <button className="bg-[#006470] text-white font-bold py-2 px-4 md:py-4 md:px-3 rounded-lg uppercase tracking-wide hover:bg-teal-500 focus:outline-none focus:ring transition duration-300 mt-8 w-36 md:mt-16 md:w-44">
-            Înscriere
+          <button className="bg-[#006470] text-white font-bold py-2 px-4 md:py-4 md:px-3 rounded-lg uppercase tracking-wide hover:bg-teal-500 focus:outline-none focus:ring transition duration-300 mt-8 w-36 md:mt-16 md:w-44"
+          onClick={() => {
+            window.location.href = "/cauza";
+          }}
+          >
+            Cauză
           </button>
         </div>
 
