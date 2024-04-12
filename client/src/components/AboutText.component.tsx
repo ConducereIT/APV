@@ -29,14 +29,20 @@ export default function AboutText() {
         </p>
 
         <div className="mt-6 md:mt-8 flex items-center">
-          <img src={LocationPin} alt="Location Pin" className="w-4 md:w-5" />
+          <img src={LocationPin} alt="Location Pin" className="w-4 md:w-5"/>
           <span className="ml-2 text-sm md:text-lg font-barlow font-semibold text-gray-800">
             Rectoratul UPB
           </span>
         </div>
 
-        <button className="bg-[#006470] text-white font-semibold py-2 px-4 md:py-4 md:px-6 rounded-lg uppercase tracking-wide hover:bg-teal-500 focus:outline-none focus:ring transition duration-300 mt-8 w-[10rem] md:mt-10 md:w-[12rem]">
-          Înscriere
+        <button
+          className="bg-[#006470] text-white font-semibold py-2 px-4 md:py-4 md:px-6 rounded-lg uppercase tracking-wide hover:bg-teal-500 focus:outline-none focus:ring transition duration-300 mt-8 w-[10rem] md:mt-10 md:w-[12rem]"
+          onClick={
+            () => {
+              window.location.href = "/cauza";
+            }
+          }>
+          Cauza
         </button>
       </div>
 

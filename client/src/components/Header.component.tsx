@@ -54,7 +54,7 @@ const headerTextContent: HeaderItems[] = [
   },
   {
     id: 4,
-    text: "Întrebări frecvente",
+    text: "Info Utile",
     url: "/faq",
   },
   {
@@ -103,7 +103,7 @@ export const Header = () => {
           </ul>
 
           <img
-            className="h-10 w-15 absolute top-1 my-3 scale-125 right-[50%] cursor-pointer"
+            className="h-10 w-15 absolute top-1 my-3 scale-[175%] right-[50%] cursor-pointer"
             src={LOGO}
             alt="Logo"
             onClick={() => (window.location.href = "/")}
@@ -113,17 +113,21 @@ export const Header = () => {
             <a
               className="scale-110"
               href="https://www.facebook.com/AleargaPentruViata"
+              target="_blank"
             >
               <FaFacebook size={20}/>
             </a>
             <a
               className="scale-110"
               href="https://www.instagram.com/aleargapentruviata.lse/"
+              target="_blank"
             >
               <FaInstagram size={20}/>
             </a>
             <button
-              className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[40%] text-white text-base text-bold  w-[20%]">
+              className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[40%] text-white text-base text-bold  w-[20%]"
+              onClick={() => (window.open("https://revolut.me/cesare99b7"))}
+            >
               DONEAZĂ
             </button>
 
@@ -165,12 +169,14 @@ export const Header = () => {
           <a
             className="scale-110"
             href="https://www.facebook.com/AleargaPentruViata"
+            target="_blank"
           >
             <FaFacebook/>
           </a>
           <a
             className="scale-110"
             href="https://www.instagram.com/aleargapentruviata.lse/"
+            target="_blank"
           >
             <FaInstagram/>
           </a>

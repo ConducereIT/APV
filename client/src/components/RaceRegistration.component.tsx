@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {BackendService} from "@genezio-sdk/dev-apv";
+import { BackendService } from "@genezio-sdk/dev-apv";
 
 type RegistrationState = {
   tshirtSize: string;
   phoneNumber: string;
-  races: string[]; // Modificare: de la string la string[]
+  races: string[];
 };
 
 const races = {
@@ -39,7 +39,7 @@ const RaceRegistration: React.FC = () => {
   const [registration, setRegistration] = useState<RegistrationState>({
     tshirtSize: '',
     phoneNumber: '',
-    races: [], // Modificare: inițializare cu un array gol
+    races: [],
   });
 
   const [isLogin, setIsLogin] = useState(false);
@@ -60,12 +60,12 @@ const RaceRegistration: React.FC = () => {
     if (checked) {
       setRegistration({
         ...registration,
-        races: [...registration.races, value], // Adăugare cursei în array-ul races
+        races: [...registration.races, value],
       });
     } else {
       setRegistration({
         ...registration,
-        races: registration.races.filter(race => race !== value), // Eliminare cursei din array-ul races
+        races: registration.races.filter(race => race !== value),
       });
     }
   };
@@ -80,9 +80,9 @@ const RaceRegistration: React.FC = () => {
   };
 
   return (
-    <div className="registration-form" style={{ margin: '0 auto', maxWidth: '500px' }}>
-      <h2 style={{ textAlign: 'center' }}>Înscriere cros caritabil Aleargă pentru Viață</h2>
-      <form onSubmit={handleSubmit}>
+    <div className=" max-w-[20rem] md:max-w-[30rem]" style={{ margin: '0 auto', marginTop:"-3rem" }}>
+      <h2 className="text-lg md:text-2xl" style={{ textAlign: 'center' }}>Înscriere</h2>
+      <form onSubmit={handleSubmit} style={{ width: '100%' }}>
         <label style={labelStyle} htmlFor="tshirtSize">Mărime tricou:</label>
         <select
           id="tshirtSize"
@@ -109,19 +109,21 @@ const RaceRegistration: React.FC = () => {
         />
 
         <label style={labelStyle}>Cursa:</label>
-        {Object.entries(races).map(([key, text]) => (
-          <div key={key}>
-            <input
-              type="checkbox"
-              id={`race_${key}`}
-              name="races"
-              value={key}
-              checked={registration.races.includes(key)}
-              onChange={handleInputChange}
-            />
-            <label htmlFor={`race_${key}`}>{text}</label>
-          </div>
-        ))}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {Object.entries(races).map(([key, text]) => (
+            <div key={key} style={{ marginBottom: '10px' }}>
+              <input
+                type="checkbox"
+                id={`race_${key}`}
+                name="races"
+                value={key}
+                checked={registration.races.includes(key)}
+                onChange={handleInputChange}
+              />
+              <label htmlFor={`race_${key}`} style={{ marginLeft: '5px' }}>{text}</label>
+            </div>
+          ))}
+        </div>
 
         <button style={{
           padding: '10px 20px',
@@ -130,7 +132,8 @@ const RaceRegistration: React.FC = () => {
           cursor: 'pointer',
           backgroundColor: '#029e77',
           color: 'white',
-          border: 'none'
+          border: 'none',
+          width: '100%'
         }} type="submit">
           Trimite
         </button>
