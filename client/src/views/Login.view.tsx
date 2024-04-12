@@ -40,8 +40,6 @@ const Login: React.FC = () => {
     try {
       await AuthService.getInstance().googleRegistration(credentialResponse.credential!);
 
-      await BackendService.addUser();
-
       const allRace = await BackendService.getRaces();
 
       if (localStorage.getItem("token") && allRace.length === 0) {

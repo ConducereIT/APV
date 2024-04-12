@@ -127,6 +127,8 @@ export class BackendService {
 
   }
 
+
+
   @GenezioAuth()
   async addRaces(context: GnzContext, races: string, phone:string,marime:string,revolut:string){
     try {
