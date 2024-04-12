@@ -25,7 +25,7 @@ const headerTextContent: HeaderItems[] = [
         url: "/about",
       },
       2: { text: "Echipa", url: "/about#team" },
-      3: { text: "Istoric", url: "/about" },
+      3: { text: "Istoric", url: "/about#istoric" },
       4: {
         text: "Galerie Foto",
         url: "https://www.facebook.com/media/set/?set=a.603987195089837&type=3",
@@ -208,7 +208,7 @@ export const Header = () => {
               text="Donează"
             />
             {!isLogin ? (
-              <Dropdown url="/login" key={9} text="Login" />
+              <Dropdown url="/login" key={9} text="Înscriere" />
             ) : (
               <Dropdown url="/logout" key={10} text="Logout" />
             )}
