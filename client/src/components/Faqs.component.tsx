@@ -1,5 +1,6 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { FaqConfig } from "../config/FaqConfig";
+import Regulament from "../assets/REGULAMENT-APV-2024.pdf";
 
 export default function Faqs() {
   return (
@@ -7,7 +8,7 @@ export default function Faqs() {
       <div className="flex justify-center">
         <h1 className="mb-10 mt-24 text-4xl font-bold">Întrebări Frecvente</h1>
       </div>
-      <div className="flex justify-center ">
+      <div className="flex justify-center mb-24">
         <div className="lg:w-1/2 md:w-2/3 mx-5 md:mx-0 shadow-2xl ">
           {FaqConfig.map((question, index) => (
             <div
@@ -29,6 +30,15 @@ export default function Faqs() {
               </div>
             </div>
           ))}
+          <a href={Regulament} target="_blank">
+            <div className="group flex flex-col border-b border-black border-opacity-15 bg-white bg-grey-100 ">
+              <div className="flex cursor-pointer items-center justify-between border-dotted border-opacity-20 border-[1.2px] border-black p-4 duration-500 hover:bg-[#aff1f3]">
+                <span className=" text-xl text-gray-600 group-hover:translate-x-2 duration-500 ">
+                  Regulament
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </>
