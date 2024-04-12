@@ -17,10 +17,10 @@ interface RacesContext {
 
 const racesContext: RacesContext = {
   "0": "Cursa Copii",
-  "1": "Feminin 10-16 ani",
-  "2": "Masculin 10-16 ani",
-  "3": "Feminim 17-35 de ani",
-  "4": "Masculin 17-35 de ani",
+  "1": "Feminin 13-17 ani",
+  "2": "Masculin 13-17 ani",
+  "3": "Feminim 18-35 de ani",
+  "4": "Masculin 18-35 de ani",
   "5": "Feminin 35+ de ani",
   "6": "Masculin 35+ de ani",
 };
