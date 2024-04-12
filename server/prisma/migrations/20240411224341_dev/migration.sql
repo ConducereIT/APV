@@ -17,6 +17,7 @@ CREATE TABLE "Cursa" (
     "numarTricou" TEXT,
     "categorie" TEXT,
     "timpAlergat" TIMESTAMP(3),
+    "name" TEXT,
 
     CONSTRAINT "Cursa_pkey" PRIMARY KEY ("id")
 );

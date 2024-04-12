@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthService } from '@genezio/auth';
-import { BackendService } from "@genezio-sdk/dev-apv";
 
 import { Header } from "../components/Header.component";
 

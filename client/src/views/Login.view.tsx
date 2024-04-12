@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { Header } from '../components/Header.component';
 import { BackendService } from '@genezio-sdk/dev-apv';
 import pdf from "../assets/REGULAMENT-APV-2024.pdf";
-const Login: React.FC = () => {
+
+const Login : React.FC = () => {
+
     const navigate = useNavigate();
     const [googleLoginLoading, setGoogleLoginLoading] = useState(false);
 
@@ -38,15 +40,16 @@ const Login: React.FC = () => {
 
         try {
             await AuthService.getInstance().googleRegistration(credentialResponse.credential!);
-            console.log('Login Success');
-            const checkStatus = await BackendService.addUser();
-            console.log(checkStatus);
 
+            await BackendService.addUser();
+            
+            if (localStorage.getItem("token")) {
+                navigate("/register-race");
+            }
             setGoogleLoginLoading(false);
         } catch (error) {
-            console.error("Login Error", error);
-            alert('Login Failed. Please try again.');
-            setGoogleLoginLoading(false);
+            console.log("Error", error);
+
         }
     }
 

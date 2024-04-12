@@ -7,7 +7,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { AuthService } from '@genezio/auth';
 
 AuthService.getInstance().setTokenAndRegion(
-"0-liwbyaw36gcn2ndn5mrscnl3q40nqquj",
+"0-7wbqm5eaw3w6pkcauqnk4chrmu0zyron",
  "eu-central-1");
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
