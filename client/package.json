@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@genezio-sdk/apv-production": "^1.0.0-prod",
-    "@genezio/auth": "^2.0.13",
+    "@genezio/auth": "^2.0.19",
     "@genezio/vite-plugin-genezio": "^1.0.4",
     "@react-oauth/google": "^0.12.1",
     "@types/styled-components": "^5.1.34",
