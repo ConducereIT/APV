@@ -24,8 +24,7 @@ const carouselItems = [
   },
   {
     photo: subject1,
-    text:
-      "Anul trecut, i-am sprijinit povestea lui Andrei Bucur, un tânăr plin de ambiție, fost student al Academiei de Poliție, căruia viața i-a fost potrivnică. Astfel, la data de 3 mai 2017, chiar în cadrul unui antrenament pentru meseria la care visa, acesta a leșinat, iar la spital a primit o veste cruntă: făcuse un anevrism cerebral. După un lung șir de operații costisitoare în Franța, Andrei a reușit să scape de pericolul decesului, dar aceste intervenții nu au reușit să rezolve semipareza facială apărută în urma anevrismului. Șansele acestuia de recuperare totală sunt foarte mari, însă costul acestor proceduri au fost peste puterile lui și ale familiei sale.",
+    text: "Anul trecut, am sprijinit povestea lui Andrei Bucur, un tânăr ambițios, fost student la Academia de Poliție. În timpul unui antrenament pentru cariera sa visată, la data de 3 mai 2017, a suferit un leșin și a fost diagnosticat cu un anevrism cerebral. După numeroase intervenții chirurgicale costisitoare în Franța, Andrei a scăpat de pericolul decesului, dar rămâne cu semipareză facială. șansele sale de recuperare totală sunt mari, dar tratamentele au fost extrem de costisitoare pentru el și familia sa.",
     name: "Andrei Bucur",
   },
 ];
