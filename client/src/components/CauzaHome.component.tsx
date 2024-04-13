@@ -50,7 +50,7 @@ export default function CauzaHome() {
           <div className="w-full h-screen md:w-2/3 p-4 text-black flex flex-col justify-between rounded-lg ml-4">
             <div className="mb-10">
               <h2 className=" font-semibold text-teal-700 text-center tracking-widest">
-                Cauza Aleargă Pentru Viață 2023{" "}
+                Cauza Aleargă Pentru Viață 2024{" "}
               </h2>
               <br />
               <span className="text-3xl text-black w-1/6 md:w-full font-bold">
