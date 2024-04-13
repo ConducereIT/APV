@@ -4,7 +4,7 @@ export default function CauzaHome() {
     <>
       <div className="md:hidden grid place-items-center">
         <h2 className=" font-semibold text-teal-700 tracking-widest">
-          Cauza Aleargă Pentru Viață 2023{" "}
+          Cauza Aleargă Pentru Viață 2024{" "}
         </h2>
         <h1 className=" text-2xl font-bold text-black hover:text-black mb-10">
           Ionuț Frățilă
