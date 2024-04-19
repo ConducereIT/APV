@@ -1,11 +1,9 @@
-import {
-  GenezioAuth,
-  GenezioDeploy,
-  GnzContext,
-} from "@genezio/types";
+import {GenezioAuth, GenezioDeploy, GnzContext,} from "@genezio/types";
 
 import {PrismaClient} from "@prisma/client";
 import {randomUUID} from "node:crypto";
+import pg from 'pg'
+const { Pool } = pg
 
 type HTTPResponse = {
   status: number;
@@ -16,6 +14,11 @@ type HTTPError = {
   status: number;
   message: string;
 };
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 
 // type UserDataType = {
 //   status: number;
@@ -274,6 +277,34 @@ export class BackendService {
       return userInfo;
     } catch (error) {
       console.log(error)
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async getAllRaces(context: GnzContext) { //eslint-disable-line
+    try {
+      return await this.prisma.cursa.findMany();
+    } catch (error) {
+      console.log(error)
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async updateUserDetailsByUserId(context:GnzContext, userId:string,json:any){  //eslint-disable-line
+    console.log("Start update user details...");
+    try{
+       const client = await pool.connect();
+      await client.query(`UPDATE "users" SET "customInfo" = $1 WHERE "userId" = $2`, [json, userId]);
+      client.release();
+        return {
+          status: 200,
+          message: "Successfully updated"
+        }
+    }
+    catch(error){
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
