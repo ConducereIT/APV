@@ -10,7 +10,6 @@ import {loaderCurse} from "./Loader";
 import Account from "../views/Account.view";
 import RaceRegistrationView from "../views/RaceRegistration.view.tsx";
 import Logout from "../views/Logout.view.tsx";
-import Checkin from "../views/Checkin.view.tsx";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -58,9 +57,5 @@ export const allRoutes = createBrowserRouter([
   {
     path: "logout",
     element: <Logout/>
-  },
-  {
-    path:"checkin",
-    element: <Checkin/>
   }
 ]);
