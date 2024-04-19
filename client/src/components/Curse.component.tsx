@@ -1,11 +1,15 @@
 import { CurseValide } from "../views/Curse.view";
 import Regulament from "../assets/REGULAMENT-APV-2024.pdf";
+import { Helmet } from "react-helmet";
 const CurseComponent: React.FC<CurseValide> = ({ interfata }): JSX.Element => {
   const { cursa, oraStart, distanta, donatieMinima, descriere, urlHarta } =
     interfata || {};
 
   return (
     <>
+      <Helmet>
+        <title>APV 2024 | Cursa {cursa}</title>
+      </Helmet>
       <div className="md:block hidden ml-8 pt-5">
         {interfata && (
           <div className="relative cursor-default">
