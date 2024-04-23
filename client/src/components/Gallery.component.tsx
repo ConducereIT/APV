@@ -85,21 +85,21 @@ function Gallery() {
 
   return (
     <div>
-      <h2 className="text-center text-lg md:text-4xl font-barlow font-bold md:mb-8">
-        Galerie foto
+      <h2 className="text-3xl md:text-5xl text-[#1D1A3F] text-center font-barlow-condensed leading-normal font-bold">
+        GALERIE FOTO
       </h2>
-      <div className="grid grid-cols-1 gap-2 mx-10 sm:grid-cols-2 md:grid-cols-3 sm:mx-8 md:mx-20 my-2.5">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mx-4 sm:mx-8 md:mx-20 my-20">
         {poze.map(({ image }, index) => (
           <div key={index} className="flex flex-wrap justify-center">
             <div className="flex justify-center relative">
               <img
                 onClick={() => openFullscreen(index)}
-                className="h-full max-w-full rounded-lg object-cover object-center cursor-pointer"
+                className="h-auto max-w-full rounded-lg object-cover object-center cursor-pointer"
                 src={image}
                 alt="gallery-photo"
               />
               <div
-                className="absolute inset-0 flex justify-center cursor-pointer items-center bg-cyan-500 opacity-0 transition duration-500 transform hover:opacity-75 hover:scale-90"
+                className="absolute inset-0 flex justify-center cursor-pointer items-center bg-custom-green opacity-0 transition duration-500 transform hover:opacity-75 hover:scale-90"
                 onClick={() => openFullscreen(index)}
               >
                 <CiSquarePlus className="text-white text-lg size-20" />
@@ -152,7 +152,7 @@ function Gallery() {
           href="https://www.facebook.com/AleargaPentruViata"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-cyan-700 hover:bg-cyan-500 text-white font-bold py-4 px-12 rounded-xl inline-block mb-20"
+          className="bg-[#006470] hover:bg-teal-500 text-white font-semibold py-2 px-6 md:py-4 md:px-8 rounded-lg uppercase tracking-wide focus:outline-none focus:ring transition duration-300 mt-8 w-[14rem] md:mt-10 md:w-[12rem]"
         >
           GALERIE FOTO
         </a>
