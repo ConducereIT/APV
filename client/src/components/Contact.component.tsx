@@ -4,7 +4,6 @@ export default function ContactTeam({ members, grid }: ContactTeamProps) {
       ? "sm:grid-cols-2 md:grid-cols-2 md:gap-20 md:mx-7"
       : "sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-10 md:mx-7"
   }`;
-
   return (
     <div className="md:pb-5 my-10">
       <div className={`grid ${gridClass}`}>

@@ -4,10 +4,14 @@ import { Header } from "../components/Header.component";
 import Gallery from "../components/Gallery.component";
 import Istoric from "../components/Istoric.component";
 import carouselItems from "../config/IstoricConfig";
+import { Helmet } from "react-helmet";
 
 export default function About() {
   return (
     <>
+      <Helmet>
+        <title>APV 2024 | Despre</title>
+      </Helmet>
       <Header />
       <AboutText />
       <Team />
