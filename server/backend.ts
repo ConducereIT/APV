@@ -6,6 +6,9 @@ import {
 
 import {PrismaClient} from "@prisma/client";
 import {randomUUID} from "node:crypto";
+import { Mailer } from "./mailer";
+
+import { races as allRaces } from "./config/racesConfig";
 
 type HTTPResponse = {
   status: number;
@@ -16,6 +19,7 @@ type HTTPError = {
   status: number;
   message: string;
 };
+
 
 // type UserDataType = {
 //   status: number;
@@ -35,10 +39,12 @@ function createHTTPError(status: number, message: string): HTTPError {
 
 @GenezioDeploy()
 export class BackendService {
-  prisma: PrismaClient
+  prisma: PrismaClient;
+  mailer: Mailer;
 
   constructor() {
     this.prisma = new PrismaClient();
+    this.mailer = new Mailer();
   }
 
   @GenezioAuth()
@@ -149,6 +155,19 @@ export class BackendService {
             revolute_cash: revolut
           }
         })
+
+        const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
+        const ora = allRaces[races].time;
+
+        await this.mailer.registerMail(
+          context.user!.email,
+          subject,
+          context.user!.name || "drag alergator",
+          "12 Mai",
+          `${ora}`,
+          "Rectoratul UPB",
+        )
+
         return {
           status: 200,
           message: "Successfully registered"
