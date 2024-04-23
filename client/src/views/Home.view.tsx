@@ -9,13 +9,12 @@ import Sponsors from "../components/Sponsors.component";
 import { organizatori } from "../config/SponsorsConfig";
 import CauzaHome from "../components/CauzaHome.component";
 import Program from "../components/Program.component";
+
 const Home = () => {
   return (
     <>
       <Header />
       <Banner
-        firstTitle={"Aleargă pentru viață"}
-        secondTitle={"APV"}
         video={VideoBanner}
         LseBanner={LseBanner}
         maiputernici={false}
