@@ -8,7 +8,7 @@ interface RaceInfo {
   }
 
 export const races: RacesRecord = {
-    "0": { name: "Cursa Copii", time: "11:30" },
+    "0": { name: "Copii", time: "11:30" },
     "1": { name: "Feminin 13-17 ani", time: "10:00" },
     "2": { name: "Masculin 13-17 ani", time: "10:30" },
     "3": { name: "Feminin 18-35 de ani", time: "14:00" },

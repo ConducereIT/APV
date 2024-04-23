@@ -156,7 +156,7 @@ export class BackendService {
           }
         })
 
-        const subject = `Inscriere cursa ${races} - Alearga Pentru Viata`;
+        const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
         const ora = allRaces[races].time;
 
         await this.mailer.registerMail(
