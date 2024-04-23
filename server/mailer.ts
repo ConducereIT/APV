@@ -25,7 +25,6 @@ export class Mailer{
         dataEveniment: string,
         oraEveniment: string,
         locatieEveniment: string,
-        linkInregistrare: string,
     ): Promise<boolean>{
         const html = `<!doctype html>
         <html lang="ro">
@@ -57,9 +56,6 @@ export class Mailer{
             </div>
             <p style="color: #fff; text-align: center; font-size: 16px;">Te rugăm să fii prezent cu 30 de minute înainte de începerea cursei la care te-ai înscris.</p>
             <p style="color: #fff; text-align: center; font-size: 16px;">Vom alerga împreună pentru o cauză nobilă!</p>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <a href="${linkInregistrare}" target="_blank" style="text-decoration: none; color: #fff; background-color: #F37D30; padding: 10px 20px; border-radius: 5px; display: inline-block;">Verifică-ți înscrierea</a>
-            </div>
             <p style="color: #fff; text-align: center; font-size: 16px;">Cu drag,</p>
             <p style="color: #fff; text-align: center; font-size: 16px;">Echipa "Aleargă Pentru Viață"</p>
             <p style="color: #fff; text-align: center; font-size: 16px; margin-bottom: 0;"><a href="https://apv.lsebucuresti.org/" style="text-decoration: none; color: #007bff;">https://apv.lsebucuresti.org/</a></p>

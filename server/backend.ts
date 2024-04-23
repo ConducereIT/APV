@@ -166,7 +166,6 @@ export class BackendService {
           "12 Mai",
           `${ora}`,
           "Rectoratul UPB",
-          "apv.lsebucuresti.org"
         )
 
         return {
