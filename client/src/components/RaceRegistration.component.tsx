@@ -15,7 +15,7 @@ const races = {
   "0": "Cursa Copii",
   "1": "Feminin 13-17 ani",
   "2": "Masculin 13-17 ani",
-  "3": "Feminim 18-35 de ani",
+  "3": "Feminin 18-35 de ani",
   "4": "Masculin 18-35 de ani",
   "5": "Feminin 35+ de ani",
   "6": "Masculin 35+ de ani",

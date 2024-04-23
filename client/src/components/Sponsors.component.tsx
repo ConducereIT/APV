@@ -25,8 +25,8 @@ const Sponsors: React.FC<SponsorsProps> = ({ sponsors, grid, title }) => {
 
   return (
     <>
-      <div className="md:pb-5 my-10">
-        <h1 className="md:text-3xl text-xl font-bold flex justify-center uppercase hover:text-black text-black pb-10">
+      <div className="md:pb-5 my-28">
+        <h1 className="text-3xl md:text-5xl font-barlow-condensed leading-normal font-bold flex justify-center uppercase text-[#1D1A3F] pb-10">
           {title}
         </h1>
         <div className={`${content}`}>
@@ -39,7 +39,7 @@ const Sponsors: React.FC<SponsorsProps> = ({ sponsors, grid, title }) => {
                 <img
                   className="w-full h-auto hover:scale-110 duration-300"
                   src={sponsor.image}
-                  alt="Poza membru"
+                  alt="Sponsor"
                   loading="lazy"
                   width={100}
                   height={100}
