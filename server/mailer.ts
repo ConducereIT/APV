@@ -45,10 +45,10 @@ export class Mailer{
             <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XV-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px;">
                 <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Detalii eveniment:</h2>
-                <p><strong style="color: #fff;">Data:</strong> ${dataEveniment}</p>
-                <p><strong style="color: #fff;">Ora:</strong> ${oraEveniment}</p>
-                <p><strong style="color: #fff;">Locație:</strong> ${locatieEveniment}</p>
-                <p style="color: #fff;"><strong>Te rugăm să aduci:</strong></p>
+                <p style="color: #fff;" ><strong style="color: #fff;">Data:</strong> ${dataEveniment}</p>
+                <p style="color: #fff;" ><strong style="color: #fff;">Ora:</strong> ${oraEveniment}</p>
+                <p style="color: #fff;" ><strong style="color: #fff;">Locație:</strong> ${locatieEveniment}</p>
+                <p style="color: #fff;" ><strong>Te rugăm să aduci:</strong></p>
                 <ul style="margin: 0; padding-left: 20px; color: #fff;">
                     <li>Șapcă</li>
                     <li>Sticlă cu apă</li>
@@ -84,6 +84,8 @@ export class Mailer{
         } 
     }
 
-
+    async testEnv(){
+        console.log(process.env.SEND_MAIL_USER);
+    }
 
 }
