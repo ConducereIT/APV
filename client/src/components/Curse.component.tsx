@@ -16,7 +16,7 @@ const CurseComponent: React.FC<CurseValide> = ({ interfata }): JSX.Element => {
               </span>{" "}
               {cursa}
             </h1>
-            <h1 className="text-2xl text-gray-700 mt-10 font-semibold">
+            <h1 className="text-2xl mt-10 font-semibold">
               Informații cursă:
             </h1>
             <div className="space-y-1 mt-3 mb-3">
@@ -74,7 +74,7 @@ const CurseComponent: React.FC<CurseValide> = ({ interfata }): JSX.Element => {
               </span>{" "}
               {cursa}
             </h1>
-            <h1 className="text-lg mt-10 font-bold -ml-2">
+            <h1 className="text-lg mt-10 font-semibold -ml-2">
               Informații cursă:
             </h1>
             <div className=" space-y-1 mt-3 mb-3 pl-6 -ml-8">
@@ -96,21 +96,21 @@ const CurseComponent: React.FC<CurseValide> = ({ interfata }): JSX.Element => {
               {descriere}
             </h1>
 
-            <h1 className="text-lg mt-12 -ml-2">
+            <h1 className="text-lg font-semibold mt-10 -ml-2">
               <span>Vezi mai jos harta traseului!</span>
             </h1>
 
-            <h1 className="font-bolt text-lg mt-8 -ml-2">
-              <span className="font-normal">
+            <h1 className="text-base mt-6 -ml-2">
+              <span>
                 Pentru mai multe informații consultați{" "}
               </span>
-              <a href={Regulament} target="_blank" className="text-blue-600 hover:text-blue-800">
+              <a href={Regulament} target="_blank" className="text-blue-600 hover:text-blue-800 font-bold">
               regulamentul 
               </a>
               <span>!</span>{" "}
             </h1>
 
-            <div className="mt-10 h-[300px] w-[75%]">
+            <div className="mt-10 h-[20rem] w-[75%]">
               <iframe
                 src={`${urlHarta}`}
                 loading="lazy"

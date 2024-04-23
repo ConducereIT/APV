@@ -1,6 +1,6 @@
-
-import Cesar from "../assets/team3.jpg";
+import Cesar from "../assets/Cesar.webp";
 import Georgi from "../assets/Georgi.webp";
+
 export const members = [
     {
         image: Cesar ,
@@ -18,4 +18,5 @@ export const members = [
      },
   
 ];
+
 export default members;

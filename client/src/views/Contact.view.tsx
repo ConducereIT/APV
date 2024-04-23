@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <>
       <Header />
-      <div className="flex justify-center mt-32">
+      <div className="md:flex md:justify-center mt-32">
         <ContactTeam members={members} grid={2} />
       </div>
     </>
