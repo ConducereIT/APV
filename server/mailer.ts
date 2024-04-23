@@ -84,8 +84,5 @@ export class Mailer{
         } 
     }
 
-    async testEnv(){
-        console.log(process.env.SEND_MAIL_USER);
-    }
 
 }
