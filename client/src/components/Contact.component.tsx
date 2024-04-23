@@ -14,7 +14,7 @@ interface ContactTeamProps {
 export default function ContactTeam({ members, grid }: ContactTeamProps) {
   const gridClass =
     grid === 2
-      ? "grid-cols-2 md:grid-cols-2 md:gap-20 md:mx-7"
+      ? "grid-cols-1 md:grid-cols-2 md:gap-20 md:mx-7"
       : "grid-cols-2 md:grid-cols-4 sm:grid-cols-3 gap-10 md:gap-10 md:mx-7";
 
   return (
