@@ -5,8 +5,6 @@ import { motion, useAnimation } from "framer-motion";
 interface BannerProps {
   video: string;
   LseBanner: string;
-  firstTitle: string;
-  secondTitle: string;
   maiputernici: boolean;
 }
 
