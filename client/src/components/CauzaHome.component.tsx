@@ -34,7 +34,7 @@ export default function CauzaHome() {
           transition: "opacity 1.5s ease-in-out",
         }}
       >
-        <div className=" h-full md:h-full max-w-screen-lg flex items-center justify-center flex-col md:flex-row">
+        <div className="h-full md:h-full max-w-screen-lg flex items-center justify-center flex-col md:flex-row">
           <div className="w-5/6 md:w-1/3 p-2 overflow-hidden h-screen md:h-full rounded-lg">
             <div className=" rounded-lg flex justify-center">
               <img
