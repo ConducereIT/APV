@@ -147,7 +147,7 @@ function Gallery() {
           )}
         </div>
       )}
-      <div className="text-center mt-4">
+      <div className="text-center mt-4  mb-10">
         <a
           href="https://www.facebook.com/AleargaPentruViata"
           target="_blank"

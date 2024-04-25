@@ -12,10 +12,10 @@ export default function AboutHome() {
           <h2 className="text-3xl md:text-5xl font-barlow-condensed leading-normal font-bold md:mt-3">
             ALEARGĂ PENTRU VIAȚĂ, CROS CARITABIL
           </h2>
-          <h2 className="text-2xl md:text-5xl font-barlow-condensed leading-normal font-bold mt-4 md:mt-16">
+          <h2 className="text-2xl md:text-4xl font-barlow-condensed leading-normal font-bold mt-4 md:mt-16">
             O TRADIȚIE DE 15 ANI
           </h2>
-          <p className="text-base md:text-2xl font-barlow font-normal leading-normal text-custom-gray mt-8 md:mt-12">
+          <p className="text-base md:text-xl font-barlow font-normal leading-normal text-custom-gray mt-8 md:mt-12">
             Crosul caritabil “Aleargă Pentru Viață” este cea mai mare competiție
             sportivă din București organizată exclusiv de studenți. În fiecare
             an își propune ca fiecare alergător care trece linia de sosire să
@@ -37,12 +37,11 @@ export default function AboutHome() {
             Cauză
           </button>
         </div>
-
-        <div>
+        <div className="lg:flex lg:items-center lg:justify-center lg:w-2/3 lg:pl-20 mt-10 lg:mt-8">
           <img
             src={AboutImgHome}
             alt="About Image"
-            className="w-auto md:w-11/12 mr-6 my-20 md:mx-64 md:my-40 rounded-lg"
+            className="w-auto mr-6 md:mr-40 my-20 md:mx-64 md:my-40 rounded-lg"
           />
         </div>
       </div>
