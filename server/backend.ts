@@ -1,14 +1,15 @@
-import {
-  GenezioAuth,
-  GenezioDeploy,
-  GnzContext,
-} from "@genezio/types";
+import {GenezioAuth, GenezioDeploy, GnzContext,} from "@genezio/types";
 
 import {PrismaClient} from "@prisma/client";
 import {randomUUID} from "node:crypto";
-import { Mailer } from "./mailer";
 
-import { races as allRaces } from "./config/racesConfig";
+import pg from 'pg'
+import {Mailer} from "./mailer";
+
+import {races as allRaces} from "./config/racesConfig";
+
+const {Pool} = pg
+
 
 type HTTPResponse = {
   status: number;
@@ -19,6 +20,11 @@ type HTTPError = {
   status: number;
   message: string;
 };
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
 
 
 // type UserDataType = {
@@ -291,6 +297,79 @@ export class BackendService {
       }
 
       return userInfo;
+    } catch (error) {
+      console.log(error)
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async getAllRaces(context: GnzContext) { //eslint-disable-line
+    try {
+      const response = await this.prisma.cursa.findMany();
+      return response.sort((a, b) => {
+        if (a.checkin === b.checkin) {
+          return a.name!.localeCompare(b.name!);
+        }
+        return a.checkin!.localeCompare(b.checkin!);
+      });
+    } catch (error) {
+      console.log(error)
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async updateUserDetailsByUserId(context: GnzContext, userId: string, json: any) {  //eslint-disable-line
+    console.log("Start update user details...");
+    try {
+      const client = await pool.connect();
+      await client.query(`UPDATE "users" SET "customInfo" = $1 WHERE "userId" = $2`, [json, userId]);
+      client.release();
+      return {
+        status: 200,
+        message: "Successfully updated"
+      }
+    } catch (error) {
+      console.log(error);
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async updateUserById(context: GnzContext, id: number, idCursa: string, categorie: string, marimeTricou: string, numarTricou: string, revolute_cash: string, phone: string, checkin: string, money: string) {
+    try {
+      const userInfo = await this.prisma.cursa.findUnique({
+        where: {
+          id: id,
+          idCursa: idCursa
+        }
+      })
+
+      if (!userInfo) {
+        throw createHTTPError(404, "User not exist");
+      }
+
+      await this.prisma.cursa.update({
+        where: {
+          id: id,
+          idCursa: idCursa
+        },
+        data: {
+          categorie: categorie,
+          marimeTricou: marimeTricou,
+          numarTricou: numarTricou,
+          revolute_cash: revolute_cash,
+          phone: phone,
+          checkin: checkin,
+          suma: money
+        }
+      })
+
+      return {
+        status: 200,
+        message: "Successfully updated"
+      }
     } catch (error) {
       console.log(error)
       return createHTTPError(500, "Internal Server Error");
