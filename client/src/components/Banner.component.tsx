@@ -13,8 +13,6 @@ interface BannerProps {
 const Banner: React.FC<BannerProps> = ({
   video,
   LseBanner,
-  firstTitle,
-  secondTitle,
   maiputernici,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
