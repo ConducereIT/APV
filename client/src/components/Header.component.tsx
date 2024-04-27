@@ -65,7 +65,7 @@ const headerTextContent: HeaderItems[] = [
 
 export const Header = () => {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [menuBurger, setMenuBurger] = useState(false);
+  const [menuBurger, setMenuBurger  ] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export const Header = () => {
           </ul>
 
           <img
-            className="absolute top-1 my-3 right-[50%] cursor-pointer"
+            className="absolute top-1 my-3 right-[50%] cursor-pointer scale-125"
             src={LOGO}
             alt="Logo"
             onClick={() => (window.location.href = "/")}

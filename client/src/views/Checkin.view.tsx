@@ -105,6 +105,7 @@ const Checkin: React.FC = () => {
                   type="text"
                   value={formDataList[index]?.marimeTricou || initialFormData.marimeTricou}
                   onChange={(e) => handleInputChange(e, index, "marimeTricou")}
+                  className="text-center"
                 />
               </td>
               <td className="border border-gray-400 px-4 py-2">
@@ -112,6 +113,7 @@ const Checkin: React.FC = () => {
                   type="text"
                   value={formDataList[index]?.numarTricou || initialFormData.numarTricou}
                   onChange={(e) => handleInputChange(e, index, "numarTricou")}
+                  className="text-center"
                 />
               </td>
               <td className="border border-gray-400 px-4 py-2">
@@ -119,6 +121,7 @@ const Checkin: React.FC = () => {
                   type="text"
                   value={formDataList[index]?.revolute_cash || initialFormData.revolute_cash}
                   onChange={(e) => handleInputChange(e, index, "revolute_cash")}
+                  className="text-center"
                 />
               </td>
               <td className="border border-gray-400 px-4 py-2">
@@ -126,6 +129,7 @@ const Checkin: React.FC = () => {
                   type="text"
                   value={formDataList[index]?.phone || initialFormData.phone}
                   onChange={(e) => handleInputChange(e, index, "phone")}
+                  className="text-center"
                 />
               </td>
               <td className="border border-gray-400 px-4 py-2">
