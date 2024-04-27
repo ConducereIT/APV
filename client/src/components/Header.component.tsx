@@ -1,6 +1,5 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import LOGO from "../assets/logo.png";
-
+import LOGO from "../assets/LogoAPV.webp";
 import Dropdown from "./DropDown.component";
 import { useEffect, useState } from "react";
 import { CiMenuBurger } from "react-icons/ci";
@@ -41,10 +40,10 @@ const headerTextContent: HeaderItems[] = [
       2: { text: "Cursa Copii", url: "/curse/kids" },
       3: { text: "Feminin 13-17 ani", url: "/curse/1016feminin" },
       4: { text: "Masculin 13-17 ani", url: "/curse/1016masculin" },
-      5: { text: "Feminim 18-35 ani", url: "/curse/1735feminin" },
+      5: { text: "Feminin 18-35 ani", url: "/curse/1735feminin" },
       6: { text: "Masculin 18-35 ani", url: "/curse/1735masculin" },
-      7: { text: "Feminin 35 + ani", url: "/curse/35feminin" },
-      8: { text: "Masculin 35 + ani", url: "/curse/35masculin" },
+      7: { text: "Feminin 35+ ani", url: "/curse/35feminin" },
+      8: { text: "Masculin 35+ ani", url: "/curse/35masculin" },
     },
   },
   {
@@ -54,7 +53,7 @@ const headerTextContent: HeaderItems[] = [
   },
   {
     id: 4,
-    text: "Info Utile",
+    text: "FAQ",
     url: "/faq",
   },
   {
@@ -66,7 +65,7 @@ const headerTextContent: HeaderItems[] = [
 
 export const Header = () => {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [menuBurger, setMenuBurger] = useState(false);
+  const [menuBurger, setMenuBurger  ] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -104,7 +103,7 @@ export const Header = () => {
           </ul>
 
           <img
-            className="h-10 w-15 absolute top-1 my-3 scale-[175%] right-[50%] cursor-pointer"
+            className="absolute top-1 my-3 right-[50%] cursor-pointer scale-125"
             src={LOGO}
             alt="Logo"
             onClick={() => (window.location.href = "/")}
@@ -147,7 +146,7 @@ export const Header = () => {
                   window.location.reload();
                 }}
               >
-                Logout
+                LOGOUT
               </button>
             )}
           </div>

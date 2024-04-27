@@ -1,29 +1,16 @@
-interface Member {
-  nume: string;
-  position: string;
-  email: string;
-  phone: string;
-  image: string;
-}
-
-interface ContactTeamProps {
-  members: Member[];
-  grid: number;
-}
-
 export default function ContactTeam({ members, grid }: ContactTeamProps) {
-  const gridClass =
+  const gridClass = `grid-cols-1 ${
     grid === 2
-      ? "grid-cols-2 md:grid-cols-2 md:gap-20 md:mx-7"
-      : "grid-cols-2 md:grid-cols-4 sm:grid-cols-3 gap-10 md:gap-10 md:mx-7";
-
+      ? "sm:grid-cols-2 md:grid-cols-2 md:gap-20 md:mx-7"
+      : "sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-10 md:mx-7"
+  }`;
   return (
     <div className="md:pb-5 my-10">
       <div className={`grid ${gridClass}`}>
         {members.map((member, index) => (
           <div
             key={index}
-            className="m-2 p-10 max-w-sm rounded-xl border-4 border-teal-800 hover:bg-blue-200/50  bg-transparent overflow-hidden duration-300 hover:shadow-xl hover:shadow-black/40"
+            className="m-2 p-10 max-w-sm rounded-xl border-4 border-teal-800 hover:bg-blue-200/50 bg-transparent overflow-hidden duration-300 hover:shadow-xl hover:shadow-black/40"
           >
             <img
               className="w-full h-auto rounded-full border-4 border-teal-800"

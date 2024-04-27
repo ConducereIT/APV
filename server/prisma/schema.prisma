@@ -35,6 +35,8 @@ model Cursa {
   phone         String?
   marimeTricou  String?
   revolute_cash String?
+  suma          String?
+  checkin       String?
 }
 
 // exemple de user si curse:

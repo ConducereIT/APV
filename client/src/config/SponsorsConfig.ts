@@ -1,6 +1,6 @@
-import LSE from "../assets/sponsors/post3.png";
-import UPB from "../assets/sponsors/post1.png";
-import ETTI from "../assets/sponsors/post2.png";
+import LSE from "../assets/sponsors/post3.webp";
+import UPB from "../assets/sponsors/post1.webp";
+import ETTI from "../assets/sponsors/post2.webp";
 
 export const organizatori = [
      

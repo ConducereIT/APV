@@ -5,16 +5,12 @@ import { motion, useAnimation } from "framer-motion";
 interface BannerProps {
   video: string;
   LseBanner: string;
-  firstTitle: string;
-  secondTitle: string;
   maiputernici: boolean;
 }
 
 const Banner: React.FC<BannerProps> = ({
   video,
   LseBanner,
-  firstTitle,
-  secondTitle,
   maiputernici,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -83,12 +79,6 @@ const Banner: React.FC<BannerProps> = ({
               animate={isInViewControls}
               transition={{ duration: 0.5, delay: 0.25 }}
             >
-              <h1 className="text-3xl font-extrabold sm:text-5xl lg:p-4 text-gray-200 ">
-                {firstTitle}
-              </h1>
-              <h2 className="text-3xl font-extrabold text-teal-600 sm:text-5xl sm:pb-5 pb-2">
-                {secondTitle}
-              </h2>
               {maiputernici ? (
                 <motion.p
                   initial={{ y: 10, opacity: 0 }}
