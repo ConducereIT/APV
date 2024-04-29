@@ -1,4 +1,4 @@
-export default function ContactTeam({ members, grid }: ContactTeamProps) {
+export default function ContactTeam({ members, grid }:any) { //eslint-disable-line
   const gridClass = `grid-cols-1 ${
     grid === 2
       ? "sm:grid-cols-2 md:grid-cols-2 md:gap-20 md:mx-7"
@@ -7,7 +7,7 @@ export default function ContactTeam({ members, grid }: ContactTeamProps) {
   return (
     <div className="md:pb-5 my-10">
       <div className={`grid ${gridClass}`}>
-        {members.map((member, index) => (
+        {members.map((member:any, index:any) => ( //eslint-disable-line
           <div
             key={index}
             className="m-2 p-10 max-w-sm rounded-xl border-4 border-teal-800 hover:bg-blue-200/50 bg-transparent overflow-hidden duration-300 hover:shadow-xl hover:shadow-black/40"
