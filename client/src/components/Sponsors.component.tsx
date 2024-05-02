@@ -37,12 +37,10 @@ const Sponsors: React.FC<SponsorsProps> = ({ sponsors, grid, title }) => {
             >
               <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
                 <img
-                  className="w-full h-auto hover:scale-110 duration-300"
+                  className="object-cover hover:scale-110 duration-300"
                   src={sponsor.image}
                   alt="Sponsor"
                   loading="lazy"
-                  width={100}
-                  height={100}
                 />
               </a>
             </div>
