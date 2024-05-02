@@ -10,7 +10,7 @@ export const organizatori = [
     },
     {
         image: ETTI,
-        link:"https://etti.upb.ro/"
+        link:"https://etti.upb.ro/",
     },
     {
         image: LSE,
