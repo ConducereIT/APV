@@ -6,7 +6,8 @@ import Banner from "../components/Banner.component";
 import LseBanner from "../assets/banner.webp";
 import Gallery from "../components/Gallery.component";
 import Sponsors from "../components/Sponsors.component";
-import { organizatori } from "../config/SponsorsConfig";
+import { organizatori } from "../config/OrganizerConfig";
+import { sponsori } from "../config/SponsorsConfig";
 import CauzaHome from "../components/CauzaHome.component";
 import Program from "../components/Program.component";
 
@@ -25,6 +26,7 @@ const Home = () => {
       <Program />
       <Gallery />
       <Sponsors sponsors={organizatori} grid={3} title="organizatori" />
+      <Sponsors sponsors={sponsori} grid={3} title="sponsori" />
     </>
   );
 };
