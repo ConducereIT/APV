@@ -1,20 +1,7 @@
-import LSE from "../assets/sponsors/post3.webp";
-import UPB from "../assets/sponsors/post1.webp";
-import ETTI from "../assets/sponsors/post2.webp";
+import ALBUME from "../assets/sponsors/sponsor1.webp";
 
-export const organizatori = [
-     
+export const sponsori = [
     {
-        image: UPB,
-        link: "https://upb.ro/",
-        
-    },
-    {
-        image: ETTI,
-        link:"https://etti.upb.ro/"
-    },
-    {
-        image: LSE,
-        link: "https://lsebucuresti.org/",
+        image: ALBUME,
     }, 
 ];
