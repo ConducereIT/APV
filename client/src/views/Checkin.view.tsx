@@ -293,6 +293,7 @@ const Checkin: React.FC = () => {
                   type="text"
                   value={formDataList[index]?.suma || initialFormData.suma}
                   onChange={(e) => handleInputChange(e, index, "suma")}
+                  className="text-center"
                 />
               </td>
               <td className="border border-gray-400 px-4 py-2">
