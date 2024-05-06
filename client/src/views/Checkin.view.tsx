@@ -1,30 +1,41 @@
-import React, {useEffect, useState} from "react";
-import {BackendService} from "@genezio-sdk/apv-production";
-import {AuthService} from "@genezio/auth";
-import {Header} from "../components/Header.component.tsx";
+import React, { useEffect, useState } from "react";
+import { BackendService } from "@genezio-sdk/apv-production";
+import { AuthService } from "@genezio/auth";
+import { Header } from "../components/Header.component.tsx";
 
 const initialFormData = {
   id: 0,
-  idCursa: "",
-  categorie: "",
-  marimeTricou: "",
-  numarTricou: "",
-  revolute_cash: "",
-  phone: "",
-  checkin: "",
-  suma: ""
+  idCursa: "N/A",
+  categorie: "7",
+  marimeTricou: "N/A",
+  numarTricou: "N/A",
+  revolute_cash: "N/A",
+  phone: "N/A",
+  checkin: "NU",
+  suma: "N/A",
+};
+
+const races = {
+  "0": "Cursa Copii",
+  "1": "Feminin 13-17 ani",
+  "2": "Masculin 13-17 ani",
+  "3": "Feminin 18-35 de ani",
+  "4": "Masculin 18-35 de ani",
+  "5": "Feminin 35+ de ani",
+  "6": "Masculin 35+ de ani",
+  "7": "Nu a selectat"
 };
 
 const Checkin: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]); //eslint-disable-line
-  const [formDataList, setFormDataList] = useState<any[]>([]); //eslint-disable-line
+  const [formDataList, setFormDataList] = useState<any[]>([]);//eslint-disable-line
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await BackendService.getAllRaces();
         setUsers(response);
-        setFormDataList(response.map((user: any) => ({...user})));//eslint-disable-line
+        setFormDataList(response.map((user: any) => ({ ...user }))); //eslint-disable-line
       } catch (error) {
         console.log(error);
       }
@@ -43,19 +54,31 @@ const Checkin: React.FC = () => {
 
     fetchData();
     checkAdmin();
-  }, []); // Add fetchData and checkAdmin to the dependency array
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, userId: number, field: string) => {
-    setFormDataList(prevList => prevList.map((formData, index) => (
-      index === userId ? {...formData, [field]: e.target.value} : formData
-    )));
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    userId: number,
+    field: string
+  ) => {
+    setFormDataList((prevList) =>
+      prevList.map((formData, index) =>
+        index === userId ? { ...formData, [field]: e.target.value } : formData
+      )
+    );
   };
 
-  const handleInputButtonChange = (value: string, userId: number, field: string) => {
-    setFormDataList(prevList => prevList.map((formData, index) => (
-      index === userId ? {...formData, [field]: value} : formData
-    )));
-  }
+  const handleInputButtonChange = (
+    value: string,
+    userId: number,
+    field: string
+  ) => {
+    setFormDataList((prevList) =>
+      prevList.map((formData, index) =>
+        index === userId ? { ...formData, [field]: value } : formData
+      )
+    );
+  };
 
   const handleSubmit = async (userId: number) => {
     try {
@@ -77,21 +100,142 @@ const Checkin: React.FC = () => {
     }
   };
 
+  const handleSort = (column: string, ascending: boolean = true) => {
+    console.log("column", column);
+    const sortedUsers = [...users].sort((a, b) => {
+      if(column === "categorie")
+        return ascending ? parseInt(a[column]||"7") - parseInt(b[column]||"7") : parseInt(b[column]||"7") - parseInt(a[column]||"7");
+      if(a[column] === undefined || b[column] === undefined)
+        return 0;
+      return ascending ? a[column]?.localeCompare(b[column]) : b[column]?.localeCompare(a[column]);
+    });
+    console.log("sortedUsers", sortedUsers);
+    setFormDataList(sortedUsers);
+    setUsers(sortedUsers);
+  };
+
   return (
     <>
-      <Header/>
-      <div>
-        <table className="border-collapse w-full scale-90 h-full">
+      <Header />
+      <div className="flex justify-center">
+        <table className="border-collapse w-full scale-75 mt-[-35rem]  h-full">
           <thead>
           <tr className="bg-gray-200">
             <th className="border border-gray-400 px-4 py-2">ID</th>
-            <th className="border border-gray-400 px-4 py-2">Nume</th>
-            <th className="border border-gray-400 px-4 py-2">Marime Tricou</th>
-            <th className="border border-gray-400 px-4 py-2">Numar Tricou</th>
-            <th className="border border-gray-400 px-4 py-2">Metoda de plata</th>
-            <th className="border border-gray-400 px-4 py-2">Phone</th>
-            <th className="border border-gray-400 px-4 py-2">Money</th>
-            <th className="border border-gray-400 px-4 py-2">Checkin</th>
+            <th className="border border-gray-400 px-4 py-2">
+              Nume
+              <button
+                onClick={() => handleSort("name")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("name", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">
+              Cursa
+              <button
+                onClick={() => handleSort("categorie")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("categorie", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Marime Tricou
+              <button
+                onClick={() => handleSort("marimeTricou")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("marimeTricou", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Numar Tricou
+              <button
+                onClick={() => handleSort("numarTricou")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("numarTricou", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Metoda de plata
+              <button
+                onClick={() => handleSort("revolute_cash")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("revolute_cash", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Phone
+              <button
+                onClick={() => handleSort("phone")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("phone", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Money
+              <button
+                onClick={() => handleSort("suma")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("suma", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
+            <th className="border border-gray-400 px-4 py-2">Checkin
+              <button
+                onClick={() => handleSort("checkin")}
+                className="ml-2"
+              >
+                &#9650;
+              </button>
+              <button
+                onClick={() => handleSort("checkin", false)}
+                className="ml-1"
+              >
+                &#9660;
+              </button>
+            </th>
             <th className="border border-gray-400 px-4 py-2">Update</th>
           </tr>
           </thead>
@@ -100,6 +244,18 @@ const Checkin: React.FC = () => {
             <tr key={index} className="text-center">
               <td className="border border-gray-400 px-4 py-2">{index + 1}</td>
               <td className="border border-gray-400 px-4 py-2">{user.name}</td>
+              <td className="border border-gray-400 px-4 py-2">
+                <input
+                  type="text"
+                  value={
+                  //@ts-expect-error: Unreachable code error
+                    races[formDataList[index]?.categorie || initialFormData.categorie]
+                  }
+                  onChange={(e) => handleInputChange(e, index, "categorie")}
+                  className="text-center"
+                  disabled={true}
+                />
+              </td>
               <td className="border border-gray-400 px-4 py-2">
                 <input
                   type="text"
