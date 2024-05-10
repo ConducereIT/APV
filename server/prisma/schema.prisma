@@ -24,19 +24,20 @@ model UserAccount {
 }
 
 model Cursa {
-  id            Int         @id @default(autoincrement())
-  idCursa       String
-  userAccount   UserAccount @relation(fields: [userId], references: [userId])
-  userId        String
-  numarTricou   String?
-  categorie     String?
-  timpAlergat   DateTime?
-  name          String?
-  phone         String?
-  marimeTricou  String?
-  revolute_cash String?
-  suma          String?
-  checkin       String?
+  id             Int         @id @default(autoincrement())
+  idCursa        String
+  userAccount    UserAccount @relation(fields: [userId], references: [userId])
+  userId         String
+  numarTricou    String?
+  categorie      String?
+  timpAlergat    String?
+  name           String?
+  phone          String?
+  marimeTricou   String?
+  revolute_cash  String?
+  suma           String?
+  checkin        String?
+  inscriereFizic String?
 }
 
 // exemple de user si curse:
