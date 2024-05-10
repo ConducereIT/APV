@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {BackendService} from "@genezio-sdk/apv-production";
+import {AuthService} from "@genezio/auth";
 
 type RegistrationState = {
+  name: string;
+  email: string;
   tshirtSize: string;
+  tshirtNumber: string;
   phoneNumber: string;
   race: string;
-  revolut: string;
+  money: string;
   paymentMethod: PaymentMethod;
 };
 
@@ -23,26 +27,31 @@ const races = {
 
 const tshirtSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
-const RaceRegistration: React.FC = () => {
+const Inscriere: React.FC = () => {
   const [registration, setRegistration] = useState<RegistrationState>({
+    name: '',
+    email: '',
     tshirtSize: '',
+    tshirtNumber: '',
     phoneNumber: '',
-    revolut: '',
     race: '',
-    paymentMethod: 'cash'
+    paymentMethod: 'cash',
+    money: '',
   });
 
-  const [isLogin, setIsLogin] = useState(false);
-
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setIsLogin(true);
-    }
-
-    if (!isLogin && !localStorage.getItem("token")) {
-      window.location.href = '/login';
-    }
-  }, [isLogin]);
+    const checkAdmin = async () => {
+      try {
+        const response = await AuthService.getInstance().userInfo();
+        if (response.authProvider !== "checkin" && response.authProvider !== "admin") {
+          window.location.href = "/";
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkAdmin();
+  },);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
@@ -55,17 +64,27 @@ const RaceRegistration: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await BackendService.addUser();
-      const response = await BackendService.addRaces(registration.race, registration.phoneNumber, registration.tshirtSize, registration.paymentMethod);
+      const response = await BackendService.addRacesInEventDay(
+        registration.name,
+        registration.email,
+        registration.tshirtSize,
+        registration.tshirtNumber,
+        registration.phoneNumber,
+        registration.race,
+        registration.paymentMethod,
+        registration.money
+      );
       console.log(response);
-      if(response.status === 200) {
-      alert('Înscrierea a fost realizată cu succes!');
-      window.location.href = '/';
+      if (response.status === 200) {
+        alert('Înscrierea a fost realizată cu succes!');
+        window.location.reload();
       }
-      if(response.status === 400) {
+      if (response.status === 400) {
         alert(response.message);
       }
+
     } catch (error) {
+      console.log(error);
       alert('A apărut o eroare la înscriere. Vă rugăm să încercați din nou.');
     }
   };
@@ -75,6 +94,28 @@ const RaceRegistration: React.FC = () => {
       className="max-w-[20rem] md:max-w-[30rem] mx-auto mt-[-2rem] bg-white rounded-lg shadow-md pl-12 pr-12 pt-2 pb-4">
       <h2 className="text-lg md:text-2xl text-center mb-6">Înscriere</h2>
       <form onSubmit={handleSubmit} className="w-full">
+        <label className="block mb-2 font-semibold text-gray-700" htmlFor="name">Nume</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          className="w-full border border-gray-300 rounded-md py-2 px-4 mb-4"
+          value={registration.name}
+          onChange={handleInputChange}
+          placeholder="Nume"
+          required={true}
+        />
+        <label className="block mb-2 font-semibold text-gray-700" htmlFor="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          className="w-full border border-gray-300 rounded-md py-2 px-4 mb-4"
+          value={registration.email}
+          onChange={handleInputChange}
+          placeholder="Email"
+          required={true}
+        />
         <label className="block mb-2 font-semibold text-gray-700" htmlFor="tshirtSize">Mărime tricou:</label>
         <select
           id="tshirtSize"
@@ -89,6 +130,18 @@ const RaceRegistration: React.FC = () => {
             <option key={size} value={size}>{size}</option>
           ))}
         </select>
+
+        <label className="block mb-2 font-semibold text-gray-700" htmlFor="tshirtNumber">Număr tricou:</label>
+        <input
+          type="text"
+          id="tshirtNumber"
+          name="tshirtNumber"
+          className="w-full border border-gray-300 rounded-md py-2 px-4 mb-4"
+          value={registration.tshirtNumber}
+          onChange={handleInputChange}
+          placeholder="1234"
+          required={true}
+        />
 
         <label className="block mb-2 font-semibold text-gray-700" htmlFor="phoneNumber">Număr de telefon:</label>
         <input
@@ -107,11 +160,11 @@ const RaceRegistration: React.FC = () => {
           {Object.entries(races).map(([key, text]) => (
             <div key={key} className="flex items-center">
               <input
-                type="radio" // Modificăm tipul de input în 'radio'
+                type="radio"
                 id={`race_${key}`}
-                name="race" // Schimbăm numele câmpului pentru a grupa input-urile de tip radio
+                name="race"
                 value={key}
-                checked={registration.race === key} // Verificăm dacă cursa selectată este aceasta
+                checked={registration.race === key}
                 onChange={handleInputChange}
                 className="mr-2"
                 required={true}
@@ -135,6 +188,19 @@ const RaceRegistration: React.FC = () => {
           <option value="revolut">Revolut</option>
         </select>
 
+
+        <label className="block mb-2 font-semibold text-gray-700" htmlFor="money"> Donatie:</label>
+        <input
+          type="text"
+          id="money"
+          name="money"
+          className="w-full border border-gray-300 rounded-md py-2 px-4 mb-4"
+          value={registration.money}
+          onChange={handleInputChange}
+          placeholder="Suma in lei"
+          required={true}
+        />
+
         <button className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md mt-6 hover:bg-green-700"
                 type="submit">
           Trimite
@@ -144,4 +210,4 @@ const RaceRegistration: React.FC = () => {
   );
 };
 
-export default RaceRegistration;
+export default Inscriere;

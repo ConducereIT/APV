@@ -11,6 +11,8 @@ import Account from "../views/Account.view";
 import RaceRegistrationView from "../views/RaceRegistration.view.tsx";
 import Logout from "../views/Logout.view.tsx";
 import Checkin from "../views/Checkin.view.tsx";
+import InscriereParticipantiView from "../views/InscriereParticipanti.view.tsx";
+import Cronometrare from "../views/Cronometrare.view.tsx";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -62,5 +64,13 @@ export const allRoutes = createBrowserRouter([
   {
     path:"checkin",
     element: <Checkin/>
+  },
+  {
+    path:"checkin/inscriere",
+    element: <InscriereParticipantiView/>
+  },
+  {
+    path:"cronometrare",
+    element: <Cronometrare/>
   }
 ]);
