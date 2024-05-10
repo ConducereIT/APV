@@ -337,7 +337,7 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async updateUserById(context: GnzContext, id: number, idCursa: string, categorie: string, marimeTricou: string, numarTricou: string, revolute_cash: string, phone: string, checkin: string, money: string) {
+  async updateUserById(context: GnzContext, name: string, id: number, idCursa: string, categorie: string, marimeTricou: string, numarTricou: string, revolute_cash: string, phone: string, checkin: string, money: string) {
     try {
       const userInfo = await this.prisma.cursa.findUnique({
         where: {
@@ -356,6 +356,7 @@ export class BackendService {
           idCursa: idCursa
         },
         data: {
+          name: name,
           categorie: categorie,
           marimeTricou: marimeTricou,
           numarTricou: numarTricou,
@@ -363,6 +364,139 @@ export class BackendService {
           phone: phone,
           checkin: checkin,
           suma: money
+        }
+      })
+
+      return {
+        status: 200,
+        message: "Successfully updated"
+      }
+    } catch (error) {
+      console.log(error)
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async addRacesInEventDay(context: GnzContext, name: string, email: string, tshirtSize: string, tshirtNumber: string, phoneNumber: string, race: string, paymentMethod: string, money: string) {
+    try {
+      const userIdFromEmail = await pool.query(`SELECT "userId" FROM "users" WHERE "email" = $1`, [email]);
+      let checkHasRace;
+      if (userIdFromEmail.rows[0] === undefined) {
+        checkHasRace = [];
+      } else {
+        checkHasRace = await this.prisma.cursa.findMany({
+          where: {userId: userIdFromEmail.rows[0].userId}
+        })
+      }
+      if (checkHasRace.length === 0) {
+        if (userIdFromEmail.rows.length === 1) {
+          const checkUser = await this.prisma.userAccount.findUnique({
+            where: {userId: userIdFromEmail.rows[0].userId}
+          });
+          if (!checkUser) {
+            await this.prisma.userAccount.create({
+              data: {
+                userId: userIdFromEmail.rows[0].userId,
+                phone: "Nu e definit!",
+                userType: "USER",
+                marimeTricou: "Nu e definit!",
+              },
+            });
+          }
+          const createCursa = await pool.query(`INSERT INTO "Cursa" ("idCursa","userId", "numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
+            [
+              randomUUID(),
+              userIdFromEmail.rows[0].userId,
+              tshirtNumber,
+              race,
+              name,
+              phoneNumber,
+              tshirtSize,
+              paymentMethod,
+              money,
+              "DA",
+              "DA"
+            ]);
+          if (createCursa.rowCount === 1) {
+            return {
+              status: 200,
+              message: "Successfully registered"
+            }
+          } else {
+            return createHTTPError(400, "Internal Server Error");
+          }
+        } else {
+          const randomuuid = randomUUID();
+          const createUser = await pool.query(`INSERT INTO "users" ("userId", "email", "name") VALUES ($1, $2, $3)`, [randomuuid, email, name]);
+          const checkUser = await this.prisma.userAccount.findUnique({
+            where: {userId: randomuuid}
+          });
+          if (!checkUser) {
+            await this.prisma.userAccount.create({
+              data: {
+                userId: randomuuid,
+                phone: "Nu e definit!",
+                userType: "USER",
+                marimeTricou: "Nu e definit!",
+              },
+            });
+          }
+
+          if (createUser.rowCount === 1) {
+            const createCursa = await pool.query(`INSERT INTO "Cursa" ("idCursa","userId","numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
+              [
+                randomUUID(),
+                randomuuid,
+                tshirtNumber,
+                race,
+                name,
+                phoneNumber,
+                tshirtSize,
+                paymentMethod,
+                money,
+                "DA",
+                "DA"
+              ]);
+            if (createCursa.rowCount === 1) {
+              return {
+                status: 200,
+                message: "Successfully registered"
+              }
+            } else {
+              return createHTTPError(400, "Internal Server Error");
+            }
+          }
+        }
+      } else {
+        return createHTTPError(400, "Nu te poți înscrie de mai multe ori pe acelasi email!");
+      }
+
+    } catch (error) {
+      console.log(error)
+      return createHTTPError(400, "Internal Server Error");
+    }
+  }
+
+  @GenezioAuth()
+  async updateRaceTime(context: GnzContext, idCursa: number, time: string) {
+    try {
+      const userInfo = await this.prisma.cursa.findUnique({
+        where: {
+          id: idCursa
+        }
+      })
+
+      if (!userInfo) {
+        throw createHTTPError(404, "User not exist");
+      }
+
+      await this.prisma.cursa.update({
+        where: {
+          id: idCursa
+        },
+        data: {
+          timpAlergat: time
         }
       })
 
