@@ -178,6 +178,7 @@ const Cronometrare: React.FC = () => {
               </button>
             </th>
             <th className="border border-gray-400 px-4 py-2">Update</th>
+            <th className="border border-gray-400 px-4 py-2">Send email</th>
           </tr>
           </thead>
           <tbody>
@@ -260,6 +261,38 @@ const Cronometrare: React.FC = () => {
                   }}
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 />
+              </td>
+              <td className="border border-gray-400 px-4 py-2">
+                {
+                  formDataList[index].emailTrimis === "DA" ? (
+                    <input
+                      type="button"
+                      value="Trimis"
+                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                      disabled={true}
+                    />
+                  ) : (
+                    <input
+                      type="button"
+                      value="Send"
+                      onClick={() => {
+                        const sendEmail = async () => {
+                          try {
+                            const response = await BackendService.sendRaceCompletionEmail(
+                              formDataList[index].id)
+                            if (response) {
+                              alert(response.message)
+                              window.location.reload();
+                            }
+                          } catch (error) {
+                            console.log(error);
+                            alert("Error sending email");
+                          }
+                        };
+                        sendEmail();
+                      }}
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    />)}
               </td>
             </tr>
           ))}
