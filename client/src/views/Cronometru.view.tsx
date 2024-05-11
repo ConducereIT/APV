@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import logoapv from '../assets/logoapv.png';
 const Timer: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -52,8 +52,8 @@ const Timer: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mt-[-5rem] text-white h-screen">
-      <img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" className="max-w-90 scale-[230%] h-auto" />
-      <div className="text-9xl font-bold">
+      <img src={logoapv} alt="Logo Aleargă pentru Viață" className="max-w-70 scale-[40%] h-auto" />
+      <div className="text-9xl font-bold mt-[-6rem]">
         {new Date(time * 1000).toISOString().substr(11, 8)}
       </div>
     </div>
