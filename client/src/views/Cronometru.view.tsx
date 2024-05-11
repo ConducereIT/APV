@@ -27,7 +27,7 @@ const Timer: React.FC = () => {
         clearInterval(intervalId);
       }
     };
-  }, [isActive, intervalId]);
+  }, [isActive]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent): void => {
