@@ -72,5 +72,5 @@ export const allRoutes = createBrowserRouter([
   {
     path:"cronometrare",
     element: <Cronometrare/>
-  }
+  },
 ]);

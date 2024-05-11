@@ -87,6 +87,18 @@ export class Mailer{
         cursa: string,
         minuteAlergate: string
     ){
+        const races = {
+            "0": "Cursa Copii",
+            "1": "Feminin 13-17 ani",
+            "2": "Masculin 13-17 ani",
+            "3": "Feminin 18-35 de ani",
+            "4": "Masculin 18-35 de ani",
+            "5": "Feminin 35+ de ani",
+            "6": "Masculin 35+ de ani",
+            "7": "Nu a selectat"
+        };
+        // @ts-expect-error: cursa is a
+        const cursaText = races[cursa];
         const html = `<!doctype html>
         <html lang="ro">
         <head>
@@ -102,9 +114,9 @@ export class Mailer{
                     <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 20px;">Felicitari, ${nume}!</h1>
-            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursa}, ediția a XV-a!</p>
+            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XV-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px; text-align: center;">
-            <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Ai terminat ${cursa} în ${minuteAlergate} de minute!</h2>
+            <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Ai terminat ${cursaText} în ${minuteAlergate} de minute!</h2>
         </div>        
             <p style="color: #fff; text-align: center; font-size: 16px;">Iti multumim ca ai alergat alaturi de noi pentru o cauză nobilă!</p>
             <p style="color: #fff; text-align: center; font-size: 16px;">Cu drag,</p>

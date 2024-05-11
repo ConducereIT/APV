@@ -38,6 +38,7 @@ model Cursa {
   suma           String?
   checkin        String?
   inscriereFizic String?
+  emailTrimis    String?
 }
 
 // exemple de user si curse:
