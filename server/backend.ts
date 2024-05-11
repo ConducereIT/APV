@@ -509,4 +509,62 @@ export class BackendService {
       return createHTTPError(500, "Internal Server Error");
     }
   }
+
+  @GenezioAuth()
+  async sendRaceCompletionEmail(context: GnzContext, id: number) {
+    const userInfo = await this.prisma.cursa.findUnique({
+      where: {
+        id: id
+      }
+    })
+    if (!userInfo) {
+      throw createHTTPError(404, "User not exist");
+    }
+    const subject = `Felicitări pentru finalizarea cursei - Aleargă pentru Viață`;
+    const ora = userInfo.timpAlergat;
+    const cursa = userInfo.categorie;
+    const aiTrimis = userInfo.emailTrimis;
+    const name = userInfo.name;
+
+    if(aiTrimis === "DA"){
+      return {
+        status: 200,
+        message: "A fost trimis deja email-ul"
+      }
+    }
+
+
+    const userId = userInfo.userId;
+    const user = await pool.query(`SELECT "email" FROM "users" WHERE "userId" = $1`, [userId]);
+    if (user.rows[0] === undefined) {
+      throw createHTTPError(404, "User not exist");
+    }
+
+    const email = user.rows[0].email;
+
+    const response = await this.mailer.sendRaceCompletionEmail(
+      email,
+      subject,
+      name!,
+      cursa!,
+      ora!
+    );
+
+    if(response){
+      await this.prisma.cursa.update({
+        where: {
+          id: id
+        },
+        data: {
+          emailTrimis: "DA"
+        }
+      });
+      return {
+        status: 200,
+        message: "Successfully sent"
+      }
+    } else {
+      return createHTTPError(500, "Internal Server Error");
+    }
+  }
 }
