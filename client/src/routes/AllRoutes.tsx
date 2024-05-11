@@ -13,6 +13,7 @@ import Logout from "../views/Logout.view.tsx";
 import Checkin from "../views/Checkin.view.tsx";
 import InscriereParticipantiView from "../views/InscriereParticipanti.view.tsx";
 import Cronometrare from "../views/Cronometrare.view.tsx";
+import Timer from "../views/Cronometru.view.tsx";
 
 export const allRoutes = createBrowserRouter([
   {
@@ -73,4 +74,8 @@ export const allRoutes = createBrowserRouter([
     path:"cronometrare",
     element: <Cronometrare/>
   },
+  {
+    path:"cronometru",
+    element:<Timer/>
+  }
 ]);
