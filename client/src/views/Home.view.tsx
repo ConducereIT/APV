@@ -26,7 +26,7 @@ const Home = () => {
       <Program />
       <Gallery />
       <Sponsors sponsors={organizatori} grid={3} title="organizatori" />
-      <Sponsors sponsors={sponsori} grid={3} title="sponsori" />
+      {/*<Sponsors sponsors={sponsori} grid={3} title="sponsori" />*/}
     </>
   );
 };
