@@ -9,7 +9,7 @@ export default function AboutText() {
           CE ESTE ALEARGĂ PENTRU VIAȚĂ?
         </h2>
         <p className="text-sm md:text-base lg:text-lg font-barlow font-normal text-custom-gray mt-8 lg:mt-14">
-          Având o tradiție de peste 14 ani, Aleargă Pentru Viață reprezintă un
+          Având o tradiție de peste 16 ani, Aleargă Pentru Viață reprezintă un
           cros caritabil organizat de Liga Studenților Electroniști. Acesta este
           format din mai multe curse împărțite pe categorii de vârstă, la care
           participarea se face pe baza unei donații pentru o cauză umanitară.
@@ -28,7 +28,7 @@ export default function AboutText() {
         <div className="flex items-center mt-6 md:mt-8">
           <img src={LocationPin} alt="Location Pin" className="w-4 md:w-6"/>
           <span className="ml-2 text-sm md:text-lg font-barlow font-semibold text-gray-800">
-            Rectoratul UPB
+            Rectoratul UNSTPB
           </span>
         </div>
         <button
