@@ -28,7 +28,7 @@ export default function AboutText() {
         <div className="flex items-center mt-6 md:mt-8">
           <img src={LocationPin} alt="Location Pin" className="w-4 md:w-6"/>
           <span className="ml-2 text-sm md:text-lg font-barlow font-semibold text-gray-800">
-            Rectoratul UPB
+            Rectoratul UNSTPB
           </span>
         </div>
         <button
