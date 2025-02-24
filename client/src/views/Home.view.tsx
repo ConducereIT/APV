@@ -7,7 +7,7 @@ import LseBanner from "../assets/banner.webp";
 import Gallery from "../components/Gallery.component";
 import Sponsors from "../components/Sponsors.component";
 import { organizatori } from "../config/OrganizerConfig";
-import { sponsori } from "../config/SponsorsConfig";
+{/*import { sponsori } from "../config/SponsorsConfig";*/}
 import CauzaHome from "../components/CauzaHome.component";
 import Program from "../components/Program.component";
 

@@ -3,7 +3,7 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { AuthService } from "@genezio/auth";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header.component";
-import { BackendService } from "@genezio-sdk/apv-production";
+import { BackendService } from "@genezio-sdk/apv-2025";
 import { Helmet } from "react-helmet";
 
 const Login: React.FC = () => {

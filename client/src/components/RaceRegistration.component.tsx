@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BackendService} from "@genezio-sdk/apv-production";
+import {BackendService} from "@genezio-sdk/apv-2025";
 
 type RegistrationState = {
   tshirtSize: string;

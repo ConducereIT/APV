@@ -1,6 +1,6 @@
 # Learn more about Genezio YAML at https://genezio.com/docs/project-structure/genezio-configuration-file/
 # The name of the project.
-name: apv-production
+name: apv-2025
 # The region where the project is deployed.
 region: eu-central-1
 # The version of the Genezio YAML configuration to parse.
@@ -37,7 +37,7 @@ frontend:
   scripts:
     # List of scripts to run before deploying the frontend.
     deploy:
-      - npm install @genezio-sdk/apv-production
+      - npm install @genezio-sdk/apv-2025
       - npm install
     # List of scripts that build your frontend before deployment. It should populate the specified `publish` directory.
     build: npm run build
