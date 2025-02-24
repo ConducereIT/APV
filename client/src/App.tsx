@@ -13,7 +13,7 @@ const App = () => {
   return (
     <ThemeContext>
       <Helmet>
-        <title>APV 2024</title>
+        <title>APV 2025</title>
         <meta
           name="description"
           content="Crosul caritabil “Aleargă Pentru Viață” este cea mai mare competiție sportivă din București organizată exclusiv de studenți."

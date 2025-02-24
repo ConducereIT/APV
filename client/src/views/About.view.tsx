@@ -10,7 +10,7 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Despre</title>
+        <title>APV 2025 | Despre</title>
       </Helmet>
       <Header />
       <AboutText />

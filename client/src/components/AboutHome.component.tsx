@@ -13,7 +13,7 @@ export default function AboutHome() {
             ALEARGĂ PENTRU VIAȚĂ, CROS CARITABIL
           </h2>
           <h2 className="text-2xl md:text-4xl font-barlow-condensed leading-normal font-bold mt-4 md:mt-16">
-            O TRADIȚIE DE 15 ANI
+            O TRADIȚIE DE 16 ANI
           </h2>
           <p className="text-base md:text-xl font-barlow font-normal leading-normal text-custom-gray mt-8 md:mt-12">
             Crosul caritabil “Aleargă Pentru Viață” este cea mai mare competiție
