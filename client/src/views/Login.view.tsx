@@ -3,7 +3,7 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { AuthService } from "@genezio/auth";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header.component";
-import { BackendService } from "@genezio-sdk/apv-production";
+import { BackendService } from "@genezio-sdk/apv";
 import { Helmet } from "react-helmet";
 
 const Login: React.FC = () => {
@@ -13,6 +13,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     let isMounted = true;
 
+    console.log(AuthService.getInstance());
     const isLoggedIn = async () => {
       try {
         const response = await AuthService.getInstance().userInfoForToken(
@@ -61,10 +62,10 @@ const Login: React.FC = () => {
         <title>APV 2024 | Login</title>
       </Helmet>
       <Header />
-      <div className="md:mt-44 flex justify-center items-start">
+      <div className="flex items-start justify-center md:mt-44">
         <aside className=" bg-white rounded-lg shadow-xl flex flex-col items-center justify-center h-[20rem] w-[50rem]">
           <span
-            className="text-sm mb-4 sm:mb-0 sm:text-2xl font-bold text-custom-green "
+            className="mb-4 text-sm font-bold sm:mb-0 sm:text-2xl text-custom-green "
             style={{ marginTop: "-2rem" }}
           >
             ÎNSCRIERE ALEARGĂ PENTRU VIAȚĂ, EDIȚIA XV
