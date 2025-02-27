@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
-import {AuthService} from "@genezio/auth";
-import {BackendService} from "@genezio-sdk/apv-production";
-import {Header} from "../components/Header.component";
-import {Helmet} from "react-helmet";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthService } from "@genezio/auth";
+import { BackendService } from "@genezio-sdk/apv";
+import { Header } from "../components/Header.component";
+import { Helmet } from "react-helmet";
 
 interface Race {
   id: number;
@@ -47,9 +47,9 @@ const Account: React.FC = () => {
 
     const takeLocOcupat = async () => {
       try {
-        const response = await BackendService.getAllRaces()
+        const response = await BackendService.getAllRaces();
 
-        let locOcupat= 1;
+        let locOcupat = 1;
         for (let i = 0; i < response.length; i++) {
           if (response[i].categorie === races[0].categorie) {
             if (response[i].timpAlergat < races[0].timpAlergat) {
@@ -61,11 +61,11 @@ const Account: React.FC = () => {
       } catch (error) {
         console.log(error);
       }
-    }
+    };
 
     isLoggedIn();
     takeLocOcupat();
-  }, [navigate,races]);
+  }, [navigate, races]);
 
   useEffect(() => {
     const takeRaces = async () => {
@@ -85,9 +85,9 @@ const Account: React.FC = () => {
       <Helmet>
         <title>APV 2024 | Account</title>
       </Helmet>
-      <Header/>
-      <div className="bg-white rounded-lg shadow-md mx-auto max-w-7xl mt-48 p-6">
-        <h1 className="text-xl mb-6 font-semibold flex justify-center">
+      <Header />
+      <div className="p-6 mx-auto mt-48 bg-white rounded-lg shadow-md max-w-7xl">
+        <h1 className="flex justify-center mb-6 text-xl font-semibold">
           Profil - {userName}
         </h1>
         <img
@@ -97,10 +97,10 @@ const Account: React.FC = () => {
         />
         {races.length === 0 ? (
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-semibold mt-4">
+            <h3 className="mt-4 text-xl font-semibold">
               Nu te-ai înscris încă la nicio cursă.
             </h3>
-            <h3 className="text-xl font-semibold mb-6 mt-8">
+            <h3 className="mt-8 mb-6 text-xl font-semibold">
               Dorești să te înscrii la o nouă cursă?
             </h3>
             <button
@@ -112,37 +112,43 @@ const Account: React.FC = () => {
             </button>
           </div>
         ) : (
-          <div className="overflow-x-auto mt-4">
-            <h2 className="text-2xl font-semibold mb-6 flex justify-center">
+          <div className="mt-4 overflow-x-auto">
+            <h2 className="flex justify-center mb-6 text-2xl font-semibold">
               Cursa la care te-ai înscris
             </h2>
-            <table className="table-auto border border-collapse border-gray-200 mx-auto">
+            <table className="mx-auto border border-collapse border-gray-200 table-auto">
               <thead className="bg-gray-200">
-              <tr className="bg-gray-200">
-                <th className="px-4 py-2">Categorie</th>
-                <th className="px-4 py-2">Numar Tricou</th>
-                <th className="px-4 py-2">Timp Alergat</th>
-                <th className="px-4 py-2">Loc ocupat</th>
-              </tr>
+                <tr className="bg-gray-200">
+                  <th className="px-4 py-2">Categorie</th>
+                  <th className="px-4 py-2">Numar Tricou</th>
+                  <th className="px-4 py-2">Timp Alergat</th>
+                  <th className="px-4 py-2">Loc ocupat</th>
+                </tr>
               </thead>
               <tbody>
-              {races.map((race, index) => (
-                <tr
-                  key={index}
-                  className={index % 2 === 0 ? "bg-gray-100" : ""}
-                >
-                  <td className="px-4 py-2 text-center">
-                    {racesContext[race.categorie]}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    {race.numarTricou ? race.numarTricou : "N/A"}
-                  </td>
-                  <td className="px-4 py-2 text-center">
-                    {race.timpAlergat ? race.timpAlergat : "N/A"}
-                  </td>
-                  <td className="px-4 py-2 text-center">{locOcupat===0 || race.timpAlergat === null || race.timpAlergat === "00:00:00" ? "N/A" : locOcupat}</td>
-                </tr>
-              ))}
+                {races.map((race, index) => (
+                  <tr
+                    key={index}
+                    className={index % 2 === 0 ? "bg-gray-100" : ""}
+                  >
+                    <td className="px-4 py-2 text-center">
+                      {racesContext[race.categorie]}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      {race.numarTricou ? race.numarTricou : "N/A"}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      {race.timpAlergat ? race.timpAlergat : "N/A"}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      {locOcupat === 0 ||
+                      race.timpAlergat === null ||
+                      race.timpAlergat === "00:00:00"
+                        ? "N/A"
+                        : locOcupat}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

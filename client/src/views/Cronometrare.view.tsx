@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {BackendService} from "@genezio-sdk/apv-production";
-import {AuthService} from "@genezio/auth";
-import {Header} from "../components/Header.component.tsx";
+import React, { useEffect, useState } from "react";
+import { BackendService } from "@genezio-sdk/apv";
+import { AuthService } from "@genezio/auth";
+import { Header } from "../components/Header.component.tsx";
 
 const initialFormData = {
   id: 0,
@@ -24,19 +24,20 @@ const races = {
   "4": "Masculin 18-35 de ani",
   "5": "Feminin 35+ de ani",
   "6": "Masculin 35+ de ani",
-  "7": "Nu a selectat"
+  "7": "Nu a selectat",
 };
 
 const Cronometrare: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]); //eslint-disable-line
-  const [formDataList, setFormDataList] = useState<any[]>([]);//eslint-disable-line
+  const [formDataList, setFormDataList] = useState<any[]>([]); //eslint-disable-line
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await BackendService.getAllRaces();
         // sort response by checkin, categorie, timpAlergat, numarTricou, name
-        response.sort((a: any, b: any) => { //eslint-disable-line
+        response.sort((a: any, b: any) => {
+          //eslint-disable-line
           if (a.checkin === "DA" && b.checkin === "NU") return -1;
           if (a.checkin === "NU" && b.checkin === "DA") return 1;
           if (a.categorie < b.categorie) return -1;
@@ -50,7 +51,7 @@ const Cronometrare: React.FC = () => {
           return 0;
         });
         setUsers(response);
-        setFormDataList(response.map((user: any) => ({...user}))); //eslint-disable-line
+        setFormDataList(response.map((user: any) => ({ ...user }))); //eslint-disable-line
       } catch (error) {
         console.log(error);
       }
@@ -59,7 +60,10 @@ const Cronometrare: React.FC = () => {
     const checkAdmin = async () => {
       try {
         const response = await AuthService.getInstance().userInfo();
-        if (response.authProvider !== "cronometrare" && response.authProvider !== "admin") {
+        if (
+          response.authProvider !== "cronometrare" &&
+          response.authProvider !== "admin"
+        ) {
           window.location.href = "/";
         }
       } catch (error) {
@@ -78,7 +82,7 @@ const Cronometrare: React.FC = () => {
   ) => {
     setFormDataList((prevList) =>
       prevList.map((formData, index) =>
-        index === userId ? {...formData, [field]: e.target.value} : formData
+        index === userId ? { ...formData, [field]: e.target.value } : formData
       )
     );
   };
@@ -87,10 +91,13 @@ const Cronometrare: React.FC = () => {
     console.log("column", column);
     const sortedUsers = [...users].sort((a, b) => {
       if (column === "categorie")
-        return ascending ? parseInt(a[column] || "7") - parseInt(b[column] || "7") : parseInt(b[column] || "7") - parseInt(a[column] || "7");
-      if (a[column] === undefined || b[column] === undefined)
-        return 0;
-      return ascending ? a[column]?.localeCompare(b[column]) : b[column]?.localeCompare(a[column]);
+        return ascending
+          ? parseInt(a[column] || "7") - parseInt(b[column] || "7")
+          : parseInt(b[column] || "7") - parseInt(a[column] || "7");
+      if (a[column] === undefined || b[column] === undefined) return 0;
+      return ascending
+        ? a[column]?.localeCompare(b[column])
+        : b[column]?.localeCompare(a[column]);
     });
     console.log("sortedUsers", sortedUsers);
     setFormDataList(sortedUsers);
@@ -99,176 +106,187 @@ const Cronometrare: React.FC = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <div className="flex justify-center">
         <table className="border-collapse w-full scale-75 mt-[-50rem] mb-[-54rem] h-full">
           <thead>
-          <tr className="bg-gray-200">
-            <th className="border border-gray-400 px-4 py-2">ID</th>
-            <th className="border border-gray-400 px-4 py-2">
-              Nume
-              <button
-                onClick={() => handleSort("name")}
-                className="ml-2"
-              >
-                &#9650;
-              </button>
-              <button
-                onClick={() => handleSort("name", false)}
-                className="ml-1"
-              >
-                &#9660;
-              </button>
-            </th>
-            <th className="border border-gray-400 px-4 py-2">
-              Cursa
-              <button
-                onClick={() => handleSort("categorie")}
-                className="ml-2"
-              >
-                &#9650;
-              </button>
-              <button
-                onClick={() => handleSort("categorie", false)}
-                className="ml-1"
-              >
-                &#9660;
-              </button>
-            </th>
-            <th className="border border-gray-400 px-4 py-2">Numar Tricou
-              <button
-                onClick={() => handleSort("numarTricou")}
-                className="ml-2"
-              >
-                &#9650;
-              </button>
-              <button
-                onClick={() => handleSort("numarTricou", false)}
-                className="ml-1"
-              >
-                &#9660;
-              </button>
-            </th>
-            <th className="border border-gray-400 px-4 py-2">Checkin
-              <button
-                onClick={() => handleSort("checkin")}
-                className="ml-2"
-              >
-                &#9650;
-              </button>
-              <button
-                onClick={() => handleSort("checkin", false)}
-                className="ml-1"
-              >
-                &#9660;
-              </button>
-            </th>
-            <th className="border border-gray-400 px-4 py-2">Timp Alergat
-              <button
-                onClick={() => handleSort("timpAlergat")}
-                className="ml-2"
-              >
-                &#9650;
-              </button>
-              <button
-                onClick={() => handleSort("timpAlergat", false)}
-                className="ml-1"
-              >
-                &#9660;
-              </button>
-            </th>
-            <th className="border border-gray-400 px-4 py-2">Update</th>
-            <th className="border border-gray-400 px-4 py-2">Send email</th>
-          </tr>
+            <tr className="bg-gray-200">
+              <th className="px-4 py-2 border border-gray-400">ID</th>
+              <th className="px-4 py-2 border border-gray-400">
+                Nume
+                <button onClick={() => handleSort("name")} className="ml-2">
+                  &#9650;
+                </button>
+                <button
+                  onClick={() => handleSort("name", false)}
+                  className="ml-1"
+                >
+                  &#9660;
+                </button>
+              </th>
+              <th className="px-4 py-2 border border-gray-400">
+                Cursa
+                <button
+                  onClick={() => handleSort("categorie")}
+                  className="ml-2"
+                >
+                  &#9650;
+                </button>
+                <button
+                  onClick={() => handleSort("categorie", false)}
+                  className="ml-1"
+                >
+                  &#9660;
+                </button>
+              </th>
+              <th className="px-4 py-2 border border-gray-400">
+                Numar Tricou
+                <button
+                  onClick={() => handleSort("numarTricou")}
+                  className="ml-2"
+                >
+                  &#9650;
+                </button>
+                <button
+                  onClick={() => handleSort("numarTricou", false)}
+                  className="ml-1"
+                >
+                  &#9660;
+                </button>
+              </th>
+              <th className="px-4 py-2 border border-gray-400">
+                Checkin
+                <button onClick={() => handleSort("checkin")} className="ml-2">
+                  &#9650;
+                </button>
+                <button
+                  onClick={() => handleSort("checkin", false)}
+                  className="ml-1"
+                >
+                  &#9660;
+                </button>
+              </th>
+              <th className="px-4 py-2 border border-gray-400">
+                Timp Alergat
+                <button
+                  onClick={() => handleSort("timpAlergat")}
+                  className="ml-2"
+                >
+                  &#9650;
+                </button>
+                <button
+                  onClick={() => handleSort("timpAlergat", false)}
+                  className="ml-1"
+                >
+                  &#9660;
+                </button>
+              </th>
+              <th className="px-4 py-2 border border-gray-400">Update</th>
+              <th className="px-4 py-2 border border-gray-400">Send email</th>
+            </tr>
           </thead>
           <tbody>
-          {users.map((_user, index) => (
-            <tr key={index} className="text-center">
-              <td className="border border-gray-400 px-4 py-2">{index + 1}</td>
-              <td className="border border-gray-400 px-4 py-2">
-                <input
-                  type="text"
-                  value={formDataList[index]?.name || "N/A"}
-                  onChange={(e) => handleInputChange(e, index, "name")}
-                  className="text-center"
-                  disabled={true}
-                />
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                <select
-                  value={formDataList[index]?.categorie || initialFormData.categorie}
-                  onChange={(e) => handleInputChange(e, index, "categorie")}
-                  className="text-center"
-                  disabled={true}
-                >
-                  {Object.entries(races).map(([key, value]) => (
-                    <option key={key} value={key} className="text-center">
-                      {value}
-                    </option>
-                  ))}
-                </select>
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                <input
-                  type="text"
-                  value={formDataList[index]?.numarTricou || initialFormData.numarTricou}
-                  onChange={(e) => handleInputChange(e, index, "numarTricou")}
-                  className="text-center"
-                  disabled={true}
-                />
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                {formDataList[index]?.checkin === "DA" ? (
+            {users.map((_user, index) => (
+              <tr key={index} className="text-center">
+                <td className="px-4 py-2 border border-gray-400">
+                  {index + 1}
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
                   <input
-                    type="button"
-                    value="DA"
-                    placeholder="DA"
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                    type="text"
+                    value={formDataList[index]?.name || "N/A"}
+                    onChange={(e) => handleInputChange(e, index, "name")}
+                    className="text-center"
+                    disabled={true}
                   />
-                ) : (
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  <select
+                    value={
+                      formDataList[index]?.categorie ||
+                      initialFormData.categorie
+                    }
+                    onChange={(e) => handleInputChange(e, index, "categorie")}
+                    className="text-center"
+                    disabled={true}
+                  >
+                    {Object.entries(races).map(([key, value]) => (
+                      <option key={key} value={key} className="text-center">
+                        {value}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
                   <input
-                    type="button"
-                    value="NU"
-                    placeholder="NU"
-                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    type="text"
+                    value={
+                      formDataList[index]?.numarTricou ||
+                      initialFormData.numarTricou
+                    }
+                    onChange={(e) => handleInputChange(e, index, "numarTricou")}
+                    className="text-center"
+                    disabled={true}
                   />
-                )}
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                {/*TODO: add input date for timpAlergat hours:minutes:seconds*/}
-                <div className="flex justify-center">
-                  <input type="time"
-                         value={formDataList[index]?.timpAlergat || "00:00:00"}
-                         step={2}
-                         onChange={(e) => handleInputChange(e, index, "timpAlergat")}
-                         className="text-center"/>
-                </div>
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                <input
-                  type="button"
-                  value="Update"
-                  onClick={() => {
-                    const updateData = async () => {
-                      try {
-                        await BackendService.updateRaceTime(formDataList[index].id, formDataList[index].timpAlergat);
-                        window.location.reload();
-                      } catch (error) {
-                        console.log(error);
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  {formDataList[index]?.checkin === "DA" ? (
+                    <input
+                      type="button"
+                      value="DA"
+                      placeholder="DA"
+                      className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
+                    />
+                  ) : (
+                    <input
+                      type="button"
+                      value="NU"
+                      placeholder="NU"
+                      className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                    />
+                  )}
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  {/*TODO: add input date for timpAlergat hours:minutes:seconds*/}
+                  <div className="flex justify-center">
+                    <input
+                      type="time"
+                      value={formDataList[index]?.timpAlergat || "00:00:00"}
+                      step={2}
+                      onChange={(e) =>
+                        handleInputChange(e, index, "timpAlergat")
                       }
-                    };
-                    updateData();
-                  }}
-                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                />
-              </td>
-              <td className="border border-gray-400 px-4 py-2">
-                {
-                  formDataList[index].emailTrimis === "DA" ? (
+                      className="text-center"
+                    />
+                  </div>
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  <input
+                    type="button"
+                    value="Update"
+                    onClick={() => {
+                      const updateData = async () => {
+                        try {
+                          await BackendService.updateRaceTime(
+                            formDataList[index].id,
+                            formDataList[index].timpAlergat
+                          );
+                          window.location.reload();
+                        } catch (error) {
+                          console.log(error);
+                        }
+                      };
+                      updateData();
+                    }}
+                    className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
+                  />
+                </td>
+                <td className="px-4 py-2 border border-gray-400">
+                  {formDataList[index].emailTrimis === "DA" ? (
                     <input
                       type="button"
                       value="Trimis"
-                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                      className="px-4 py-2 font-bold text-white bg-green-500 rounded hover:bg-green-700"
                       disabled={true}
                     />
                   ) : (
@@ -278,10 +296,12 @@ const Cronometrare: React.FC = () => {
                       onClick={() => {
                         const sendEmail = async () => {
                           try {
-                            const response = await BackendService.sendRaceCompletionEmail(
-                              formDataList[index].id)
+                            const response =
+                              await BackendService.sendRaceCompletionEmail(
+                                formDataList[index].id
+                              );
                             if (response) {
-                              alert(response.message)
+                              alert(response.message);
                               window.location.reload();
                             }
                           } catch (error) {
@@ -291,11 +311,12 @@ const Cronometrare: React.FC = () => {
                         };
                         sendEmail();
                       }}
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    />)}
-              </td>
-            </tr>
-          ))}
+                      className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                    />
+                  )}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
