@@ -22,7 +22,7 @@ type HTTPError = {
 };
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.APV_DB_DATABASE_URL,
   ssl: true,
 });
 

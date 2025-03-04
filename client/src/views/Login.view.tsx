@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     let isMounted = true;
 
-    console.log(AuthService.getInstance());
+    // console.log(AuthService.getInstance());
     const isLoggedIn = async () => {
       try {
         const response = await AuthService.getInstance().userInfoForToken(
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
 
   const handleGoogleLogin = async (credentialResponse: CredentialResponse) => {
     setGoogleLoginLoading(true);
-
+    
     try {
       await AuthService.getInstance().googleRegistration(
         credentialResponse.credential!

@@ -6,8 +6,13 @@ import "./index.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { AuthService } from "@genezio/auth";
-const authToken = import.meta.env.VITE_AUTH_TOKEN;
-const region = import.meta.env.VITE_AUTH_REGION;
+
+const authToken = import.meta.env.VITE_AUTH_TOKEN1;
+const region = import.meta.env.VITE_AUTH_REGION1;
+
+console.log("Auth Token:", import.meta.env.VITE_AUTH_TOKEN1);
+
+
 
 AuthService.getInstance().setTokenAndRegion(authToken, region);
 
@@ -19,4 +24,4 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   </React.StrictMode>
 );
 
-// 30633693522-a2tc77l453c8nr0imj9k5kck86h2h3dl.apps.googleusercontent.com
+// 704760927363-un1ppmd62hm1e4osihaeb7s3vu3b5mpc.apps.googleusercontent.com
