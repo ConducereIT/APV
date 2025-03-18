@@ -73,6 +73,7 @@ const RaceRegistration: React.FC = () => {
         alert(response.message);
       }
     } catch (error) {
+      console.log(error);
       alert("A apărut o eroare la înscriere. Vă rugăm să încercați din nou.");
     }
   };

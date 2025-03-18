@@ -32,7 +32,7 @@ export default function Team() {
         </p>
       </div>
 
-      <div className="lg:flex lg:items-center lg:justify-center lg:w-2/3 lg:pl-20 mt-10 lg:mt-8">
+      <div className="flex justify-center mt-10 lg:mt-[50px]">
         <img
           src={TeamImage}
           alt="Team Image"

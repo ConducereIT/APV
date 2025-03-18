@@ -6,7 +6,7 @@ export default function InscriereParticipantiView() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Inregistrare in ziua evenimentului</title>
+        <title>APV 2025 | Inregistrare in ziua evenimentului</title>
       </Helmet>
       <Header />
       <div className="mt-40" />

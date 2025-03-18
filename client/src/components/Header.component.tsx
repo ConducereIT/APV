@@ -126,7 +126,7 @@ export const Header = () => {
             </a>
             <button
               className="bg-[#3c216a] hover:bg-[#4C268D] rounded-md translate-x-10 h-[40%] text-white text-base text-bold  w-[20%]"
-              onClick={() => window.open("https://revolut.me/cesare99b7")}
+              onClick={() => window.open("https://revolut.me/dianaradulescu16")}
             >
               DONEAZĂ
             </button>

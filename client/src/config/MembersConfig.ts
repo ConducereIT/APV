@@ -1,20 +1,20 @@
 import Cesar from "../assets/Cesar.webp";
-import Georgi from "../assets/Georgi.webp";
+import Monica from "../assets/Poza-11.webp";
 
 export const members = [
     {
-        image: Cesar ,
-        nume: "Cesar Emanuele Leoni",
+        //image: Cesar ,
+        nume: "Diana Alexandra Rădulescu",
         position: "Coordonator",
-        email: "leoni.cesar.emanuele@gmail.com",
-        phone: "+40 770 591 517"
+        email: "radulescudiana163@yahoo.com",
+        phone: "+40 737 104 050"
     },
      {
-        image: Georgi ,
-        nume: "Georgiana Valentina Păun cel Mic",
+        image: Monica ,
+        nume: "Monica Vitan",
         position: "Vicecoordonator",
-        email: "georgivali223@gmail.com",
-        phone: "+40 773 998 435"
+        email: "monavitan@gmail.com",
+        phone: "+40 761 082 679"
      },
   
 ];

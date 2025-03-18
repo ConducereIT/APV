@@ -6,7 +6,7 @@ export default function Cause() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Cauza</title>
+        <title>APV 2025 | Cauza</title>
       </Helmet>
       <Header />
       <Cauze />

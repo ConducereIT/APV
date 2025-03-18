@@ -6,7 +6,7 @@ export default function RaceRegistrationView() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Inregistrare Cursa</title>
+        <title>APV 2025 | Inregistrare Cursa</title>
       </Helmet>
       <Header />
       <div className="mt-40" />

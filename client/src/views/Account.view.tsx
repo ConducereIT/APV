@@ -72,16 +72,18 @@ const Account: React.FC = () => {
       try {
         const response = await BackendService.getRaces();
         setRaces(response);
+        console.log(response);
       } catch (error) {
         console.log(error);
       }
     };
-
+    
     takeRaces();
   }, []);
 
   return (
     <>
+  
       <Helmet>
         <title>APV 2025 | Account</title>
       </Helmet>
