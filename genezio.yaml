@@ -37,6 +37,9 @@ services:
       name: apv-db
     providers:
       email: true
+      google:
+        clientId: ${{env.GOOGLE_CLIENT_ID}} # replace with your own client id "secret.apps.googleusercontent.com" but not pushed to github
+        clientSecret: ${{env.GOOGLE_CLIENT_SECRET}} # replace with your own client secret "secret" but not pushed to github
     settings:
       resetPassword:
         redirectUrl: https://${{frontend.apv.subdomain}}.app.genez.io/reset

@@ -2,9 +2,9 @@ import cauza from "../assets/Poza-1-crop-webp.webp";
 export default function CauzaHome() {
   return (
     <>
-      <div className="md:hidden grid place-items-center">
+      <div className="grid md:hidden place-items-center">
         <h2 className="text-3xl font-barlow-condensed font-bold leading-normal text-[#1D1A3F] mb-8">
-          Cauza Aleargă Pentru Viață 2024{" "}
+          Cauza Aleargă Pentru Viață 2025{" "}
         </h2>
         <img
           src={cauza}
@@ -12,14 +12,14 @@ export default function CauzaHome() {
           className="w-[85%] md:w-full object-cover rounded-lg"
         />
         <div>
-          <p className="overflow-visible text-base font-barlow font-normal leading-normal mx-8 text-custom-gray mt-8 h-1/6 md:full">
+          <p className="mx-8 mt-8 overflow-visible text-base font-normal leading-normal font-barlow text-custom-gray h-1/6 md:full">
             Ionuț Frățilă este un soț iubitor și tată devotat, pentru care
             familia reprezintă totul. Speranțele, planurile și visurile sale au
             fost spulberate brusc când, la doar 26 de ani, viața lui a luat o
             întorsătură dramatică.
           </p>
           <br />
-          <p className="overflow-visible mb-24 text-base font-barlow font-normal leading-normal mx-8 text-custom-gray h-1/6 md:full">
+          <p className="mx-8 mb-24 overflow-visible text-base font-normal leading-normal font-barlow text-custom-gray h-1/6 md:full">
             În data de 13 august 2023, destinul lui Ionuț s-a schimbat radical.
             Din cauza unei probleme de funcționare a mașinii, acesta a fost
             victima unui grav accident auto, rostogolindu-se cu mașina, în urma
@@ -29,14 +29,14 @@ export default function CauzaHome() {
         </div>
       </div>
       <div
-        className="hidden w-full h-screen md:flex items-center mt-24 justify-center "
+        className="items-center justify-center hidden w-full h-screen mt-24 md:flex "
         style={{
           transition: "opacity 1.5s ease-in-out",
         }}
       >
-        <div className="h-full md:h-full max-w-screen-lg flex items-center justify-center flex-col md:flex-row">
-          <div className="w-5/6 md:w-1/3 p-2 overflow-hidden h-screen md:h-full rounded-lg">
-            <div className=" rounded-lg flex justify-center">
+        <div className="flex flex-col items-center justify-center h-full max-w-screen-lg md:h-full md:flex-row">
+          <div className="w-5/6 h-screen p-2 overflow-hidden rounded-lg md:w-1/3 md:h-full">
+            <div className="flex justify-center rounded-lg ">
               <img
                 src={cauza}
                 alt="cauza"
@@ -44,7 +44,7 @@ export default function CauzaHome() {
               />
             </div>
           </div>
-          <div className="w-full h-screen md:w-2/3 p-4 text-black flex flex-col justify-between rounded-lg ml-4">
+          <div className="flex flex-col justify-between w-full h-screen p-4 ml-4 text-black rounded-lg md:w-2/3">
             <div className="mb-10">
               <h2 className="text-lg font-semibold text-custom-green text-center tracking-widest">
                 Cauza Aleargă Pentru Viață 2025{" "}

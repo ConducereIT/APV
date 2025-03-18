@@ -1,22 +1,19 @@
-import {GenezioAuth, GenezioDeploy, GnzContext,} from "@genezio/types";
+import { GenezioAuth, GenezioDeploy, GnzContext } from "@genezio/types";
 
-import {PrismaClient} from "@prisma/client";
-import {randomUUID} from "node:crypto";
+import { PrismaClient } from "@prisma/client";
+import { randomUUID } from "node:crypto";
 
-import pg from 'pg'
-import {Mailer} from "./mailer";
+import pg from "pg";
+import { Mailer } from "./mailer";
 
-import {races as allRaces} from "./config/racesConfig";
+import { races as allRaces } from "./config/racesConfig";
 
-
-
-const {Pool} = pg
-
+const { Pool } = pg;
 
 type HTTPResponse = {
   status: number;
   message: string;
-}
+};
 
 type HTTPError = {
   status: number;
@@ -27,7 +24,6 @@ const pool = new Pool({
   connectionString: process.env.APV_DB_DATABASE_URL,
   ssl: true,
 });
-
 
 // type UserDataType = {
 //   status: number;
@@ -41,7 +37,7 @@ const pool = new Pool({
 function createHTTPError(status: number, message: string): HTTPError {
   return {
     status,
-    message
+    message,
   };
 }
 
@@ -56,9 +52,7 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async addUser(
-    context: GnzContext,
-  ): Promise<HTTPResponse | HTTPError> {
+  async addUser(context: GnzContext): Promise<HTTPResponse | HTTPError> {
     try {
       await this.prisma.userAccount.create({
         data: {
@@ -70,26 +64,27 @@ export class BackendService {
       });
       return {
         status: 200,
-        message: "User added successfully"
-      }
+        message: "User added successfully",
+      };
     } catch (error) {
-      console.log(error)
-      return createHTTPError(400, 'Bad Request');
+      console.log(error);
+      return createHTTPError(400, "Bad Request");
     }
   }
 
   @GenezioAuth()
-  async updateUser(context: GnzContext,
-                   newPhone: string,
-                   newMarimeTricou: string
+  async updateUser(
+    context: GnzContext,
+    newPhone: string,
+    newMarimeTricou: string
   ): Promise<HTTPResponse | HTTPError> {
     try {
       const userInfo = await this.prisma.userAccount.findUnique({
-        where: {userId: context.user!.userId},
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!userInfo) {
-        throw createHTTPError(401, "UNAUTHORIZED")
+        throw createHTTPError(401, "UNAUTHORIZED");
       }
 
       await this.prisma.userAccount.update({
@@ -98,19 +93,24 @@ export class BackendService {
         },
         data: {
           phone: newPhone,
-          marimeTricou: newMarimeTricou
-        }
+          marimeTricou: newMarimeTricou,
+        },
       });
 
       return {
         status: 200,
         message: "Status",
-      }
+      };
     } catch (error) {
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        "message" in error
+      ) {
         return error as HTTPError;
       } else {
-        console.log(error)
+        console.log(error);
         return createHTTPError(500, "Internal Server Error");
       }
     }
@@ -118,38 +118,46 @@ export class BackendService {
 
   @GenezioAuth()
   async getUserData(context: GnzContext): Promise<HTTPResponse | HTTPError> {
-
     try {
       const userInfo = await this.prisma.userAccount.findUnique({
-        where: {userId: context.user!.userId}
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!userInfo) {
-        throw createHTTPError(401, "UNAUTHORIZED")
+        throw createHTTPError(401, "UNAUTHORIZED");
       }
 
       return {
         status: 202,
-        message: "Accepted"
-      }
+        message: "Accepted",
+      };
     } catch (error) {
-      console.log(error)
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+      console.log(error);
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        "message" in error
+      ) {
         return error as HTTPError;
       } else {
         return createHTTPError(500, "Internal Server Error");
       }
     }
-
   }
 
-
   @GenezioAuth()
-  async addRaces(context: GnzContext, races: string, phone: string, marime: string, revolut: string) {
+  async addRaces(
+    context: GnzContext,
+    races: string,
+    phone: string,
+    marime: string,
+    revolut: string
+  ) {
     try {
       const checkHasRace = await this.prisma.cursa.findMany({
-        where: {userId: context.user!.userId}
-      })
+        where: { userId: context.user!.userId },
+      });
       if (checkHasRace.length === 0) {
         await this.prisma.cursa.create({
           data: {
@@ -160,9 +168,9 @@ export class BackendService {
             timpAlergat: null,
             phone: phone,
             marimeTricou: marime,
-            revolute_cash: revolut
-          }
-        })
+            revolute_cash: revolut,
+          },
+        });
 
         const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
         const ora = allRaces[races].time;
@@ -173,18 +181,18 @@ export class BackendService {
           context.user!.name || "drag alergator",
           "12 Mai",
           `${ora}`,
-          "Rectoratul UPB",
-        )
+          "Rectoratul UPB"
+        );
 
         return {
           status: 200,
-          message: "Successfully registered"
-        }
+          message: "Successfully registered",
+        };
       } else {
         return createHTTPError(400, "Nu te poți înscrie de mai multe ori!");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
@@ -193,8 +201,8 @@ export class BackendService {
   async adaugaCursa(context: GnzContext): Promise<HTTPResponse | HTTPError> {
     try {
       const infoUser = await this.prisma.userAccount.findUnique({
-        where: {userId: context.user!.userId},
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!infoUser) {
         throw createHTTPError(401, "UNAUTHORIZED");
@@ -207,16 +215,21 @@ export class BackendService {
           numarTricou: undefined,
           categorie: undefined,
           timpAlergat: undefined,
-        }
-      })
+        },
+      });
 
       return {
         status: 200,
-        message: "Successfully registered"
-      }
+        message: "Successfully registered",
+      };
     } catch (error) {
-      console.log(error)
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+      console.log(error);
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        "message" in error
+      ) {
         return error as HTTPError;
       } else {
         return createHTTPError(500, "Internal Server Error");
@@ -225,31 +238,38 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async deleteUserCursa(context: GnzContext, categorie: string): Promise<HTTPResponse | HTTPError> {
+  async deleteUserCursa(
+    context: GnzContext,
+    categorie: string
+  ): Promise<HTTPResponse | HTTPError> {
     try {
       const userInfo = await this.prisma.cursa.findMany({
-        where: {userId: context.user!.userId}
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!userInfo) {
         throw createHTTPError(404, "User not exist");
       }
 
       await this.prisma.cursa.deleteMany({
-        where:
-          {
-            userId: context.user!.userId,
-            categorie: categorie,
-          }
-      })
+        where: {
+          userId: context.user!.userId,
+          categorie: categorie,
+        },
+      });
 
       return {
         status: 500,
         message: "",
-      }
+      };
     } catch (error) {
-      console.log(error)
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+      console.log(error);
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        "message" in error
+      ) {
         return error as HTTPError;
       } else {
         return createHTTPError(500, "internal Server Error");
@@ -258,27 +278,37 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async checkIfUserCreateIsComplete(context: GnzContext): Promise<HTTPResponse | HTTPError> {
+  async checkIfUserCreateIsComplete(
+    context: GnzContext
+  ): Promise<HTTPResponse | HTTPError> {
     try {
       const userInfo = await this.prisma.userAccount.findUnique({
-        where: {userId: context.user!.userId}
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!userInfo) {
         throw createHTTPError(404, "User not exist");
       }
 
-      if (userInfo?.phone === undefined || userInfo?.marimeTricou === undefined) {
+      if (
+        userInfo?.phone === undefined ||
+        userInfo?.marimeTricou === undefined
+      ) {
         throw createHTTPError(406, "Not Acceptable");
       }
 
       return {
         status: 202,
-        message: "Accepted"
-      }
+        message: "Accepted",
+      };
     } catch (error) {
-      console.log(error)
-      if (typeof error === 'object' && error !== null && 'status' in error && 'message' in error) {
+      console.log(error);
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "status" in error &&
+        "message" in error
+      ) {
         return error as HTTPError;
       } else {
         return createHTTPError(500, "internal Server Error");
@@ -286,13 +316,12 @@ export class BackendService {
     }
   }
 
-
   @GenezioAuth()
   async getRaces(context: GnzContext) {
     try {
       const userInfo = await this.prisma.cursa.findMany({
-        where: {userId: context.user!.userId}
-      })
+        where: { userId: context.user!.userId },
+      });
 
       if (!userInfo) {
         throw createHTTPError(404, "User not exist");
@@ -300,13 +329,14 @@ export class BackendService {
 
       return userInfo;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
 
   @GenezioAuth()
-  async getAllRaces(context: GnzContext) { //eslint-disable-line
+  async getAllRaces(context: GnzContext) {
+    //eslint-disable-line
     try {
       const response = await this.prisma.cursa.findMany();
       return response.sort((a, b) => {
@@ -316,22 +346,30 @@ export class BackendService {
         return a.checkin!.localeCompare(b.checkin!);
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
 
   @GenezioAuth()
-  async updateUserDetailsByUserId(context: GnzContext, userId: string, json: any) {  //eslint-disable-line
+  async updateUserDetailsByUserId(
+    context: GnzContext,
+    userId: string,
+    json: any
+  ) {
+    //eslint-disable-line
     console.log("Start update user details...");
     try {
       const client = await pool.connect();
-      await client.query(`UPDATE "users" SET "customInfo" = $1 WHERE "userId" = $2`, [json, userId]);
+      await client.query(
+        `UPDATE "users" SET "customInfo" = $1 WHERE "userId" = $2`,
+        [json, userId]
+      );
       client.release();
       return {
         status: 200,
-        message: "Successfully updated"
-      }
+        message: "Successfully updated",
+      };
     } catch (error) {
       console.log(error);
       return createHTTPError(500, "Internal Server Error");
@@ -339,14 +377,26 @@ export class BackendService {
   }
 
   @GenezioAuth()
-  async updateUserById(context: GnzContext, name: string, id: number, idCursa: string, categorie: string, marimeTricou: string, numarTricou: string, revolute_cash: string, phone: string, checkin: string, money: string) {
+  async updateUserById(
+    context: GnzContext,
+    name: string,
+    id: number,
+    idCursa: string,
+    categorie: string,
+    marimeTricou: string,
+    numarTricou: string,
+    revolute_cash: string,
+    phone: string,
+    checkin: string,
+    money: string
+  ) {
     try {
       const userInfo = await this.prisma.cursa.findUnique({
         where: {
           id: id,
-          idCursa: idCursa
-        }
-      })
+          idCursa: idCursa,
+        },
+      });
 
       if (!userInfo) {
         throw createHTTPError(404, "User not exist");
@@ -355,7 +405,7 @@ export class BackendService {
       await this.prisma.cursa.update({
         where: {
           id: id,
-          idCursa: idCursa
+          idCursa: idCursa,
         },
         data: {
           name: name,
@@ -365,36 +415,49 @@ export class BackendService {
           revolute_cash: revolute_cash,
           phone: phone,
           checkin: checkin,
-          suma: money
-        }
-      })
+          suma: money,
+        },
+      });
 
       return {
         status: 200,
-        message: "Successfully updated"
-      }
+        message: "Successfully updated",
+      };
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
 
   @GenezioAuth()
-  async addRacesInEventDay(context: GnzContext, name: string, email: string, tshirtSize: string, tshirtNumber: string, phoneNumber: string, race: string, paymentMethod: string, money: string) {
+  async addRacesInEventDay(
+    context: GnzContext,
+    name: string,
+    email: string,
+    tshirtSize: string,
+    tshirtNumber: string,
+    phoneNumber: string,
+    race: string,
+    paymentMethod: string,
+    money: string
+  ) {
     try {
-      const userIdFromEmail = await pool.query(`SELECT "userId" FROM "users" WHERE "email" = $1`, [email]);
+      const userIdFromEmail = await pool.query(
+        `SELECT "userId" FROM "users" WHERE "email" = $1`,
+        [email]
+      );
       let checkHasRace;
       if (userIdFromEmail.rows[0] === undefined) {
         checkHasRace = [];
       } else {
         checkHasRace = await this.prisma.cursa.findMany({
-          where: {userId: userIdFromEmail.rows[0].userId}
-        })
+          where: { userId: userIdFromEmail.rows[0].userId },
+        });
       }
       if (checkHasRace.length === 0) {
         if (userIdFromEmail.rows.length === 1) {
           const checkUser = await this.prisma.userAccount.findUnique({
-            where: {userId: userIdFromEmail.rows[0].userId}
+            where: { userId: userIdFromEmail.rows[0].userId },
           });
           if (!checkUser) {
             await this.prisma.userAccount.create({
@@ -406,7 +469,8 @@ export class BackendService {
               },
             });
           }
-          const createCursa = await pool.query(`INSERT INTO "Cursa" ("idCursa","userId", "numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
+          const createCursa = await pool.query(
+            `INSERT INTO "Cursa" ("idCursa","userId", "numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
             [
               randomUUID(),
               userIdFromEmail.rows[0].userId,
@@ -418,21 +482,25 @@ export class BackendService {
               paymentMethod,
               money,
               "DA",
-              "DA"
-            ]);
+              "DA",
+            ]
+          );
           if (createCursa.rowCount === 1) {
             return {
               status: 200,
-              message: "Successfully registered"
-            }
+              message: "Successfully registered",
+            };
           } else {
             return createHTTPError(400, "Internal Server Error");
           }
         } else {
           const randomuuid = randomUUID();
-          const createUser = await pool.query(`INSERT INTO "users" ("userId", "email", "name") VALUES ($1, $2, $3)`, [randomuuid, email, name]);
+          const createUser = await pool.query(
+            `INSERT INTO "users" ("userId", "email", "name") VALUES ($1, $2, $3)`,
+            [randomuuid, email, name]
+          );
           const checkUser = await this.prisma.userAccount.findUnique({
-            where: {userId: randomuuid}
+            where: { userId: randomuuid },
           });
           if (!checkUser) {
             await this.prisma.userAccount.create({
@@ -446,7 +514,8 @@ export class BackendService {
           }
 
           if (createUser.rowCount === 1) {
-            const createCursa = await pool.query(`INSERT INTO "Cursa" ("idCursa","userId","numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
+            const createCursa = await pool.query(
+              `INSERT INTO "Cursa" ("idCursa","userId","numarTricou", "categorie", "name", "phone", "marimeTricou", "revolute_cash","suma","checkin","inscriereFizic") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)`,
               [
                 randomUUID(),
                 randomuuid,
@@ -458,24 +527,27 @@ export class BackendService {
                 paymentMethod,
                 money,
                 "DA",
-                "DA"
-              ]);
+                "DA",
+              ]
+            );
             if (createCursa.rowCount === 1) {
               return {
                 status: 200,
-                message: "Successfully registered"
-              }
+                message: "Successfully registered",
+              };
             } else {
               return createHTTPError(400, "Internal Server Error");
             }
           }
         }
       } else {
-        return createHTTPError(400, "Nu te poți înscrie de mai multe ori pe acelasi email!");
+        return createHTTPError(
+          400,
+          "Nu te poți înscrie de mai multe ori pe acelasi email!"
+        );
       }
-
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(400, "Internal Server Error");
     }
   }
@@ -485,9 +557,9 @@ export class BackendService {
     try {
       const userInfo = await this.prisma.cursa.findUnique({
         where: {
-          id: idCursa
-        }
-      })
+          id: idCursa,
+        },
+      });
 
       if (!userInfo) {
         throw createHTTPError(404, "User not exist");
@@ -495,19 +567,19 @@ export class BackendService {
 
       await this.prisma.cursa.update({
         where: {
-          id: idCursa
+          id: idCursa,
         },
         data: {
-          timpAlergat: time
-        }
-      })
+          timpAlergat: time,
+        },
+      });
 
       return {
         status: 200,
-        message: "Successfully updated"
-      }
+        message: "Successfully updated",
+      };
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return createHTTPError(500, "Internal Server Error");
     }
   }
@@ -516,9 +588,9 @@ export class BackendService {
   async sendRaceCompletionEmail(context: GnzContext, id: number) {
     const userInfo = await this.prisma.cursa.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (!userInfo) {
       throw createHTTPError(404, "User not exist");
     }
@@ -528,16 +600,18 @@ export class BackendService {
     const aiTrimis = userInfo.emailTrimis;
     const name = userInfo.name;
 
-    if(aiTrimis === "DA"){
+    if (aiTrimis === "DA") {
       return {
         status: 200,
-        message: "A fost trimis deja email-ul"
-      }
+        message: "A fost trimis deja email-ul",
+      };
     }
 
-
     const userId = userInfo.userId;
-    const user = await pool.query(`SELECT "email" FROM "users" WHERE "userId" = $1`, [userId]);
+    const user = await pool.query(
+      `SELECT "email" FROM "users" WHERE "userId" = $1`,
+      [userId]
+    );
     if (user.rows[0] === undefined) {
       throw createHTTPError(404, "User not exist");
     }
@@ -552,19 +626,19 @@ export class BackendService {
       ora!
     );
 
-    if(response){
+    if (response) {
       await this.prisma.cursa.update({
         where: {
-          id: id
+          id: id,
         },
         data: {
-          emailTrimis: "DA"
-        }
+          emailTrimis: "DA",
+        },
       });
       return {
         status: 200,
-        message: "Successfully sent"
-      }
+        message: "Successfully sent",
+      };
     } else {
       return createHTTPError(500, "Internal Server Error");
     }
