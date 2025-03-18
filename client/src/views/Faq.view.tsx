@@ -6,7 +6,7 @@ export default function Faq() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | FAQ</title>
+        <title>APV 2025 | FAQ</title>
       </Helmet>
       <Header />
       <div className="mt-6 lg:mt-40 ">

@@ -59,7 +59,7 @@ const Login: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Login</title>
+        <title>APV 2025 | Login</title>
       </Helmet>
       <Header />
       <div className="flex items-start justify-center md:mt-44">
