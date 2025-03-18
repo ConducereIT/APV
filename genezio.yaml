@@ -37,6 +37,9 @@ services:
       name: apv-db
     providers:
       email: true
+      google:
+        clientId: "704760927363-un1ppmd62hm1e4osihaeb7s3vu3b5mpc.apps.googleusercontent.com"
+        clientSecret: "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"
     settings:
       resetPassword:
         redirectUrl: https://${{frontend.apv.subdomain}}.app.genez.io/reset
