@@ -7,12 +7,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { AuthService } from "@genezio/auth";
 
-const authToken = import.meta.env.VITE_AUTH_TOKEN1;
-const region = import.meta.env.VITE_AUTH_REGION1;
-
-console.log("Auth Token:", import.meta.env.VITE_AUTH_TOKEN1);
-
-
+const authToken = import.meta.env.VITE_AUTH_TOKEN;
+const region = import.meta.env.VITE_AUTH_REGION;
 
 AuthService.getInstance().setTokenAndRegion(authToken, region);
 
