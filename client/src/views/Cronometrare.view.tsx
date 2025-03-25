@@ -108,7 +108,7 @@ const Cronometrare: React.FC = () => {
     <>
       <Header />
       <div className="flex justify-center">
-        <table className="border-collapse w-full scale-75 mt-[-50rem] mb-[-54rem] h-full">
+        <table className="border-collapse w-full scale-75 mt-[50rem] mb-[54rem] h-full">
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 border border-gray-400">ID</th>

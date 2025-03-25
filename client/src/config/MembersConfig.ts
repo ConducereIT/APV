@@ -1,4 +1,4 @@
-import Cesar from "../assets/Cesar.webp";
+
 import Monica from "../assets/Poza-11.webp";
 
 export const members = [

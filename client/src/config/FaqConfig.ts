@@ -25,6 +25,6 @@ export const FaqConfig = [
     },
   {
       question: "Dacă plouă în ziua evenimentului ce se întâmplă?",
-      answer:"Vom face tot posibilul să ducem crosul la bun sfârșit, încurajându-te să te echipezi în mod adecvat condițiilor meteorologice. În ceea ce privește donația, aceasta va ajunge la Ionuț indiferent de participarea ta fizică în ziua evenimentului."
+      answer:"Vom face tot posibilul să ducem crosul la bun sfârșit, încurajându-te să te echipezi în mod adecvat condițiilor meteorologice. În ceea ce privește donația, aceasta va ajunge la Andrei si Iselyn Săvulescu indiferent de participarea ta fizică în ziua evenimentului."
     },
 ];

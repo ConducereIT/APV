@@ -174,16 +174,16 @@ export class BackendService {
 
         const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
         const ora = allRaces[races].time;
-
-        await this.mailer.registerMail(
+        console.log("📩 Trimitere email către:", context.user!.email); //verificare trimtere
+        await this.mailer.registerMail( 
           context.user!.email,
           subject,
           context.user!.name || "drag alergator",
-          "12 Mai",
+          "11 Mai",
           `${ora}`,
           "Rectoratul UPB"
         );
-
+        console.log("✅ Email trimis cu succes!",process.env.SEND_MAIL_USER ); //verificare trimtere
         return {
           status: 200,
           message: "Successfully registered",
@@ -192,7 +192,7 @@ export class BackendService {
         return createHTTPError(400, "Nu te poți înscrie de mai multe ori!");
       }
     } catch (error) {
-      console.log(error);
+      console.log("❌ Eroare la trimiterea emailului:", error); //verificare trimtere
       return createHTTPError(500, "Internal Server Error");
     }
   }

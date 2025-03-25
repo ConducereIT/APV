@@ -4,7 +4,7 @@ export default function Cauze() {
   return (
     <div className="flex flex-col items-center p-8">
       <div className="space-y-8 w-full max-w-screen-md">
-        <h1 className="text-4xl font-bold text-center mt-12 mb-8">Ionuț Frățilă</h1>
+        <h1 className="text-4xl font-bold text-center mt-12 mb-8">Andrei si Iselyn Săvulescu</h1>
         <img className="rounded-lg mx-auto" src={Cauza} alt="Cauza" />
         <p className="text-gray-700 text-lg">
           După un efort de 5 ani de a avea copii, părea că viața soților Săvulescu începe
