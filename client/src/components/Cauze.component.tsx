@@ -4,7 +4,7 @@ export default function Cauze() {
   return (
     <div className="flex flex-col items-center p-8">
       <div className="space-y-8 w-full max-w-screen-md">
-        <h1 className="text-4xl font-bold text-center mt-12 mb-8">Andrei si Iselyn Săvulescu</h1>
+        <h1 className="text-4xl font-bold text-center mt-12 mb-8">Andrei și Iselyn Săvulescu</h1>
         <img className="rounded-lg mx-auto" src={Cauza} alt="Cauza" />
         <p className="text-gray-700 text-lg">
           După un efort de 5 ani de a avea copii, părea că viața soților Săvulescu începe
@@ -40,7 +40,7 @@ export default function Cauze() {
         </p>
       </div>
       <div className="w-full max-w-screen-md bg-teal-400 bg-opacity-5 rounded-lg mt-16 mb-12 p-8 text-center">
-        <p className="text-black font-bold">Doneaza petru:</p>
+        <p className="text-black font-bold">Doneaza pentru:</p>
         <p className="text-teal-800 font-bold underline">Andrei si Iselyn Săvulescu</p>
         <a
           className="text-teal-800 hover:text-gray-500 duration-300"

@@ -68,7 +68,7 @@ const Login: React.FC = () => {
             className="mb-4 text-sm font-bold sm:mb-0 sm:text-2xl text-custom-green "
             style={{ marginTop: "-2rem" }}
           >
-            ÎNSCRIERE ALEARGĂ PENTRU VIAȚĂ, EDIȚIA XV
+            ÎNSCRIERE ALEARGĂ PENTRU VIAȚĂ, EDIȚIA XVI
           </span>
           <div className="flex flex-col items-center justify-center space-y-4 md:mt-16">
             {googleLoginLoading ? (

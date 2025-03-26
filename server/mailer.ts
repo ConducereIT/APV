@@ -8,7 +8,7 @@ export class Mailer{
     private transporter: nodemailer.Transporter;
     
     constructor(){
-        console.log("Creating mailer with host:", process.env.SEND_MAIL_HOST);
+
         this.transporter = nodemailer.createTransport({
             host: process.env.SEND_MAIL_HOST,
             service: process.env.SEND_MAIL_SERVICE,
@@ -42,7 +42,7 @@ export class Mailer{
                     <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 30px;">Bună, ${nume}!</h1>
-            <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XV-a!</p>
+            <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XVI-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px;">
                 <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Detalii eveniment:</h2>
                 <p style="color: #fff;" ><strong style="color: #fff;">Data:</strong> ${dataEveniment}</p>
@@ -116,7 +116,7 @@ export class Mailer{
                     <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 20px;">Felicitari, ${nume}!</h1>
-            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XV-a!</p>
+            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XVI-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px; text-align: center;">
             <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Ai terminat ${cursaText} în ${minuteAlergate} de minute!</h2>
         </div>        
@@ -132,7 +132,7 @@ export class Mailer{
 
         
         try {
-            console.log("Sending email from:", process.env.SEND_MAIL_USER);
+        
             await this.transporter.sendMail({
                 
                 from: process.env.SEND_MAIL_USER,

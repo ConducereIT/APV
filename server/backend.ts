@@ -181,7 +181,7 @@ export class BackendService {
           context.user!.name || "drag alergator",
           "11 Mai",
           `${ora}`,
-          "Rectoratul UPB"
+          "Rectoratul UNSTPB"
         );
         console.log("✅ Email trimis cu succes!",process.env.SEND_MAIL_USER ); //verificare trimtere
         return {
@@ -210,7 +210,7 @@ export class BackendService {
 
       await this.prisma.cursa.create({
         data: {
-          idCursa: "APV2024",
+          idCursa: "APV2025",
           userId: infoUser.userId,
           numarTricou: undefined,
           categorie: undefined,
