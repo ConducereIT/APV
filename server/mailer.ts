@@ -8,6 +8,7 @@ export class Mailer{
     private transporter: nodemailer.Transporter;
     
     constructor(){
+        console.log("Creating mailer with host:", process.env.SEND_MAIL_HOST);
         this.transporter = nodemailer.createTransport({
             host: process.env.SEND_MAIL_HOST,
             service: process.env.SEND_MAIL_SERVICE,
@@ -33,7 +34,7 @@ export class Mailer{
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Aleargă pentru Viață - Ediția a XV-a</title>
+            <title>Aleargă Pentru Viață - Ediția a XVI-a</title>
         </head>
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
@@ -78,6 +79,7 @@ export class Mailer{
             console.error("Error sending email:", error);
             return false;
         } 
+        
     }
 
     async sendRaceCompletionEmail(
@@ -130,7 +132,9 @@ export class Mailer{
 
         
         try {
+            console.log("Sending email from:", process.env.SEND_MAIL_USER);
             await this.transporter.sendMail({
+                
                 from: process.env.SEND_MAIL_USER,
                 to,
                 subject,
