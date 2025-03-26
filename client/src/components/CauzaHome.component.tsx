@@ -13,18 +13,19 @@ export default function CauzaHome() {
         />
         <div>
           <p className="mx-8 mt-8 overflow-visible text-base font-normal leading-normal font-barlow text-custom-gray h-1/6 md:full">
-            Ionuț Frățilă este un soț iubitor și tată devotat, pentru care
-            familia reprezintă totul. Speranțele, planurile și visurile sale au
-            fost spulberate brusc când, la doar 26 de ani, viața lui a luat o
-            întorsătură dramatică.
+          După 5 ani de așteptare, familia Săvulescu a primit
+          vestea că vor avea tripleți. Din păcate, bebelușii s-au
+          născut prematur, la 26 de săptămâni, cântărind doar 800
+          g. Pierderea uneia dintre fetițe a fost devastatoare, iar
+          lupta a continuat pentru Andrei și Iselyn.
           </p>
           <br />
           <p className="mx-8 mb-24 overflow-visible text-base font-normal leading-normal font-barlow text-custom-gray h-1/6 md:full">
-            În data de 13 august 2023, destinul lui Ionuț s-a schimbat radical.
-            Din cauza unei probleme de funcționare a mașinii, acesta a fost
-            victima unui grav accident auto, rostogolindu-se cu mașina, în urma
-            căruia a suferit un traumatism vertebro-medular cervical, rezultând
-            compromiterea funcției motorii.
+          Andrei a trecut prin multiple operații, fiind diagnosticat cu
+          paralizie cerebrală și dizabilitate intelectuală severă.
+          Iselyn, mereu cu zâmbetul pe buze, suferă de dipareză
+          spastică. De 9 ani, acești copii curajoși și părinții lor nu
+          renunță la speranță.
           </p>
         </div>
       </div>

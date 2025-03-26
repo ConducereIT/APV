@@ -32,7 +32,7 @@ export const sponsori = [
     }, 
     {
         image: AP,
-        link:"",
+        link:"https://albumefotohd.ro",
     }, 
     {
         image: ALISSYARN,

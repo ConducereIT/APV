@@ -202,7 +202,7 @@ export const Header = () => {
             ))}
             {!isLogin ? null : <Dropdown url="/profil" key={7} text="Profil" />}
             <Dropdown
-              url="https://revolut.me/cesare99b7"
+              url="https://revolut.me/dianaradulescu16"
               key={8}
               text="Donează"
             />
