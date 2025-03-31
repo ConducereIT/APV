@@ -7,6 +7,10 @@ import KOSYB from "../assets/sponsors/sponsor5.webp";
 import AP from "../assets/sponsors/sponsor6.webp";
 import ALISSYARN from "../assets/sponsors/sponsor7.webp";
 import VITAMIN from "../assets/sponsors/sponsor8.webp";
+import ORIFLAME from "../assets/sponsors/sponsor9.webp";
+import BALMIX from "../assets/sponsors/sponsor11.webp";
+import NAN from "../assets/sponsors/sponsor12.webp";
+import SALATA from "../assets/sponsors/sponsor13.webp";
 export const sponsori = [
    
     {
@@ -41,5 +45,21 @@ export const sponsori = [
     {
         image: VITAMIN,
         link:" https://www.vitaminaqua.ro/home",
+    },
+    {
+        image: ORIFLAME,
+        link:" https://ro.oriflame.com/?gad_source=1&gbraid=0AAAAADqnn__3vJDAvVNmDHqRhySoOocxq&gclid=Cj0KCQjw-e6-BhDmARIsAOxxlxV08n4eBzpCGCYB9nWnRGBfHliR0LR3DlkPnQXN0_W0SZ5XuAT-JvsaAsVXEALw_wcB ",
     }, 
+    {
+        image: BALMIX,
+        link:"https://balmix.ro/",
+    },
+    {
+        image: NAN,
+        link:"https://nanevents.ro/",
+    },
+    {
+        image: SALATA,
+        link:"https://www.instagram.com/salartaxderosii?igsh=MWdxNnV3ODl4eWU1aA%3D%3D&utm_source=qr ",
+    },
 ];

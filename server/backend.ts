@@ -174,7 +174,7 @@ export class BackendService {
 
         const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
         const ora = allRaces[races].time;
-        console.log("📩 Trimitere email către:", context.user!.email); //verificare trimtere
+        
         await this.mailer.registerMail( 
           context.user!.email,
           subject,
@@ -183,7 +183,7 @@ export class BackendService {
           `${ora}`,
           "Rectoratul UNSTPB"
         );
-        console.log("✅ Email trimis cu succes!",process.env.SEND_MAIL_USER ); //verificare trimtere
+     
         return {
           status: 200,
           message: "Successfully registered",

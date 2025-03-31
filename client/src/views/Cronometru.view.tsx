@@ -53,7 +53,7 @@ const Timer: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center mt-[-5rem] text-white h-screen">
       <img src={logoapv} alt="Logo Aleargă pentru Viață" className="max-w-70 scale-[40%] h-auto" />
-      <div className="text-9xl font-bold mt-[-6rem]">
+      <div className="text-9xl font-bold mt-[6rem]">
         {new Date(time * 1000).toISOString().substr(11, 8)}
       </div>
     </div>
