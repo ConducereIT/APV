@@ -339,6 +339,7 @@ export class BackendService {
     //eslint-disable-line
     try {
       const response = await this.prisma.cursa.findMany();
+      
       return response.sort((a, b) => {
         if (a.checkin === b.checkin) {
           return a.name!.localeCompare(b.name!);

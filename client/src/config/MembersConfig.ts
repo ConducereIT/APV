@@ -1,9 +1,10 @@
 
 import Monica from "../assets/Poza-11.webp";
+import Diana from "../assets/Poza-10.webp";
 
 export const members = [
     {
-        //image: Cesar ,
+        image: Diana ,
         nume: "Diana Alexandra Rădulescu",
         position: "Coordonator",
         email: "radulescudiana163@yahoo.com",
