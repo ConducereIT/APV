@@ -39,7 +39,7 @@ export class Mailer{
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/tTK9JCPg/Logo-40x40-transparent.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/qMBdT6P8/logoapv.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 30px;">Bună, ${nume}!</h1>
             <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XVI-a!</p>
@@ -113,7 +113,7 @@ export class Mailer{
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/tTK9JCPg/Logo-40x40-transparent.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/qMBdT6P8/logoapv.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 20px;">Felicitari, ${nume}!</h1>
             <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XVI-a!</p>
