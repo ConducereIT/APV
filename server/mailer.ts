@@ -8,6 +8,7 @@ export class Mailer{
     private transporter: nodemailer.Transporter;
     
     constructor(){
+
         this.transporter = nodemailer.createTransport({
             host: process.env.SEND_MAIL_HOST,
             service: process.env.SEND_MAIL_SERVICE,
@@ -33,15 +34,15 @@ export class Mailer{
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
-            <title>Aleargă pentru Viață - Ediția a XV-a</title>
+            <title>Aleargă Pentru Viață - Ediția a XVI-a</title>
         </head>
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/5XZTrzc6/LOGO-APV-XVI.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 30px;">Bună, ${nume}!</h1>
-            <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XV-a!</p>
+            <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XVI-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px;">
                 <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Detalii eveniment:</h2>
                 <p style="color: #fff;" ><strong style="color: #fff;">Data:</strong> ${dataEveniment}</p>
@@ -78,6 +79,7 @@ export class Mailer{
             console.error("Error sending email:", error);
             return false;
         } 
+        
     }
 
     async sendRaceCompletionEmail(
@@ -111,10 +113,10 @@ export class Mailer{
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/H4txyBj/logo-apv-XV.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/5XZTrzc6/LOGO-APV-XVI.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 20px;">Felicitari, ${nume}!</h1>
-            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XV-a!</p>
+            <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XVI-a!</p>
             <div style="background-color: #2E86AA; padding: 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 30px; text-align: center;">
             <h2 style="color: #fff; font-size: 18px; margin-top: 0;">Ai terminat ${cursaText} în ${minuteAlergate} de minute!</h2>
         </div>        
@@ -130,7 +132,9 @@ export class Mailer{
 
         
         try {
+        
             await this.transporter.sendMail({
+                
                 from: process.env.SEND_MAIL_USER,
                 to,
                 subject,

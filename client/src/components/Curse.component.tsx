@@ -8,7 +8,7 @@ const CurseComponent: React.FC<CurseValide> = ({ interfata }): JSX.Element => {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Cursa {cursa}</title>
+        <title>APV 2025 | Cursa {cursa}</title>
       </Helmet>
       <div className="md:block hidden ml-8 pt-5">
         {interfata && (

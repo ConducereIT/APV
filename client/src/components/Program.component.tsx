@@ -1,4 +1,4 @@
-import ProgramAPV from "../assets/programsite.webp";
+import ProgramAPV from "../assets/Poza13.webp";
 
 const Program = () => {
   return (

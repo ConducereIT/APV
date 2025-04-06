@@ -6,7 +6,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>APV 2024 | Contact</title>
+        <title>APV 2025 | Contact</title>
       </Helmet>
       <Header />
       <div className="flex justify-center mt-32">
