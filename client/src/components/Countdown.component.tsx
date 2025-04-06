@@ -59,7 +59,7 @@ export const Countdown: React.FC = () => {
       state.seconds === 0 ? (
         <div className="completion-message">The event has started!</div>
       ) : (
-        <div className="flex justify-center items-center absolute md:-mt-32 -mt-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:scale-[100%] scale-[70%] mb-24 z-12 space-x-16 md:space-x-32 bg-custom-blue rounded-xl w-[30rem] h-28 md:w-[40rem] md:h-32">
+      <div className="flex justify-center items-center absolute md:-mt-36 mt-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white md:scale-[100%] scale-[70%] mb-24 z-12 space-x-16 md:space-x-32 bg-custom-blue rounded-xl w-[30rem] h-28 md:w-[40rem] md:h-32">
           <div className="time-section">
             <div className="text-6xl font-bold time md:text-4xl font font-barlow-condensed">
               {state.days}

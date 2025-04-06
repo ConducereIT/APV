@@ -3,7 +3,7 @@ import { Countdown } from "../components/Countdown.component";
 import AboutHome from "../components/AboutHome.component";
 import VideoBanner from "../assets/Video_APV.mp4";
 import Banner from "../components/Banner.component";
-import LseBanner from "../assets/banner.webp";
+import LseBanner from "../assets/bannerv2.webp";
 import Gallery from "../components/Gallery.component";
 import Sponsors from "../components/Sponsors.component";
 import { organizatori } from "../config/OrganizerConfig";
