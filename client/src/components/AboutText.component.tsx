@@ -16,7 +16,7 @@ export default function AboutText() {
         </p>
         <p className="text-sm md:text-base lg:text-lg font-barlow font-normal leading-normal text-custom-gray mt-4 md:mt-6">
           Astfel, scopul evenimentului Aleargă Pentru Viață este de a da o mână
-          de ajutor unei persoane care se confruntă cu o situație dificilă dins
+          de ajutor unei persoane care se confruntă cu o situație dificilă din
           punct de vedere medical, reușind să aducă un aport semnificativ pentru
           revenirea la o viață normală a acesteia.
         </p>
