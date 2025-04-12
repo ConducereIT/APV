@@ -54,6 +54,18 @@ export class BackendService {
   @GenezioAuth()
   async addUser(context: GnzContext): Promise<HTTPResponse | HTTPError> {
     try {
+      // Check if user already exists
+      const existingUser = await this.prisma.userAccount.findUnique({
+        where: { userId: context.user!.userId },
+      });
+
+      if (existingUser) {
+        return {
+          status: 200,
+          message: "User already exists",
+        };
+      }
+
       await this.prisma.userAccount.create({
         data: {
           userId: context.user!.userId,
@@ -174,8 +186,8 @@ export class BackendService {
 
         const subject = `Inscriere cursa ${allRaces[races].name} - Alearga Pentru Viata`;
         const ora = allRaces[races].time;
-        
-        await this.mailer.registerMail( 
+
+        await this.mailer.registerMail(
           context.user!.email,
           subject,
           context.user!.name || "drag alergator",
@@ -183,7 +195,7 @@ export class BackendService {
           `${ora}`,
           "Rectoratul UNSTPB"
         );
-     
+
         return {
           status: 200,
           message: "Successfully registered",
@@ -336,15 +348,21 @@ export class BackendService {
 
   @GenezioAuth()
   async getAllRaces(context: GnzContext) {
-    //eslint-disable-line
     try {
       const response = await this.prisma.cursa.findMany();
-      
+
       return response.sort((a, b) => {
-        if (a.checkin === b.checkin) {
-          return a.name!.localeCompare(b.name!);
+        if (!a.checkin && !b.checkin) {
+          return (a.name || "").localeCompare(b.name || "");
         }
-        return a.checkin!.localeCompare(b.checkin!);
+        if (!a.checkin) return 1;
+        if (!b.checkin) return -1;
+
+        const checkinCompare = a.checkin.localeCompare(b.checkin);
+        if (checkinCompare === 0) {
+          return (a.name || "").localeCompare(b.name || "");
+        }
+        return checkinCompare;
       });
     } catch (error) {
       console.log(error);
