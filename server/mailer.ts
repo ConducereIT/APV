@@ -1,33 +1,31 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 import { GenezioDeploy } from "@genezio/types";
 import juice from "juice";
 
 @GenezioDeploy()
-export class Mailer{
+export class Mailer {
+  private transporter: nodemailer.Transporter;
 
-    private transporter: nodemailer.Transporter;
-    
-    constructor(){
+  constructor() {
+    this.transporter = nodemailer.createTransport({
+      host: process.env.SEND_MAIL_HOST,
+      service: process.env.SEND_MAIL_SERVICE,
+      auth: {
+        user: process.env.SEND_MAIL_USER,
+        pass: process.env.SEND_MAIL_PASS,
+      },
+    });
+  }
 
-        this.transporter = nodemailer.createTransport({
-            host: process.env.SEND_MAIL_HOST,
-            service: process.env.SEND_MAIL_SERVICE,
-            auth:{
-                user: process.env.SEND_MAIL_USER,
-                pass: process.env.SEND_MAIL_PASS,    
-            }
-        })
-    }
-
-    async registerMail(
-        to: string,
-        subject: string,
-        nume: string,
-        dataEveniment: string,
-        oraEveniment: string,
-        locatieEveniment: string,
-    ): Promise<boolean>{
-        const html = `<!doctype html>
+  async registerMail(
+    to: string,
+    subject: string,
+    nume: string,
+    dataEveniment: string,
+    oraEveniment: string,
+    locatieEveniment: string
+  ): Promise<boolean> {
+    const html = `<!doctype html>
         <html lang="ro">
         <head>
             <meta charset="UTF-8">
@@ -39,7 +37,7 @@ export class Mailer{
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/5XZTrzc6/LOGO-APV-XVI.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://iili.io/3cQsJQS.png"><img src="https://iili.io/3cQsJQS.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 30px;">Bună, ${nume}!</h1>
             <p style="color: #fff; text-align: center; font-size: 16px;">Îți mulțumim că te-ai înscris la "Aleargă pentru Viață", ediția a XVI-a!</p>
@@ -64,44 +62,43 @@ export class Mailer{
         </body>
         </html>`;
 
-        const inlineHtml = juice(html);
+    const inlineHtml = juice(html);
 
-        try {
-            await this.transporter.sendMail({
-                from: process.env.SEND_MAIL_USER,
-                to,
-                subject,
-                html: inlineHtml,
-            });
+    try {
+      await this.transporter.sendMail({
+        from: process.env.SEND_MAIL_USER,
+        to,
+        subject,
+        html: inlineHtml,
+      });
 
-            return true;
-        } catch (error) {
-            console.error("Error sending email:", error);
-            return false;
-        } 
-        
+      return true;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return false;
     }
+  }
 
-    async sendRaceCompletionEmail(
-        to: string,
-        subject: string,
-        nume: string,
-        cursa: string,
-        minuteAlergate: string
-    ){
-        const races = {
-            "0": "Cursa Copii",
-            "1": "Feminin 13-17 ani",
-            "2": "Masculin 13-17 ani",
-            "3": "Feminin 18-35 de ani",
-            "4": "Masculin 18-35 de ani",
-            "5": "Feminin 35+ de ani",
-            "6": "Masculin 35+ de ani",
-            "7": "Nu a selectat"
-        };
-        // @ts-expect-error: cursa is a
-        const cursaText = races[cursa];
-        const html = `<!doctype html>
+  async sendRaceCompletionEmail(
+    to: string,
+    subject: string,
+    nume: string,
+    cursa: string,
+    minuteAlergate: string
+  ) {
+    const races = {
+      "0": "Cursa Copii",
+      "1": "Feminin 13-17 ani",
+      "2": "Masculin 13-17 ani",
+      "3": "Feminin 18-35 de ani",
+      "4": "Masculin 18-35 de ani",
+      "5": "Feminin 35+ de ani",
+      "6": "Masculin 35+ de ani",
+      "7": "Nu a selectat",
+    };
+    // @ts-expect-error: cursa is a
+    const cursaText = races[cursa];
+    const html = `<!doctype html>
         <html lang="ro">
         <head>
             <meta charset="UTF-8">
@@ -113,7 +110,7 @@ export class Mailer{
         <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #081043; padding: 30px; border-radius: 10px; border: 4px solid #081043;">
             <div style="text-align: center;">
-                    <a href="https://ibb.co/g9SP8mx"><img src="https://i.ibb.co/5XZTrzc6/LOGO-APV-XVI.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
+                    <a href="https://iili.io/3cQsJQS.png"><img src="https://iili.io/3cQsJQS.png" alt="Logo Aleargă pentru Viață" style="max-width: 75%; height: auto; display: inline-block; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);"></a>
             </div>
             <h1 style="color: #fff; text-align: center; margin-bottom: 20px;">Felicitari, ${nume}!</h1>
             <p style="color: #fff; text-align: center; font-size: 14px;">Detalii ${cursaText}, ediția a XVI-a!</p>
@@ -128,24 +125,20 @@ export class Mailer{
         </body>
         </html>`;
 
-        const inlineHtml = juice(html);
+    const inlineHtml = juice(html);
 
-        
-        try {
-        
-            await this.transporter.sendMail({
-                
-                from: process.env.SEND_MAIL_USER,
-                to,
-                subject,
-                html: inlineHtml,
-            });
+    try {
+      await this.transporter.sendMail({
+        from: process.env.SEND_MAIL_USER,
+        to,
+        subject,
+        html: inlineHtml,
+      });
 
-            return true;
-        } catch (error) {
-            console.error("Error sending email:", error);
-            return false;
-        } 
+      return true;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return false;
     }
-
+  }
 }

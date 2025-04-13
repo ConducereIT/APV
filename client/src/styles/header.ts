@@ -1,21 +1,40 @@
 import styled from "styled-components";
 
-const HeaderDiv = styled.div.attrs(props => ({
-  className: `header h-[5.625rem] w-full fixed top-0 ${props.theme && `bg-${props.theme.background}`}`
-}))``;
+const HeaderDiv = styled.div`
+  height: 5.625rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: ${(props) => props.theme.background};
+`;
 
-const ElementDiv = styled.div.attrs(props => ({
-    className: `elementHeader border border-black h-[80%] my-auto  w-[80rem] mx-auto m ${props.theme && `bg-${props.theme.background}`}`
-  }))``;
+const ElementDiv = styled.div`
+  border: 1px solid black;
+  height: 80%;
+  margin: auto;
+  width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: ${(props) => props.theme.background};
+`;
 
-const UlHead = styled.ul.attrs( () => ({
-  className: `flex list-none p-0 center my-auto h-full`
-}))``;
+const UlHead = styled.ul`
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
+`;
 
-const LiHead = styled.li.attrs ( props => ({
-  className: `liHeader ml-10 text-xl my-auto ${props.theme && `text-${props.theme.text} hover:text-${props.theme.textHover}`}`
-}))``;
+const LiHead = styled.li`
+  margin-left: 2.5rem;
+  font-size: 1.25rem;
+  margin: auto;
+  color: ${(props) => props.theme.text};
+  &:hover {
+    color: ${(props) => props.theme.textHover};
+  }
+`;
 
-
-
-export {HeaderDiv, ElementDiv, UlHead, LiHead};
+export { HeaderDiv, ElementDiv, UlHead, LiHead };
