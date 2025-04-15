@@ -7,7 +7,7 @@ APV is a platform for the APV project.
 ## How to run
 
 1. Clone the repository
-2. Create a .env file and add the environment variables: 
+2. Create a .env file in server and add the environment variables: 
 
 ```
 APV_DB_DATABASE_URL=
