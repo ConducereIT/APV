@@ -268,7 +268,7 @@ const Admin: React.FC = () => {
               <tr className="bg-gray-200">
                 <th className="px-1 py-1 border border-gray-400">ID</th>
                 <th className="px-1 py-1 border border-gray-400">
-                  UserID
+                  CursaId
                   <button
                     onClick={() => handleSort("idCursa")}
                     className="ml-1 text-xs"
