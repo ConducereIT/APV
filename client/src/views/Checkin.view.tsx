@@ -125,9 +125,9 @@ const Checkin: React.FC = () => {
     <>
       <Header />
 
-      <div className="flex flex-col items-center pt-40">
+      <div className="flex flex-col items-center pt-36">
         <h1 className="text-2xl font-bold mb-6">Panou de administrare</h1>
-        <div className="w-full px-4 overflow-x-auto max-w-[1200px] mb-10">
+        <div className="w-full px-4 overflow-x-auto max-w-[1400px] mb-10">
           <table className="border-collapse w-full mb-5 h-full text-sm">
             <thead>
               <tr className="bg-gray-200">
@@ -142,6 +142,21 @@ const Checkin: React.FC = () => {
                   </button>
                   <button
                     onClick={() => handleSort("name", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Email
+                  <button
+                    onClick={() => handleSort("email")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSort("email", false)}
                     className="ml-1 text-xs"
                   >
                     &#9660;
@@ -266,7 +281,16 @@ const Checkin: React.FC = () => {
                       type="text"
                       value={formDataList[index]?.name || "N/A"}
                       onChange={(e) => handleInputChange(e, index, "name")}
-                      className="text-center w-full"
+                      className="text-center w-full min-w-[150px]"
+                    />
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    <input
+                      type="text"
+                      value={formDataList[index]?.email || "N/A"}
+                      onChange={(e) => handleInputChange(e, index, "email")}
+                      className="text-center w-full min-w-[200px]"
+                      disabled={true}
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -276,7 +300,7 @@ const Checkin: React.FC = () => {
                         initialFormData.categorie
                       }
                       onChange={(e) => handleInputChange(e, index, "categorie")}
-                      className="text-center w-full"
+                      className="text-center w-full min-w-[170px]"
                     >
                       {Object.entries(races).map(([key, value]) => (
                         <option key={key} value={key} className="text-center">
@@ -314,7 +338,7 @@ const Checkin: React.FC = () => {
                       onChange={(e) =>
                         handleInputChange(e, index, "numarTricou")
                       }
-                      className="text-center w-full"
+                      className="text-center w-full min-w-[100px]"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -339,7 +363,7 @@ const Checkin: React.FC = () => {
                         formDataList[index]?.phone || initialFormData.phone
                       }
                       onChange={(e) => handleInputChange(e, index, "phone")}
-                      className="text-center w-full"
+                      className="text-center w-full min-w-[120px]"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -347,7 +371,7 @@ const Checkin: React.FC = () => {
                       type="text"
                       value={formDataList[index]?.suma || initialFormData.suma}
                       onChange={(e) => handleInputChange(e, index, "suma")}
-                      className="text-center w-full"
+                      className="text-center w-full min-w-[100px]"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
