@@ -664,8 +664,12 @@ export class BackendService {
 
   @GenezioAuth()
   async getAllUsers(context: GnzContext) {
-    const users = await pool.query(`SELECT * FROM "users"`);
-
-    return users.rows;
+    try {
+      const users = await pool.query(`SELECT * FROM "users"`);
+      return users.rows;
+    } catch (error) {
+      console.log(error);
+      return createHTTPError(500, "Internal Server Error");
+    }
   }
 }
