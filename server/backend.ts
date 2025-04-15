@@ -662,4 +662,15 @@ export class BackendService {
       return createHTTPError(500, "Internal Server Error");
     }
   }
+
+  @GenezioAuth()
+  async getAllUsers(context: GnzContext) {
+    const pool = new Pool({
+      connectionString: process.env.APV_DB_DATABASE_URL,
+      ssl: true,
+    });
+    const users = await pool.query(`SELECT * FROM "users"`);
+
+    return users.rows;
+  }
 }
