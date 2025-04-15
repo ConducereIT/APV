@@ -152,7 +152,7 @@ const Admin: React.FC = () => {
 
       <div className="flex flex-col items-center pt-36">
         <h1 className="text-2xl font-bold mb-10">Conturi create</h1>
-        <div className="w-full px-4 overflow-x-auto max-w-[1200px] mb-10">
+        <div className="w-full px-4 overflow-x-auto max-w-[1400px] mb-10">
           <table className="border-collapse w-full mb-5 h-full text-sm">
             <thead>
               <tr className="bg-gray-200">
@@ -262,7 +262,7 @@ const Admin: React.FC = () => {
         </div>
 
         <h1 className="text-2xl font-bold mb-10">Toate cursele - Checkin</h1>
-        <div className="w-full px-4 overflow-x-auto max-w-[1200px]">
+        <div className="w-full px-4 overflow-x-auto max-w-[1400px]">
           <table className="border-collapse w-full mb-[5rem] h-full text-sm">
             <thead>
               <tr className="bg-gray-200">
@@ -292,6 +292,21 @@ const Admin: React.FC = () => {
                   </button>
                   <button
                     onClick={() => handleSort("name", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Email
+                  <button
+                    onClick={() => handleSort("email")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSort("email", false)}
                     className="ml-1 text-xs"
                   >
                     &#9660;
@@ -420,6 +435,15 @@ const Admin: React.FC = () => {
                       value={formDataList[index]?.name || "N/A"}
                       onChange={(e) => handleInputChange(e, index, "name")}
                       className="text-center w-full"
+                    />
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    <input
+                      type="text"
+                      value={formDataList[index]?.email || "N/A"}
+                      onChange={(e) => handleInputChange(e, index, "email")}
+                      className="text-center w-full"
+                      disabled={true}
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">

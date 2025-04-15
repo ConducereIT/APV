@@ -349,21 +349,20 @@ export class BackendService {
   @GenezioAuth()
   async getAllRaces(context: GnzContext) {
     try {
-      const response = await this.prisma.cursa.findMany();
+      const response = await pool.query(`
+        SELECT c.*, u.email 
+        FROM "Cursa" c 
+        LEFT JOIN "users" u ON c."userId" = u."userId"
+        ORDER BY 
+          CASE 
+            WHEN c.checkin = 'NU' THEN 1 
+            WHEN c.checkin IS NULL THEN 2 
+            ELSE 3 
+          END,
+          COALESCE(c.name, '') ASC;
+      `);
 
-      return response.sort((a, b) => {
-        if (!a.checkin && !b.checkin) {
-          return (a.name || "").localeCompare(b.name || "");
-        }
-        if (!a.checkin) return 1;
-        if (!b.checkin) return -1;
-
-        const checkinCompare = a.checkin.localeCompare(b.checkin);
-        if (checkinCompare === 0) {
-          return (a.name || "").localeCompare(b.name || "");
-        }
-        return checkinCompare;
-      });
+      return response.rows;
     } catch (error) {
       console.log(error);
       return createHTTPError(500, "Internal Server Error");
@@ -665,10 +664,6 @@ export class BackendService {
 
   @GenezioAuth()
   async getAllUsers(context: GnzContext) {
-    const pool = new Pool({
-      connectionString: process.env.APV_DB_DATABASE_URL,
-      ssl: true,
-    });
     const users = await pool.query(`SELECT * FROM "users"`);
 
     return users.rows;
