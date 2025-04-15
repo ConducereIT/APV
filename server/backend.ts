@@ -359,7 +359,7 @@ export class BackendService {
             WHEN c.checkin IS NULL THEN 2 
             ELSE 3 
           END,
-          COALESCE(c.name, '') ASC,
+          COALESCE(c.name, '') ASC;
       `);
 
       return response.rows;
@@ -664,10 +664,6 @@ export class BackendService {
 
   @GenezioAuth()
   async getAllUsers(context: GnzContext) {
-    const pool = new Pool({
-      connectionString: process.env.APV_DB_DATABASE_URL,
-      ssl: true,
-    });
     const users = await pool.query(`SELECT * FROM "users"`);
 
     return users.rows;
