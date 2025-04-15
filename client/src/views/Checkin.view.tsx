@@ -286,8 +286,7 @@ const Checkin: React.FC = () => {
                     </select>
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
-                    <input
-                      type="text"
+                    <select
                       value={
                         formDataList[index]?.marimeTricou ||
                         initialFormData.marimeTricou
@@ -296,7 +295,14 @@ const Checkin: React.FC = () => {
                         handleInputChange(e, index, "marimeTricou")
                       }
                       className="text-center w-full"
-                    />
+                    >
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
                     <input
@@ -312,8 +318,7 @@ const Checkin: React.FC = () => {
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
-                    <input
-                      type="text"
+                    <select
                       value={
                         formDataList[index]?.revolute_cash ||
                         initialFormData.revolute_cash
@@ -322,7 +327,10 @@ const Checkin: React.FC = () => {
                         handleInputChange(e, index, "revolute_cash")
                       }
                       className="text-center w-full"
-                    />
+                    >
+                      <option value="cash">Cash</option>
+                      <option value="revolut">Revolut</option>
+                    </select>
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
                     <input
