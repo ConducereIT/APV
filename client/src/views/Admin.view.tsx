@@ -27,10 +27,11 @@ const races = {
   "7": "Nu a selectat",
 };
 
-const Checkin: React.FC = () => {
+const Admin: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]); //eslint-disable-line
   const [formDataList, setFormDataList] = useState<any[]>([]); //eslint-disable-line
-
+  const [allUsers, setAllUsers] = useState<any[]>([]); //eslint-disable-line
+  const [sortedAllUsers, setSortedAllUsers] = useState<any[]>([]); //eslint-disable-line
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,14 +43,22 @@ const Checkin: React.FC = () => {
       }
     };
 
+    const fetchAllUsers = async () => {
+      try {
+        const response = await BackendService.getAllUsers();
+        console.log("response", response);
+        setAllUsers(response);
+        setSortedAllUsers(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     const checkAdmin = async () => {
       try {
         const response = await AuthService.getInstance().userInfo();
 
-        if (
-          response.authProvider !== "checkin" &&
-          response.authProvider !== "admin"
-        ) {
+        if (response.authProvider !== "admin") {
           window.location.href = "/";
         }
       } catch (error) {
@@ -59,6 +68,7 @@ const Checkin: React.FC = () => {
 
     fetchData();
     checkAdmin();
+    fetchAllUsers();
   }, []);
 
   const handleInputChange = (
@@ -121,17 +131,157 @@ const Checkin: React.FC = () => {
     setUsers(sortedUsers);
   };
 
+  const handleSortUsers = (column: string, ascending: boolean = true) => {
+    const sortedUsers = [...allUsers].sort((a, b) => {
+      if (column === "createdAt") {
+        return ascending
+          ? new Date(a[column]).getTime() - new Date(b[column]).getTime()
+          : new Date(b[column]).getTime() - new Date(a[column]).getTime();
+      }
+      if (a[column] === undefined || b[column] === undefined) return 0;
+      return ascending
+        ? a[column]?.localeCompare(b[column])
+        : b[column]?.localeCompare(a[column]);
+    });
+    setSortedAllUsers(sortedUsers);
+  };
+
   return (
     <>
       <Header />
 
       <div className="flex flex-col items-center pt-36">
-        <h1 className="text-2xl font-bold mb-6">Panou de administrare</h1>
+        <h1 className="text-2xl font-bold mb-10">Conturi create</h1>
         <div className="w-full px-4 overflow-x-auto max-w-[1400px] mb-10">
           <table className="border-collapse w-full mb-5 h-full text-sm">
             <thead>
               <tr className="bg-gray-200">
                 <th className="px-1 py-1 border border-gray-400">ID</th>
+                <th className="px-1 py-1 border border-gray-400">
+                  UserID
+                  <button
+                    onClick={() => handleSortUsers("userId")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSortUsers("userId", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Nume
+                  <button
+                    onClick={() => handleSortUsers("name")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSortUsers("name", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Email
+                  <button
+                    onClick={() => handleSortUsers("email")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSortUsers("email", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Provider
+                  <button
+                    onClick={() => handleSortUsers("authProvider")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSortUsers("authProvider", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+                <th className="px-1 py-1 border border-gray-400">
+                  Data înregistrării
+                  <button
+                    onClick={() => handleSortUsers("createdAt")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSortUsers("createdAt", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {sortedAllUsers.map((user, index) => (
+                <tr key={index} className="text-center">
+                  <td className="px-1 py-1 border border-gray-400">
+                    {index + 1}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    {user.userId}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    {user.name}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    {user.email}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    {user.authProvider}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
+                    {new Date(user.createdAt).toLocaleDateString("ro-RO")}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h1 className="text-2xl font-bold mb-10">Toate cursele - Checkin</h1>
+        <div className="w-full px-4 overflow-x-auto max-w-[1400px]">
+          <table className="border-collapse w-full mb-[5rem] h-full text-sm">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="px-1 py-1 border border-gray-400">ID</th>
+                <th className="px-1 py-1 border border-gray-400">
+                  CursaId
+                  <button
+                    onClick={() => handleSort("idCursa")}
+                    className="ml-1 text-xs"
+                  >
+                    &#9650;
+                  </button>
+                  <button
+                    onClick={() => handleSort("idCursa", false)}
+                    className="ml-1 text-xs"
+                  >
+                    &#9660;
+                  </button>
+                </th>
                 <th className="px-1 py-1 border border-gray-400">
                   Nume
                   <button
@@ -208,7 +358,7 @@ const Checkin: React.FC = () => {
                   </button>
                 </th>
                 <th className="px-1 py-1 border border-gray-400">
-                  Metoda de plata
+                  Plata
                   <button
                     onClick={() => handleSort("revolute_cash")}
                     className="ml-1 text-xs"
@@ -253,7 +403,7 @@ const Checkin: React.FC = () => {
                   </button>
                 </th>
                 <th className="px-1 py-1 border border-gray-400">
-                  Checkin
+                  Venit
                   <button
                     onClick={() => handleSort("checkin")}
                     className="ml-1 text-xs"
@@ -277,11 +427,14 @@ const Checkin: React.FC = () => {
                     {index + 1}
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
+                    {formDataList[index]?.idCursa}
+                  </td>
+                  <td className="px-1 py-1 border border-gray-400">
                     <input
                       type="text"
                       value={formDataList[index]?.name || "N/A"}
                       onChange={(e) => handleInputChange(e, index, "name")}
-                      className="text-center w-full min-w-[150px]"
+                      className="text-center w-full"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -289,7 +442,7 @@ const Checkin: React.FC = () => {
                       type="text"
                       value={formDataList[index]?.email || "N/A"}
                       onChange={(e) => handleInputChange(e, index, "email")}
-                      className="text-center w-full min-w-[200px]"
+                      className="text-center w-full"
                       disabled={true}
                     />
                   </td>
@@ -300,7 +453,7 @@ const Checkin: React.FC = () => {
                         initialFormData.categorie
                       }
                       onChange={(e) => handleInputChange(e, index, "categorie")}
-                      className="text-center w-full min-w-[170px]"
+                      className="text-center w-full"
                     >
                       {Object.entries(races).map(([key, value]) => (
                         <option key={key} value={key} className="text-center">
@@ -338,7 +491,7 @@ const Checkin: React.FC = () => {
                       onChange={(e) =>
                         handleInputChange(e, index, "numarTricou")
                       }
-                      className="text-center w-full min-w-[100px]"
+                      className="text-center w-full"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -363,7 +516,7 @@ const Checkin: React.FC = () => {
                         formDataList[index]?.phone || initialFormData.phone
                       }
                       onChange={(e) => handleInputChange(e, index, "phone")}
-                      className="text-center w-full min-w-[120px]"
+                      className="text-center w-full"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -371,7 +524,7 @@ const Checkin: React.FC = () => {
                       type="text"
                       value={formDataList[index]?.suma || initialFormData.suma}
                       onChange={(e) => handleInputChange(e, index, "suma")}
-                      className="text-center w-full min-w-[100px]"
+                      className="text-center w-full"
                     />
                   </td>
                   <td className="px-1 py-1 border border-gray-400">
@@ -415,4 +568,4 @@ const Checkin: React.FC = () => {
   );
 };
 
-export default Checkin;
+export default Admin;

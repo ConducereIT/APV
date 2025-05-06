@@ -1,33 +1,31 @@
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 import { GenezioDeploy } from "@genezio/types";
 import juice from "juice";
 
 @GenezioDeploy()
-export class Mailer{
+export class Mailer {
+  private transporter: nodemailer.Transporter;
 
-    private transporter: nodemailer.Transporter;
-    
-    constructor(){
+  constructor() {
+    this.transporter = nodemailer.createTransport({
+      host: process.env.SEND_MAIL_HOST,
+      service: process.env.SEND_MAIL_SERVICE,
+      auth: {
+        user: process.env.SEND_MAIL_USER,
+        pass: process.env.SEND_MAIL_PASS,
+      },
+    });
+  }
 
-        this.transporter = nodemailer.createTransport({
-            host: process.env.SEND_MAIL_HOST,
-            service: process.env.SEND_MAIL_SERVICE,
-            auth:{
-                user: process.env.SEND_MAIL_USER,
-                pass: process.env.SEND_MAIL_PASS,    
-            }
-        })
-    }
-
-    async registerMail(
-        to: string,
-        subject: string,
-        nume: string,
-        dataEveniment: string,
-        oraEveniment: string,
-        locatieEveniment: string,
-    ): Promise<boolean>{
-        const html = `<!doctype html>
+  async registerMail(
+    to: string,
+    subject: string,
+    nume: string,
+    dataEveniment: string,
+    oraEveniment: string,
+    locatieEveniment: string
+  ): Promise<boolean> {
+    const html = `<!doctype html>
         <html lang="ro">
         <head>
             <meta charset="UTF-8">
@@ -64,44 +62,43 @@ export class Mailer{
         </body>
         </html>`;
 
-        const inlineHtml = juice(html);
+    const inlineHtml = juice(html);
 
-        try {
-            await this.transporter.sendMail({
-                from: process.env.SEND_MAIL_USER,
-                to,
-                subject,
-                html: inlineHtml,
-            });
+    try {
+      await this.transporter.sendMail({
+        from: process.env.SEND_MAIL_USER,
+        to,
+        subject,
+        html: inlineHtml,
+      });
 
-            return true;
-        } catch (error) {
-            console.error("Error sending email:", error);
-            return false;
-        } 
-        
+      return true;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return false;
     }
+  }
 
-    async sendRaceCompletionEmail(
-        to: string,
-        subject: string,
-        nume: string,
-        cursa: string,
-        minuteAlergate: string
-    ){
-        const races = {
-            "0": "Cursa Copii",
-            "1": "Feminin 13-17 ani",
-            "2": "Masculin 13-17 ani",
-            "3": "Feminin 18-35 de ani",
-            "4": "Masculin 18-35 de ani",
-            "5": "Feminin 35+ de ani",
-            "6": "Masculin 35+ de ani",
-            "7": "Nu a selectat"
-        };
-        // @ts-expect-error: cursa is a
-        const cursaText = races[cursa];
-        const html = `<!doctype html>
+  async sendRaceCompletionEmail(
+    to: string,
+    subject: string,
+    nume: string,
+    cursa: string,
+    minuteAlergate: string
+  ) {
+    const races = {
+      "0": "Cursa Copii",
+      "1": "Feminin 13-17 ani",
+      "2": "Masculin 13-17 ani",
+      "3": "Feminin 18-35 de ani",
+      "4": "Masculin 18-35 de ani",
+      "5": "Feminin 35+ de ani",
+      "6": "Masculin 35+ de ani",
+      "7": "Nu a selectat",
+    };
+    // @ts-expect-error: cursa is a
+    const cursaText = races[cursa];
+    const html = `<!doctype html>
         <html lang="ro">
         <head>
             <meta charset="UTF-8">
@@ -128,24 +125,20 @@ export class Mailer{
         </body>
         </html>`;
 
-        const inlineHtml = juice(html);
+    const inlineHtml = juice(html);
 
-        
-        try {
-        
-            await this.transporter.sendMail({
-                
-                from: process.env.SEND_MAIL_USER,
-                to,
-                subject,
-                html: inlineHtml,
-            });
+    try {
+      await this.transporter.sendMail({
+        from: process.env.SEND_MAIL_USER,
+        to,
+        subject,
+        html: inlineHtml,
+      });
 
-            return true;
-        } catch (error) {
-            console.error("Error sending email:", error);
-            return false;
-        } 
+      return true;
+    } catch (error) {
+      console.error("Error sending email:", error);
+      return false;
     }
-
+  }
 }
