@@ -35,7 +35,7 @@ const Checkin: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await BackendService.getAllRaces();
-        console.log("Users received:", response);
+       
         setUsers(response);
         setFormDataList(response.map((user: any) => ({ ...user }))); //eslint-disable-line
       } catch (error) {
