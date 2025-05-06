@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logoapv from '../assets/logoapv.png';
+import logoapv from '../assets/LOGO APV XVI.png';
 const Timer: React.FC = () => {
   const [time, setTime] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);

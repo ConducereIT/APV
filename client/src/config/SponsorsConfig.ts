@@ -13,6 +13,7 @@ import NAN from "../assets/sponsors/sponsor12.webp";
 import SALATA from "../assets/sponsors/sponsor13.webp";
 import VELO from "../assets/sponsors/sponsor14.webp";
 import FITGYM from "../assets/sponsors/sponsor15.webp";
+import IRIS from "../assets/sponsors/sponsor16.webp";
 export const sponsori = [
    
     {
@@ -72,5 +73,9 @@ export const sponsori = [
         image: FITGYM,
         link:"  https://fitmotiongym.ro",
     },
+    {
+        image: IRIS,
+        link:"https://www.florariairis.ro",
+    }
     
 ];
