@@ -158,8 +158,29 @@ const RaceRegistration: React.FC = () => {
           <option value="revolut">Revolut</option>
         </select>
 
+        <div className="flex items-center mb-6">
+          <input
+            type="checkbox"
+            id="regulations"
+            required={true}
+            className="w-4 h-4 mr-2 text-green-600 border-gray-300 rounded focus:ring-green-500"
+          />
+          <label htmlFor="regulations" className="text-gray-700">
+            Sunt de acord cu{" "}
+            <a
+              href="/src/assets/REGULAMENT-APV-2024.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <b className="hover:text-green-600">
+                regulamentul de desfășurare!
+              </b>
+            </a>
+          </label>
+        </div>
+
         <button
-          className="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700"
+          className="w-full px-4 py-2 mt-2 font-semibold text-white bg-green-600 rounded-md hover:bg-green-700"
           type="submit"
         >
           Trimite
