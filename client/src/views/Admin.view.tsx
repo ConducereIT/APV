@@ -151,6 +151,46 @@ const Admin: React.FC = () => {
       <Header />
 
       <div className="flex flex-col items-center pt-36">
+        <h1 className="text-2xl font-bold mb-10">Sumar încasări</h1>
+        <div className="w-full px-4 max-w-[1400px] mb-10">
+          <div className="grid grid-cols-3 gap-4 mb-10">
+            <div className="p-4 bg-white rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold mb-2">Suma totala</h3>
+              <p className="text-2xl font-bold text-green-600">
+                {users.reduce(
+                  (sum, user) => sum + (parseFloat(user.suma) || 0),
+                  0
+                )}{" "}
+                RON
+              </p>
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold mb-2">Cash</h3>
+              <p className="text-2xl font-bold text-blue-600">
+                {users
+                  .filter((user) => user.revolute_cash === "cash")
+                  .reduce(
+                    (sum, user) => sum + (parseFloat(user.suma) || 0),
+                    0
+                  )}{" "}
+                RON
+              </p>
+            </div>
+            <div className="p-4 bg-white rounded-lg shadow-md">
+              <h3 className="text-lg font-semibold mb-2">Revolut</h3>
+              <p className="text-2xl font-bold text-purple-600">
+                {users
+                  .filter((user) => user.revolute_cash === "revolut")
+                  .reduce(
+                    (sum, user) => sum + (parseFloat(user.suma) || 0),
+                    0
+                  )}{" "}
+                RON
+              </p>
+            </div>
+          </div>
+        </div>
+
         <h1 className="text-2xl font-bold mb-10">Conturi create</h1>
         <div className="w-full px-4 overflow-x-auto max-w-[1400px] mb-10">
           <table className="border-collapse w-full mb-5 h-full text-sm">
